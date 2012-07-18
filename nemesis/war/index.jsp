@@ -35,7 +35,12 @@
 			<div id="splitterWrapper">
 			    <div>	    	
 			    	<div id="leftPanel">
-			    		<div>Area 1</div>
+			    		<div>
+			    			
+			    			<div id="treeview-left"></div>
+			    			
+			    			
+			    		</div>
 			    		<div>Area 2</div>
 					</div>	    
 			    </div>
@@ -68,7 +73,7 @@
 		
 	mainPanel.init();
 
-
+	leftTree.init();
 
 	</script>
 	
