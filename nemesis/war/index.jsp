@@ -52,7 +52,38 @@
 			    </div>
 			    <div>
 			    	<div id="rightPanel">
-			    		<div>Area 1</div>
+			    		<div>	    			
+			    			
+			    			<div id="tabstrip">
+								<ul>
+									<li class="k-state-active">
+										Propiedades
+									</li>
+									<li>
+										Acciones
+									</li>
+									<li>
+										Eventos
+									</li>								
+								</ul>
+								<div>
+			                        <div class="bodyTabStrip">
+			                            
+			                        </div>									
+								</div>
+								<div>
+			                        <div class="bodyTabStrip">
+			                            
+			                        </div>									
+								</div>
+								<div>
+			                        <div class="bodyTabStrip">
+			                            
+			                        </div>									
+								</div>
+							<div>	
+			    			
+			    		</div>
 			    		<div>Area 2</div>
 					</div>
 			    </div>
@@ -75,6 +106,7 @@
 
 	leftTree.init();
 
+	rightUpperTab.init();
 	</script>
 	
 	
