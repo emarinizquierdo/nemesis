@@ -1,0 +1,35 @@
+
+
+/* -- headers -- */
+
+
+
+
+
+
+
+
+
+
+/* -- main -- */
+
+
+/* -- mainPanel -- */
+
+div#splitterWrapper{
+	height:800px;
+}
+div#leftPanel{
+	height:800px;
+}
+div#middlePanel{
+	height:800px;
+}
+div#rightPanel{
+	height:800px;
+}
+
+
+
+
+/* -- footer -- */
