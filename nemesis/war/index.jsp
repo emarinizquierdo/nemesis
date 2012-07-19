@@ -17,6 +17,8 @@
 	<script src="lib/kendo/js/jquery.min.js" type="text/javascript"></script>
 	<script src="lib/kendo/js/kendo.web.min.js" type="text/javascript"></script>
 	
+	<script src="lib/fabric/fabric.js" type="text/javascript"></script>
+	
 	<%@ include file="libraries.html" %>
 	
 </head>
@@ -46,7 +48,11 @@
 			    </div>
 			    <div>
 			    	<div id="middlePanel">
-			    		<div>Area 1</div>
+			    		<div>
+			    			
+			    			<canvas id="mainCanvas" width="600" height="480"></canvas>
+
+			    		</div>
 			    		<div>Area 2</div>
 					</div>	    	
 			    </div>
@@ -68,7 +74,20 @@
 								</ul>
 								<div>
 			                        <div class="bodyTabStrip">
-			                            
+			                            <div class="controls">
+  <p>
+    <label><span>Angle:</span> <input type="range" id="angle-control" value="0" min="-90" max="90"></label>
+  </p>
+  <p>
+    <label><span>Left:</span> <input type="range" id="left-control" value="150" min="0" max="300"></label>
+  </p>
+  <p>
+    <label><span>Top:</span> <input type="range" id="top-control" value="150" min="0" max="300"></label>
+  </p>
+  <p>
+    <label><span>Scale:</span> <input type="range" id="scale-control" value="1" min="0.1" max="3" step="0.1"></label>
+  </p>
+</div>
 			                        </div>									
 								</div>
 								<div>
@@ -107,6 +126,9 @@
 	leftTree.init();
 
 	rightUpperTab.init();
+	
+	mainCanvas.init();
+	
 	</script>
 	
 	

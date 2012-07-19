@@ -9,7 +9,7 @@ var mainPanel = new function(){
 		$("#splitterWrapper").kendoSplitter({
 		    panes: [
 		        { collapsible: false, min: "300px" },
-		       	{ collapsible: false, resizable: false, size: "700px" },
+		       	{ collapsible: false, resizable: false, size: "1000px" },
 		       	{ collapsible: false, min: "300px" }
 		    ],
 		    orientation: "horizontal"
