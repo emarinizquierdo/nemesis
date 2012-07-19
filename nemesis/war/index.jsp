@@ -53,7 +53,7 @@
 			    		
 			    			<script type="text/x-kendo-tmpl" id="template">
 
-        						<div class="product">
+        						<div class="localImage">
             						<img src="\${url}" alt="\${title} image" />
         						</div>
 
