@@ -1,22 +1,49 @@
 
 var mainCanvas = new function(){
 
+	this.canvas;
+	
 	function _init(){
 		
 	
-		var canvas = new fabric.Canvas('mainCanvas');
+		this.canvas = new fabric.Canvas('mainCanvas');		
 		
+		_observeCanvas();
+		
+	}
+	
+	function _observeCanvas(){
+		
+		mainCanvas.canvas.observe({ 
+			  'object:moving': updateControls,
+			  'object:scaling': updateControls,
+			  'object:resizing': updateControls
+			});
+		
+		function updateControls() {
+			/*
+			  scaleControl.value = rect.getScaleX();
+			  angleControl.value = rect.getAngle();
+			  leftControl.value = rect.getLeft();
+			  topControl.value = rect.getTop();*/
+			}		
+		
+	}
+	
+	function _addLocalImage(url){
+		
+		var oImg
+		var auxImg = fabric.Image.fromURL(url,function(img) {
+			  oImg = img.set({ left: 300, top: 240, }).scale(1);
+			  mainCanvas.canvas.add(oImg).renderAll();
+			});
+		
+		return oImg;
+		
+	}
+	
+	function _none(){
 		var $ = function(id){return document.getElementById(id)};
-		
-		var rect = new fabric.Rect({ 
-		  width: 100, 
-		  height: 100, 
-		  top: 150, 
-		  left: 150, 
-		  fill: 'rgba(255,0,0,0.5)' 
-		});
-		
-		canvas.add(rect);
 		
 		var angleControl = $('angle-control');
 		angleControl.onchange = function() {
@@ -42,19 +69,9 @@ var mainCanvas = new function(){
 		  canvas.renderAll();
 		};
 		
-		function updateControls() {
-		  scaleControl.value = rect.getScaleX();
-		  angleControl.value = rect.getAngle();
-		  leftControl.value = rect.getLeft();
-		  topControl.value = rect.getTop();
-		}
-		canvas.observe({ 
-		  'object:moving': updateControls,
-		  'object:scaling': updateControls,
-		  'object:resizing': updateControls
-		});
 		
 	}
 	
 	this.init = _init;
+	this.addLocalImage = _addLocalImage;
 }

@@ -54,7 +54,11 @@ var imageSource = new function(){
 	
 	function _addToLefTree(){		
 		
-		leftTree.addElement(imageSource.dSource.getByUid(this.imageList.find(".k-state-selected").attr("data-uid")).title);
+		var imageToTree = imageSource.dSource.getByUid(this.imageList.find(".k-state-selected").attr("data-uid"));
+		
+		imageToTree.imageCanvasOjb = mainCanvas.addLocalImage(imageToTree.url);
+		
+		leftTree.addElement(imageToTree);
 		
 	}
 	

@@ -9,9 +9,7 @@ var leftTree = new function(){
 		
 		this.treeView = $("#treeview-left").kendoTreeView({
             dragAndDrop: true,
-            dataSource: [
-                
-            ]
+            dataSource: []
         }).data("kendoTreeView");
 	
 	
@@ -21,15 +19,20 @@ var leftTree = new function(){
 	function _addElement(p_element){
 		
 		var lastElement = this.treeView.dataSource._data[this.treeView.dataSource.total()-1];
+		var node;
 		
 		if(typeof lastElement == "undefined"){
-			this.treeView.dataSource.add({text : p_element, urlSource : "algodeurl"});
+			this.treeView.dataSource.add({text : p_element.title, dSourceObject : p_element});
 		}else{
-			var node = this.treeView.findByUid(lastElement.uid);		
+			node = this.treeView.findByUid(lastElement.uid);		
 			
-			this.treeView.insertAfter({ text: p_element, urlSource : "algodeurl"}, node);		
+			this.treeView.insertAfter({ text: p_element.title, dSourceObject : p_element}, node);		
 		}
 		
+		lastElement = this.treeView.dataSource._data[this.treeView.dataSource.total()-1];
+		node = this.treeView.findByUid(lastElement.uid);
+		
+		this.treeView.select(node);
 		
 	}
 	
