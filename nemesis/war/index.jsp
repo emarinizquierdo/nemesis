@@ -42,7 +42,26 @@
 			    			<div id="treeview-left"></div>			    			
 			    			
 			    		</div>
-			    		<div>Area 2</div>
+			    		<div>
+			    		<div id="listView"></div>
+
+
+
+    <div id="pager" class="k-pager-wrap">
+
+    </div>
+			    		
+			    			<script type="text/x-kendo-tmpl" id="template">
+
+        						<div class="product">
+
+            						<img src="${url}" alt="${title} image" />           					
+
+        						</div>
+
+    						</script>
+
+						</div>
 					</div>	    
 			    </div>
 			    <div>
@@ -154,6 +173,7 @@
 	
 	mainCanvas.init();
 	
+	imageSource.init();
 	
 	</script>
 	
