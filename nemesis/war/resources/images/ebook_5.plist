@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bookName</key>
+	<string>Prueba</string>
+	<key>btnNextImage</key>
+	<string>botonNext_on.png</string>
+	<key>btnPrevImage</key>
+	<string>botonPrev_on.png</string>
+	<key>iOSDevice</key>
+	<string>iPhone</string>
+	<key>mainBgMusic</key>
+	<string>MusicaIntro.mp3</string>
+	<key>openingScene</key>
+	<string>00_first_scene</string>
+	<key>scenes</key>
+	<dict/>
+</dict>
+</plist>
