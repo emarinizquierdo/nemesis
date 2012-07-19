@@ -49,9 +49,9 @@
 			    <div>
 			    	<div id="middlePanel">
 			    		<div>
-			    			
-			    			<canvas id="mainCanvas" width="600" height="480"></canvas>
-
+			    			<div id="canvasWrapper">
+			    				<canvas id="mainCanvas" width="600" height="480"></canvas>
+							</div>
 			    		</div>
 			    		<div>Area 2</div>
 					</div>	    	

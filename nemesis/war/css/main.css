@@ -16,16 +16,16 @@
 
 /* -- mainPanel -- */
 
-div#splitterWrapper{
+#splitterWrapper{
 	height:800px;
 }
-div#leftPanel{
+#leftPanel{
 	height:800px;
 }
-div#middlePanel{
+#middlePanel{
 	height:800px;
 }
-div#rightPanel{
+#rightPanel{
 	height:800px;
 }
 
@@ -33,12 +33,19 @@ div.bodyTabStrip{
 	height : 550px;
 }
 
-canvas#mainCanvas{
-	width : 680px;
-	height : 480px;
+#canvasWrapper{
+	width : 100%;
+	text-align : center;
+}
+
+#canvasWrapper .canvas-container{
+	margin : 50px auto;	
+}
+
+#mainCanvas{
 	border : 1px solid #ccc;
 	background-color : #000000;
-	
+
 }
 
 /* -- footer -- */
