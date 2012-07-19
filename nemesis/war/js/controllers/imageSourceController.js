@@ -3,10 +3,12 @@
 
 var imageSource = new function(){
 	
+	this.imageList;
+	this.dSource;
 	
 	function _init(){
 		
-		var dataSource = new kendo.data.DataSource({
+		this.dSource = new kendo.data.DataSource({
 
             transport: {
 
@@ -26,27 +28,38 @@ var imageSource = new function(){
 
 
 
-    $("#pager").kendoPager({
-
-        dataSource: dataSource
-
-    });
-
-
-
-    $("#listView").kendoListView({
-
-        dataSource: dataSource,
-
-        template: kendo.template($("#template").html())
-
-    });
-
+	    $("#pager").kendoPager({
 	
+	        dataSource: this.dSource
+	
+	    });
+	
+	
+	
+	    this.imageList = $("#listView").kendoListView({
+	
+	        dataSource: this.dSource,
+	
+	        template: kendo.template($("#template").html()),
+	        selectable: true
+	
+	    });	
+	    
+	    $("#addImageLocalButton").click(function(){
+	    	imageSource.addToLeftTree();
+	    })
+	    
 	
 	}
 	
+	function _addToLefTree(){		
+		
+		leftTree.addElement(imageSource.dSource.getByUid(this.imageList.find(".k-state-selected").attr("data-uid")).title);
+		
+	}
+	
 	this.init = _init;
+	this.addToLeftTree = _addToLefTree;
 	
 }
 

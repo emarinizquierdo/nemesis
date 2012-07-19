@@ -23,11 +23,11 @@ var leftTree = new function(){
 		var lastElement = this.treeView.dataSource._data[this.treeView.dataSource.total()-1];
 		
 		if(typeof lastElement == "undefined"){
-			this.treeView.dataSource.add({text : p_element});
+			this.treeView.dataSource.add({text : p_element, urlSource : "algodeurl"});
 		}else{
 			var node = this.treeView.findByUid(lastElement.uid);		
 			
-			this.treeView.insertAfter({ text: p_element }, node);		
+			this.treeView.insertAfter({ text: p_element, urlSource : "algodeurl"}, node);		
 		}
 		
 		

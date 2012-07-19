@@ -49,6 +49,7 @@
 
     <div id="pager" class="k-pager-wrap">
 
+
     </div>
 			    		
 			    			<script type="text/x-kendo-tmpl" id="template">
@@ -59,6 +60,16 @@
 
     						</script>
 
+
+<button id="addImageLocalButton">Add</button>
+<button id="removeImageLocalButton">Remove</button>
+
+
+
+
+<div class="demo-description" style="display: none; ">
+<p>Examples of the markup that can be used for buttons: A button element, an input of type submit and an anchor.</p>
+</div><!-- End demo-description -->
 						</div>
 					</div>	    
 			    </div>
