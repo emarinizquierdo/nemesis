@@ -38,9 +38,8 @@
 			    <div>	    	
 			    	<div id="leftPanel">
 			    		<div>
-			    			
-			    			<div id="treeview-left"></div>
-			    			
+			    						    			
+			    			<div id="treeview-left"></div>			    			
 			    			
 			    		</div>
 			    		<div>Area 2</div>
@@ -60,7 +59,7 @@
 			    	<div id="rightPanel">
 			    		<div>	    			
 			    			
-			    			<div id="tabstrip">
+			    			<div id="rightUpperTabStripp">
 								<ul>
 									<li class="k-state-active">
 										Propiedades
@@ -68,42 +67,66 @@
 									<li>
 										Acciones
 									</li>
-									<li>
-										Eventos
-									</li>								
 								</ul>
 								<div>
 			                        <div class="bodyTabStrip">
 			                            <div class="controls">
-  <p>
-    <label><span>Angle:</span> <input type="range" id="angle-control" value="0" min="-90" max="90"></label>
-  </p>
-  <p>
-    <label><span>Left:</span> <input type="range" id="left-control" value="150" min="0" max="300"></label>
-  </p>
-  <p>
-    <label><span>Top:</span> <input type="range" id="top-control" value="150" min="0" max="300"></label>
-  </p>
-  <p>
-    <label><span>Scale:</span> <input type="range" id="scale-control" value="1" min="0.1" max="3" step="0.1"></label>
-  </p>
-</div>
+										  <p>
+										    <label><span>Angle:</span> <input type="range" id="angle-control" value="0" min="-90" max="90"></label>
+										  </p>
+										  <p>
+										    <label><span>Left:</span> <input type="range" id="left-control" value="150" min="0" max="300"></label>
+										  </p>
+										  <p>
+										    <label><span>Top:</span> <input type="range" id="top-control" value="150" min="0" max="300"></label>
+										  </p>
+										  <p>
+										    <label><span>Scale:</span> <input type="range" id="scale-control" value="1" min="0.1" max="3" step="0.1"></label>
+										  </p>
+										</div>
 			                        </div>									
 								</div>
 								<div>
 			                        <div class="bodyTabStrip">
 			                            
 			                        </div>									
-								</div>
-								<div>
-			                        <div class="bodyTabStrip">
-			                            
-			                        </div>									
-								</div>
+								</div>								
 							<div>	
 			    			
+			    			
 			    		</div>
-			    		<div>Area 2</div>
+			    		<div>
+			    			
+			    			 <div id="rightLowerTabStripp">
+								<ul>
+									<li class="k-state-active">
+										Scene
+									</li>
+									<li>
+										Lib
+									</li>
+									<li>
+										Config Book
+									</li>
+								</ul>
+								<div>
+			                        <div class="bodyLowerTabStrip">
+			                            
+			                        </div>									
+								</div>
+								<div>
+			                        <div class="bodyLowerTabStrip">
+			                            
+			                        </div>									
+								</div>
+								<div>
+			                        <div class="bodyLowerTabStrip">
+			                            
+			                        </div>									
+								</div>								
+							<div>		   			
+			    			
+			    		</div>
 					</div>
 			    </div>
 			</div>
@@ -127,7 +150,10 @@
 
 	rightUpperTab.init();
 	
+	rightLowerTab.init();
+	
 	mainCanvas.init();
+	
 	
 	</script>
 	

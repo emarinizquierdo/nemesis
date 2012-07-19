@@ -30,8 +30,13 @@
 }
 
 div.bodyTabStrip{
-	height : 550px;
+	min-height : 250px;
 }
+
+div.bodyLowerTabStrip{
+	min-height : 200px;
+}
+
 
 #canvasWrapper{
 	width : 100%;

@@ -4,7 +4,7 @@ var rightUpperTab = new function(){
 	
 	function _init(){
 		
-		$("#tabstrip").kendoTabStrip({
+		$("#rightUpperTabStripp").kendoTabStrip({
 			animation:	{
 				open: {
 					effects: "fadeIn"
