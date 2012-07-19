@@ -54,9 +54,7 @@
 			    			<script type="text/x-kendo-tmpl" id="template">
 
         						<div class="product">
-
-            						<img src="${url}" alt="${title} image" />           					
-
+            						<img src="\${url}" alt="\${title} image" />
         						</div>
 
     						</script>

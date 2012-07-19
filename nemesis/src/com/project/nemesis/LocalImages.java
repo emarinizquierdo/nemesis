@@ -14,14 +14,14 @@ public class LocalImages extends HttpServlet {
 				File dir = new File(currentDir+"/resources/images");
 				String[] ficheros = dir.list();				
 				
-				resp.getWriter().print("{\"images\":[");
+				resp.getWriter().print("[");
 				for (int x=0;x<ficheros.length-1;x++){
 					resp.getWriter().print("{\"title\":\"" + ficheros[x] + "\",\"url\":\"/resources/images/" + ficheros[x] + "\"},");
 				}
 				if(ficheros.length > 0){
-					resp.getWriter().print("{\"title\":\"" + ficheros[ficheros.length-1] + "\",\"url\":\"/resources/images/" + ficheros[ficheros.length-1] + "\"},");
+					resp.getWriter().print("{\"title\":\"" + ficheros[ficheros.length-1] + "\",\"url\":\"/resources/images/" + ficheros[ficheros.length-1] + "\"}");
 				}
-				resp.getWriter().print("]}");
+				resp.getWriter().print("]");
 
 	}
 }
