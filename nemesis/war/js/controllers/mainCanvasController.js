@@ -21,6 +21,11 @@ var mainCanvas = new function(){
 			});
 		
 		function updateControls() {
+			
+			rightUpperSlidder.positionXSlidder.value(mainCanvas.canvas.getActiveObject().getLeft());
+			rightUpperSlidder.positionYSlidder.value(mainCanvas.canvas.getActiveObject().getTop());
+			
+			
 			/*
 			  scaleControl.value = rect.getScaleX();
 			  angleControl.value = rect.getAngle();
@@ -32,7 +37,7 @@ var mainCanvas = new function(){
 	
 	function _addLocalImage(url){
 		
-		var oImg
+		var oImg;
 		var auxImg = fabric.Image.fromURL(url,function(img) {
 			  oImg = img.set({ left: 300, top: 240, }).scale(1);
 			  mainCanvas.canvas.add(oImg).renderAll();

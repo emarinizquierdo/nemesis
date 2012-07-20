@@ -98,20 +98,12 @@
 								</ul>
 								<div>
 			                        <div class="bodyTabStrip">
-			                            <div class="controls">
-										  <p>
-										    <label><span>Angle:</span> <input type="range" id="angle-control" value="0" min="-90" max="90"></label>
-										  </p>
-										  <p>
-										    <label><span>Left:</span> <input type="range" id="left-control" value="150" min="0" max="300"></label>
-										  </p>
-										  <p>
-										    <label><span>Top:</span> <input type="range" id="top-control" value="150" min="0" max="300"></label>
-										  </p>
-										  <p>
-										    <label><span>Scale:</span> <input type="range" id="scale-control" value="1" min="0.1" max="3" step="0.1"></label>
-										  </p>
-										</div>
+			                            Position:
+							                <input id="sliderPositionX" class="positionX" />
+							                
+							                <input id="sliderPositionY" class="positionY" />							                    
+							            
+							            
 			                        </div>									
 								</div>
 								<div>
@@ -183,6 +175,8 @@
 	mainCanvas.init();
 	
 	imageSource.init();
+	
+	rightUpperSlidder.init();
 	
 	</script>
 	
