@@ -1,9 +1,17 @@
+/* -- global -- */
 
+body{
+	padding:0px;
+	margin:0px;
+}
 
 /* -- headers -- */
 
 
-
+header{
+	background-color:#2195c8;
+	height:45px;
+}
 
 
 
@@ -106,3 +114,9 @@ div.bodyLowerTabStrip{
  }
 
 /* -- footer -- */
+
+footer{
+	background-color:#2195c8;
+	height:20px;
+}
+
