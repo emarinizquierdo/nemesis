@@ -99,10 +99,14 @@
 								<div>
 			                        <div class="bodyTabStrip">
 			                            Position:
-							                <input id="sliderPositionX" class="positionX" />
-							                
-							                <input id="sliderPositionY" class="positionY" />							                    
+							                <input id="sliderPositionX" class="positionX" />							                
+							                <input id="sliderPositionY" class="positionY" /><br/>
+							            Scale:							                    
+							            	<input id="sliderScaleX" class="scaleX" />
+							            	<input id="sliderScaleY" class="scaleY" /><br/>
 							            
+							            Angle:
+							            	<input id="sliderAngle" class="angle" />
 							            
 			                        </div>									
 								</div>

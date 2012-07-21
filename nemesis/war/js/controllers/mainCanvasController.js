@@ -24,6 +24,9 @@ var mainCanvas = new function(){
 			
 			rightUpperSlidder.positionXSlidder.value(mainCanvas.canvas.getActiveObject().getLeft());
 			rightUpperSlidder.positionYSlidder.value(mainCanvas.canvas.getActiveObject().getTop());
+			rightUpperSlidder.scaleXSlidder.value(mainCanvas.canvas.getActiveObject().getScaleX()*100);
+			rightUpperSlidder.scaleYSlidder.value(mainCanvas.canvas.getActiveObject().getScaleY()*100);
+			rightUpperSlidder.angleSlidder.value(mainCanvas.canvas.getActiveObject().getAngle());
 			
 			
 			/*
