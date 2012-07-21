@@ -27,7 +27,6 @@ var imageSource = new function(){
         });
 
 
-
 	    $("#pager").kendoPager({
 	
 	        dataSource: this.dSource
@@ -49,6 +48,15 @@ var imageSource = new function(){
 	    	imageSource.addToLeftTree();
 	    })
 	    
+	    $("#removeImageLocalButton").click(function(){
+	    	if(typeof leftTree.treeView.select().attr("data-uid") != "undefined"){
+	    		mainCanvas.canvas.remove(leftTree.treeView.dataSource.getByUid(leftTree.treeView.select().attr("data-uid")).dSourceObject.imageCanvasObj);
+		    	leftTree.treeView.remove(leftTree.treeView.select());
+	    	}
+	    	
+	    	
+	    })
+	    
 	
 	}
 	
@@ -56,9 +64,18 @@ var imageSource = new function(){
 		
 		var imageToTree = imageSource.dSource.getByUid(this.imageList.find(".k-state-selected").attr("data-uid"));
 		
-		imageToTree.imageCanvasOjb = mainCanvas.addLocalImage(imageToTree.url);
+		if(typeof imageToTree == "undefined"){
+			alert("No has seleccionado ninguna imagen a añadir");
+		}else{
+			
+			mainCanvas.addLocalImage(imageToTree.url,function(p_imageCanvasObj){
+				imageToTree.imageCanvasObj = p_imageCanvasObj;
+				leftTree.addElement(imageToTree);
+			});
+			
+			
+		}
 		
-		leftTree.addElement(imageToTree);
 		
 	}
 	

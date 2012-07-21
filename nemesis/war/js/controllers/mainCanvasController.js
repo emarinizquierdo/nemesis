@@ -38,15 +38,14 @@ var mainCanvas = new function(){
 		
 	}
 	
-	function _addLocalImage(url){
+	function _addLocalImage(url,f_callback){
 		
 		var oImg;
-		var auxImg = fabric.Image.fromURL(url,function(img) {
+		fabric.Image.fromURL(url,function(img) {
 			  oImg = img.set({ left: 300, top: 240}).scale(1);
 			  mainCanvas.canvas.add(oImg).renderAll();
-			});
-		
-		return oImg;
+			  f_callback(oImg);			  
+		});
 		
 	}
 	

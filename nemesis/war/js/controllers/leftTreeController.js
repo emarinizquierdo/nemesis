@@ -7,32 +7,39 @@ var leftTree = new function(){
 	
 	function _init(){
 		
-		this.treeView = $("#treeview-left").kendoTreeView({
+		leftTree.treeView = $("#treeview-left").kendoTreeView({
             dragAndDrop: true,
             dataSource: []
         }).data("kendoTreeView");
 	
-	
+		_OnSelectNode();
 	}
 	
 	
 	function _addElement(p_element){
 		
-		var lastElement = this.treeView.dataSource._data[this.treeView.dataSource.total()-1];
+		var lastElement = this.treeView.dataSource._data[leftTree.treeView.dataSource.total()-1];
 		var node;
 		
 		if(typeof lastElement == "undefined"){
-			this.treeView.dataSource.add({text : p_element.title, dSourceObject : p_element});
+			leftTree.treeView.dataSource.add({text : p_element.title, dSourceObject : p_element});
 		}else{
-			node = this.treeView.findByUid(lastElement.uid);		
+			node = leftTree.treeView.findByUid(lastElement.uid);		
 			
-			this.treeView.insertAfter({ text: p_element.title, dSourceObject : p_element}, node);		
+			leftTree.treeView.insertAfter({ text: p_element.title, dSourceObject : p_element}, node);		
 		}
 		
-		lastElement = this.treeView.dataSource._data[this.treeView.dataSource.total()-1];
-		node = this.treeView.findByUid(lastElement.uid);
 		
-		this.treeView.select(node);
+		
+	}
+	
+	function _OnSelectNode(){
+		var node;
+		
+		leftTree.treeView.bind("select", function(e) {
+			node = leftTree.treeView.dataSource.getByUid(e.node.dataset.uid);
+			window.console.log(node);
+		});
 		
 	}
 	
