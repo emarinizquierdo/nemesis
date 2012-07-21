@@ -42,7 +42,7 @@ var mainCanvas = new function(){
 		
 		var oImg;
 		var auxImg = fabric.Image.fromURL(url,function(img) {
-			  oImg = img.set({ left: 300, top: 240, }).scale(1);
+			  oImg = img.set({ left: 300, top: 240}).scale(1);
 			  mainCanvas.canvas.add(oImg).renderAll();
 			});
 		

@@ -9,28 +9,59 @@ var rightUpperSlidder = new function(){
 	
 	function _init(){
 
-		function sliderOnSlide(e) {
+		function sliderPositionXOnSlide(e) {
 			mainCanvas.canvas.getActiveObject().setLeft(e.value).setCoords();
+			mainCanvas.canvas.renderAll();
+        }
+		
+		function sliderPositionYOnSlide(e) {
 			mainCanvas.canvas.getActiveObject().setTop(e.value).setCoords();
+			mainCanvas.canvas.renderAll();
         }
 
-        function sliderOnChange(e) {
-        	mainCanvas.canvas.getActiveObject().setLeft(e.value).setCoords();
+        function sliderPositionXOnChange(e) {
+        	mainCanvas.canvas.getActiveObject().setLeft(e.value).setCoords();			
+			mainCanvas.canvas.renderAll();
+        }
+        
+        function sliderPositionYOnChange(e) {
 			mainCanvas.canvas.getActiveObject().setTop(e.value).setCoords();
+			mainCanvas.canvas.renderAll();
         }
-
-        function rangeSliderOnSlide(e) {
-           
+        
+        function sliderScaleXOnSlide(e) {
+			mainCanvas.canvas.getActiveObject().setScaleX(e.value/100).setCoords();
+			mainCanvas.canvas.renderAll();
         }
-
-        function rangeSliderOnChange(e) {
-           
+        
+        function sliderScaleYOnSlide(e) {
+			mainCanvas.canvas.getActiveObject().setScaleY(e.value/100).setCoords();
+			mainCanvas.canvas.renderAll();
         }
-
+        
+        function sliderScaleXOnChange(e) {
+        	mainCanvas.canvas.getActiveObject().setScaleX(e.value/100).setCoords();			
+			mainCanvas.canvas.renderAll();
+        }
+        
+        function sliderScaleYOnChange(e) {
+        	mainCanvas.canvas.getActiveObject().setScaleY(e.value/100).setCoords();			
+			mainCanvas.canvas.renderAll();
+        }
+        
+        function sliderAngleOnSlide(e) {
+			mainCanvas.canvas.getActiveObject().setAngle(e.value);
+			mainCanvas.canvas.renderAll();
+        }
+        
+        function sliderAngleOnChange(e) {
+        	mainCanvas.canvas.getActiveObject().setAngle(e.value);			
+			mainCanvas.canvas.renderAll();
+        }
         
         $("#sliderPositionX").kendoSlider({
-                change: sliderOnChange,
-                slide: sliderOnSlide,
+                change: sliderPositionXOnChange,
+                slide: sliderPositionXOnSlide,
                 min: 0,
                 max: 600,
                 smallStep: 1,
@@ -41,8 +72,8 @@ var rightUpperSlidder = new function(){
         this.positionXSlidder = $("#sliderPositionX").data("kendoSlider");
             
         $("#sliderPositionY").kendoSlider({
-                change: sliderOnChange,
-                slide: sliderOnSlide,
+                change: sliderPositionYOnChange,
+                slide: sliderPositionYOnSlide,
                 min: 0,
                 max: 480,
                 smallStep: 1,
@@ -53,11 +84,11 @@ var rightUpperSlidder = new function(){
         this.positionYSlidder = $("#sliderPositionY").data("kendoSlider");
         
         $("#sliderScaleX").kendoSlider({
-            change: sliderOnChange,
-            slide: sliderOnSlide,
-            min: 0,
+            change: sliderScaleXOnChange,
+            slide: sliderScaleXOnSlide,
+            min: -100,
             max: 1000,
-            smallStep: 1,
+            smallStep: 0.1,
             largeStep: 10,
             value: 18
         }); 
@@ -65,11 +96,11 @@ var rightUpperSlidder = new function(){
         this.scaleXSlidder = $("#sliderScaleX").data("kendoSlider");
     
 	    $("#sliderScaleY").kendoSlider({
-	        change: sliderOnChange,
-	        slide: sliderOnSlide,
-	        min: 0,
+	        change: sliderScaleYOnChange,
+	        slide: sliderScaleYOnSlide,
+	        min: -100,
 	        max: 1000,
-	        smallStep: 1,
+	        smallStep: 0.1,
 	        largeStep: 10,
 	        value: 18
 	    }); 
@@ -77,13 +108,13 @@ var rightUpperSlidder = new function(){
 	    this.scaleYSlidder = $("#sliderScaleY").data("kendoSlider");
 	    
 	    $("#sliderAngle").kendoSlider({
-	        change: sliderOnChange,
-	        slide: sliderOnSlide,
-	        min: 0,
+	        change: sliderAngleOnChange,
+	        slide: sliderAngleOnSlide,
+	        min: -360,
 	        max: 360,
 	        smallStep: 1,
 	        largeStep: 10,
-	        value: 18
+	        value: 0
 	    }); 
 	
 	    this.angleSlidder = $("#sliderAngle").data("kendoSlider");
