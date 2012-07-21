@@ -50,11 +50,24 @@ var imageSource = new function(){
 	    
 	    $("#removeImageLocalButton").click(function(){
 	    	if(typeof leftTree.treeView.select().attr("data-uid") != "undefined"){
-	    		mainCanvas.canvas.remove(leftTree.treeView.dataSource.getByUid(leftTree.treeView.select().attr("data-uid")).dSourceObject.imageCanvasObj);
-		    	leftTree.treeView.remove(leftTree.treeView.select());
+	    		_recursiveRemoveNode(leftTree.treeView.dataSource.getByUid(leftTree.treeView.select().attr("data-uid")));
+		    	leftTree.treeView.remove(leftTree.treeView.select());	    	
+		    	
+		    	function _recursiveRemoveNode(p_node){
+		    		
+		    		if(p_node.children._data.length > 0){
+		    			
+		    			for(var i = 0; i < p_node.children._data.length; i++){
+		    				
+		    				_recursiveRemoveNode(p_node.children._data[i]);
+		    			}
+		    			
+		    		}
+		    	
+		    		mainCanvas.canvas.remove(p_node.dSourceObject.imageCanvasObj);
+		    	}
+	    	
 	    	}
-	    	
-	    	
 	    })
 	    
 	

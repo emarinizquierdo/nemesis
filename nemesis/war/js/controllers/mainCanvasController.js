@@ -17,7 +17,8 @@ var mainCanvas = new function(){
 		mainCanvas.canvas.observe({ 
 			  'object:moving': updateControls,
 			  'object:scaling': updateControls,
-			  'object:resizing': updateControls
+			  'object:resizing': updateControls,
+			  'object:selecting' : function(){alert('eco');}
 			});
 		
 		function updateControls() {
