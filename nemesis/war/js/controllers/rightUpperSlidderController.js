@@ -6,62 +6,63 @@ var rightUpperSlidder = new function(){
 	this.scaleXSlidder;
 	this.scaleYSlidder;
 	this.angleSlidder;
+	this.numericPositionX;
+	this.numericPositionY;
+	this.numericAngle;
 	
 	function _init(){
 
-		function sliderPositionXOnSlide(e) {
-			mainCanvas.canvas.getActiveObject().setLeft(e.value).setCoords();
-			mainCanvas.canvas.renderAll();
-        }
-		
-		function sliderPositionYOnSlide(e) {
-			mainCanvas.canvas.getActiveObject().setTop(e.value).setCoords();
-			mainCanvas.canvas.renderAll();
-        }
-
         function sliderPositionXOnChange(e) {
-        	mainCanvas.canvas.getActiveObject().setLeft(e.value).setCoords();			
+        	mainCanvas.canvas.getActiveObject().setLeft(e.value).setCoords();
+        	_updateControls();
 			mainCanvas.canvas.renderAll();
         }
         
         function sliderPositionYOnChange(e) {
 			mainCanvas.canvas.getActiveObject().setTop(e.value).setCoords();
+			_updateControls();
 			mainCanvas.canvas.renderAll();
         }
-        
-        function sliderScaleXOnSlide(e) {
-			mainCanvas.canvas.getActiveObject().setScaleX(e.value/100).setCoords();
-			mainCanvas.canvas.renderAll();
-        }
-        
-        function sliderScaleYOnSlide(e) {
-			mainCanvas.canvas.getActiveObject().setScaleY(e.value/100).setCoords();
-			mainCanvas.canvas.renderAll();
-        }
-        
+
         function sliderScaleXOnChange(e) {
-        	mainCanvas.canvas.getActiveObject().setScaleX(e.value/100).setCoords();			
+        	mainCanvas.canvas.getActiveObject().setScaleX(e.value/100).setCoords();
+        	_updateControls();
 			mainCanvas.canvas.renderAll();
         }
         
         function sliderScaleYOnChange(e) {
-        	mainCanvas.canvas.getActiveObject().setScaleY(e.value/100).setCoords();			
-			mainCanvas.canvas.renderAll();
-        }
-        
-        function sliderAngleOnSlide(e) {
-			mainCanvas.canvas.getActiveObject().setAngle(e.value);
+        	mainCanvas.canvas.getActiveObject().setScaleY(e.value/100).setCoords();
+        	_updateControls();
 			mainCanvas.canvas.renderAll();
         }
         
         function sliderAngleOnChange(e) {
-        	mainCanvas.canvas.getActiveObject().setAngle(e.value);			
+        	mainCanvas.canvas.getActiveObject().setAngle(e.value);	
+        	_updateControls();
+			mainCanvas.canvas.renderAll();
+        }
+        
+        function numericPositionXOnChange(e){
+        	mainCanvas.canvas.getActiveObject().setLeft(e.sender.value()).setCoords();
+        	_updateControls();
+			mainCanvas.canvas.renderAll();
+        }
+        
+        function numericPositionYOnChange(e){
+        	mainCanvas.canvas.getActiveObject().setTop(e.sender.value()).setCoords();	
+        	_updateControls();
+			mainCanvas.canvas.renderAll();
+        }
+        
+        function numericAngleOnChange(e){
+        	mainCanvas.canvas.getActiveObject().setAngle(e.sender.value());	
+        	_updateControls();
 			mainCanvas.canvas.renderAll();
         }
         
         $("#sliderPositionX").kendoSlider({
                 change: sliderPositionXOnChange,
-                slide: sliderPositionXOnSlide,
+                slide: sliderPositionXOnChange,
                 min: 0,
                 max: 600,
                 smallStep: 1,
@@ -73,7 +74,7 @@ var rightUpperSlidder = new function(){
             
         $("#sliderPositionY").kendoSlider({
                 change: sliderPositionYOnChange,
-                slide: sliderPositionYOnSlide,
+                slide: sliderPositionYOnChange,
                 min: 0,
                 max: 480,
                 smallStep: 1,
@@ -85,7 +86,7 @@ var rightUpperSlidder = new function(){
         
         $("#sliderScaleX").kendoSlider({
             change: sliderScaleXOnChange,
-            slide: sliderScaleXOnSlide,
+            slide: sliderScaleXOnChange,
             min: -100,
             max: 1000,
             smallStep: 0.1,
@@ -97,7 +98,7 @@ var rightUpperSlidder = new function(){
     
 	    $("#sliderScaleY").kendoSlider({
 	        change: sliderScaleYOnChange,
-	        slide: sliderScaleYOnSlide,
+	        slide: sliderScaleYOnChange,
 	        min: -100,
 	        max: 1000,
 	        smallStep: 0.1,
@@ -109,7 +110,7 @@ var rightUpperSlidder = new function(){
 	    
 	    $("#sliderAngle").kendoSlider({
 	        change: sliderAngleOnChange,
-	        slide: sliderAngleOnSlide,
+	        slide: sliderAngleOnChange,
 	        min: -360,
 	        max: 360,
 	        smallStep: 1,
@@ -119,7 +120,30 @@ var rightUpperSlidder = new function(){
 	
 	    this.angleSlidder = $("#sliderAngle").data("kendoSlider");
         
+	    // create NumericTextBox from input HTML element using custom format
+        $("#numericPositionX").kendoNumericTextBox({
+            format: "#.00px",
+            change: numericPositionXOnChange,
+            spin: numericPositionXOnChange
+        });
+        
+        this.numericPositionX = $("#numericPositionX").data("kendoNumericTextBox");
+        
+        $("#numericPositionY").kendoNumericTextBox({
+            format: "#.00px",
+            change: numericPositionYOnChange,
+            spin: numericPositionYOnChange
+        });
 
+        this.numericPositionY = $("#numericPositionY").data("kendoNumericTextBox");
+        
+        $("#numericAngle").kendoNumericTextBox({
+            format: "#.00º",
+            change: numericAngleOnChange,
+            spin: numericAngleOnChange
+        });
+
+        this.numericAngle = $("#numericAngle").data("kendoNumericTextBox");
 	}
 	
 	function _updateControls() {
@@ -129,14 +153,11 @@ var rightUpperSlidder = new function(){
 		rightUpperSlidder.scaleXSlidder.value(mainCanvas.canvas.getActiveObject().getScaleX()*100);
 		rightUpperSlidder.scaleYSlidder.value(mainCanvas.canvas.getActiveObject().getScaleY()*100);
 		rightUpperSlidder.angleSlidder.value(mainCanvas.canvas.getActiveObject().getAngle());
+		rightUpperSlidder.numericPositionX.value(mainCanvas.canvas.getActiveObject().getLeft());
+		rightUpperSlidder.numericPositionY.value(mainCanvas.canvas.getActiveObject().getTop());
+		rightUpperSlidder.numericAngle.value(mainCanvas.canvas.getActiveObject().getAngle());
 		
-		
-		/*
-		  scaleControl.value = rect.getScaleX();
-		  angleControl.value = rect.getAngle();
-		  leftControl.value = rect.getLeft();
-		  topControl.value = rect.getTop();*/
-		}	
+	}	
 	
 	this.init = _init;
 	this.updateControls = _updateControls;
