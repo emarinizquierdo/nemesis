@@ -15,30 +15,13 @@ var mainCanvas = new function(){
 	function _observeCanvas(){
 		
 		mainCanvas.canvas.observe({ 
-			  'object:moving': updateControls,
-			  'object:scaling': updateControls,
-			  'object:resizing': updateControls,
-			  'object:selecting' : function(){alert('eco');}
-			});
-		
-		function updateControls() {
-			
-			rightUpperSlidder.positionXSlidder.value(mainCanvas.canvas.getActiveObject().getLeft());
-			rightUpperSlidder.positionYSlidder.value(mainCanvas.canvas.getActiveObject().getTop());
-			rightUpperSlidder.scaleXSlidder.value(mainCanvas.canvas.getActiveObject().getScaleX()*100);
-			rightUpperSlidder.scaleYSlidder.value(mainCanvas.canvas.getActiveObject().getScaleY()*100);
-			rightUpperSlidder.angleSlidder.value(mainCanvas.canvas.getActiveObject().getAngle());
-			
-			
-			/*
-			  scaleControl.value = rect.getScaleX();
-			  angleControl.value = rect.getAngle();
-			  leftControl.value = rect.getLeft();
-			  topControl.value = rect.getTop();*/
-			}		
-		
+			  'object:moving': function(){rightUpperSlidder.updateControls();},
+			  'object:scaling': function(){rightUpperSlidder.updateControls();},
+			  'object:resizing': function(){rightUpperSlidder.updateControls();},
+			  'object:selected' : function(){rightUpperSlidder.updateControls();}
+			});		
 	}
-	
+		
 	function _addLocalImage(url,f_callback){
 		
 		var oImg;
@@ -82,4 +65,5 @@ var mainCanvas = new function(){
 	
 	this.init = _init;
 	this.addLocalImage = _addLocalImage;
+	
 }

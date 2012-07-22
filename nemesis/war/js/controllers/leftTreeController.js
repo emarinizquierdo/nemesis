@@ -27,9 +27,7 @@ var leftTree = new function(){
 			node = leftTree.treeView.findByUid(lastElement.uid);		
 			
 			leftTree.treeView.insertAfter({ text: p_element.title, dSourceObject : p_element}, node);		
-		}
-		
-		
+		}	
 		
 	}
 	
@@ -38,6 +36,8 @@ var leftTree = new function(){
 		
 		leftTree.treeView.bind("select", function(e) {
 			node = leftTree.treeView.dataSource.getByUid(e.node.dataset.uid);
+			mainCanvas.canvas.setActiveObject(node.dSourceObject.imageCanvasObj);
+			rightUpperSlidder.updateControls();
 			window.console.log(node);
 		});
 		
