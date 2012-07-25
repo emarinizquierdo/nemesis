@@ -6,7 +6,7 @@ var mainCanvas = new function(){
 	function _init(){
 		
 	
-		this.canvas = new fabric.Canvas('mainCanvas');		
+		mainCanvas.canvas = new fabric.Canvas('mainCanvas');		
 		
 		_observeCanvas();
 		
@@ -25,11 +25,15 @@ var mainCanvas = new function(){
 	function _addLocalImage(url,f_callback){
 		
 		var oImg;
-		fabric.Image.fromURL(url,function(img) {
+		var aux = fabric.Image.fromURL(url,function(img) {
 			  oImg = img.set({ left: 300, top: 240}).scale(1);
-			  mainCanvas.canvas.add(oImg).renderAll();
+			  var aux = mainCanvas.canvas.add(oImg).renderAll();
+			  window.console.log(oImg);
+			  window.console.log("aux",aux);
 			  f_callback(oImg);			  
 		});
+		
+	window.console.log("otroaux",aux);
 		
 	}
 	

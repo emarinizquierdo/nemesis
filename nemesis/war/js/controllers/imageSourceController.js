@@ -8,7 +8,7 @@ var imageSource = new function(){
 	
 	function _init(){
 		
-		this.dSource = new kendo.data.DataSource({
+		imageSource.dSource = new kendo.data.DataSource({
 
             transport: {
 
@@ -29,15 +29,15 @@ var imageSource = new function(){
 
 	    $("#pager").kendoPager({
 	
-	        dataSource: this.dSource
+	        dataSource: imageSource.dSource
 	
 	    });
 	
 	
 	
-	    this.imageList = $("#listView").kendoListView({
+	    imageSource.imageList = $("#listView").kendoListView({
 	
-	        dataSource: this.dSource,
+	        dataSource: imageSource.dSource,
 	
 	        template: kendo.template($("#template").html()),
 	        selectable: true
@@ -64,7 +64,7 @@ var imageSource = new function(){
 		    			
 		    		}
 		    	
-		    		mainCanvas.canvas.remove(p_node.dSourceObject.imageCanvasObj);
+		    		mainCanvas.canvas.remove(p_node.imageObj);
 		    	}
 	    	
 	    	}
@@ -75,19 +75,28 @@ var imageSource = new function(){
 	
 	function _addToLefTree(){		
 		
-		var imageToTree = imageSource.dSource.getByUid(this.imageList.find(".k-state-selected").attr("data-uid"));
+		var imageLocal = imageSource.dSource.getByUid(imageSource.imageList.find(".k-state-selected").attr("data-uid"));
+		var dadaObject = {}
 		
-		if(typeof imageToTree == "undefined"){
+		
+		
+		//imageToTree.uid = guid();
+		
+		if(typeof imageLocal == "undefined"){
 			alert("No has seleccionado ninguna imagen a añadir");
 		}else{
 			
-			mainCanvas.addLocalImage(imageToTree.url,function(p_imageCanvasObj){
-				imageToTree.imageCanvasObj = p_imageCanvasObj;
-				leftTree.addElement(imageToTree);
+			dadaObject.url = imageLocal.url;
+			dadaObject.text = imageLocal.title;
+			
+			mainCanvas.addLocalImage(dadaObject.url,function(p_imageObj){
+				window.console.log(p_imageObj);	
+				dadaObject.imageObj = p_imageObj;
+				leftTree.addElement(dadaObject);
 			});
 			
 			
-		}
+		}	
 		
 		
 	}

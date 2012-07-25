@@ -16,18 +16,22 @@ var leftTree = new function(){
 	}
 	
 	
-	function _addElement(p_element){
+	function _addElement(p_dadaObj){
 		
 		var lastElement = this.treeView.dataSource._data[leftTree.treeView.dataSource.total()-1];
 		var node;
-		
+		window.console.log("esta es la imagen",p_dadaObj.imageObj);
+		//p_dadaObj.uid = guid();
 		if(typeof lastElement == "undefined"){
-			leftTree.treeView.dataSource.add({text : p_element.title, dSourceObject : p_element});
-		}else{
-			node = leftTree.treeView.findByUid(lastElement.uid);		
+			leftTree.treeView.dataSource.add({text : p_dadaObj.text});
+			this.treeView.dataSource._data[leftTree.treeView.dataSource.total()-1].imageObj = p_dadaObj.imageObj;
 			
-			leftTree.treeView.insertAfter({ text: p_element.title, dSourceObject : p_element}, node);		
-		}	
+		}else{
+			node = leftTree.treeView.findByUid(lastElement.uid);			
+			leftTree.treeView.insertAfter({ text: p_dadaObj.text}, node);	
+			this.treeView.dataSource._data[leftTree.treeView.dataSource.total()-1].imageObj = p_dadaObj.imageObj;
+			
+		}		
 		
 	}
 	
@@ -36,7 +40,7 @@ var leftTree = new function(){
 		
 		leftTree.treeView.bind("select", function(e) {
 			node = leftTree.treeView.dataSource.getByUid(e.node.dataset.uid);
-			mainCanvas.canvas.setActiveObject(node.dSourceObject.imageCanvasObj);
+			mainCanvas.canvas.setActiveObject(node.imageObj);
 			rightUpperSlidder.updateControls();
 			window.console.log(node);
 		});
