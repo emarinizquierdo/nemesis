@@ -106,7 +106,7 @@
 							            	<input id="sliderScaleY" class="scaleY" /><br/>
 							            
 							            Angle:
-							            	<input id="sliderAngle" class="angle" /> <input id="numericAngle" value="2" />
+							            	<input id="sliderAngle" class="angle" /> <input id="numericAngle" value="2" /><br/>
 							            
 							            Draggable <input id="checkDraggable" type="checkbox" /><br/>
 							            Touchable <input id="checkDraggable" type="checkbox" /><br/>

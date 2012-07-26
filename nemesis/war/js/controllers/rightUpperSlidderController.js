@@ -171,6 +171,7 @@ var rightUpperSlidder = new function(){
     	rightUpperSlidder.inputName.change(function(e){
     		if(typeof mainCanvas.canvas.getActiveObject() != "undefined"){
     			leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).text = e.srcElement.value;
+    			leftTree.treeView.findByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).find(".k-in").html(e.srcElement.value);
     		}
     	})
     }
