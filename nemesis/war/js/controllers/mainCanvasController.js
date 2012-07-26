@@ -18,22 +18,18 @@ var mainCanvas = new function(){
 			  'object:moving': function(){rightUpperSlidder.updateControls();},
 			  'object:scaling': function(){rightUpperSlidder.updateControls();},
 			  'object:resizing': function(){rightUpperSlidder.updateControls();},
-			  'object:selected' : function(){rightUpperSlidder.updateControls(); leftTree.treeView.select(mainCanvas.canvas.getActiveObject().node)}
+			  'object:selected' : function(){rightUpperSlidder.updateControls(); leftTree.treeView.select(leftTree.treeView.findByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid))}
 			});		
 	}
 		
 	function _addLocalImage(url,f_callback){
 		
 		var oImg;
-		var aux = fabric.Image.fromURL(url,function(img) {
+		fabric.Image.fromURL(url,function(img) {
 			  oImg = img.set({ left: 300, top: 240}).scale(1);
-			  var aux = mainCanvas.canvas.add(oImg).renderAll();
-			  window.console.log(oImg);
-			  window.console.log("aux",aux);
+			  mainCanvas.canvas.add(oImg).renderAll(); 
 			  f_callback(oImg);			  
 		});
-		
-	window.console.log("otroaux",aux);
 		
 	}
 	

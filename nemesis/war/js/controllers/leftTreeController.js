@@ -16,22 +16,21 @@ var leftTree = new function(){
 	}
 	
 	
-	function _addElement(p_dadaObj){
-		
-		var lastElement = this.treeView.dataSource._data[this.treeView.dataSource._data.length-1];
-		var node;
-		window.console.log("esta es la imagen",p_dadaObj.imageObj);
+	function _addElement(p_dadaObj){	
+
 		//p_dadaObj.uid = guid();
-		if(typeof lastElement == "undefined"){
-			var nodeaux = leftTree.treeView.dataSource.add({text : p_dadaObj.text});
-			this.treeView.dataSource._data[0].imageObj = p_dadaObj.imageObj;
-			this.treeView.dataSource._data[0].imageObj.node = nodeaux;
+		if(leftTree.treeView.dataSource._data.length <= 0){
+			leftTree.treeView.dataSource.add({text : p_dadaObj.text});
+			leftTree.treeView.dataSource._data[0].imageObj = p_dadaObj.imageObj;
+			leftTree.treeView.dataSource._data[0].imageObj.node = leftTree.treeView.findByUid(leftTree.treeView.dataSource._data[0].uid);
 			
 		}else{
+			var lastElement = leftTree.treeView.dataSource._data[leftTree.treeView.dataSource._data.length-1];
+			var node;
 			node = leftTree.treeView.findByUid(lastElement.uid);			
 			var nodeaux = leftTree.treeView.insertAfter({ text: p_dadaObj.text}, node);	
-			this.treeView.dataSource._data[this.treeView.dataSource._data.length-1].imageObj = p_dadaObj.imageObj;
-			this.treeView.dataSource._data[this.treeView.dataSource._data.length-1].imageObj.node = nodeaux;
+			leftTree.treeView.dataSource._data[leftTree.treeView.dataSource._data.length-1].imageObj = p_dadaObj.imageObj;
+			leftTree.treeView.dataSource._data[leftTree.treeView.dataSource._data.length-1].imageObj.node = nodeaux;
 			
 		}		
 		
