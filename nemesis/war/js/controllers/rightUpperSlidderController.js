@@ -9,56 +9,11 @@ var rightUpperSlidder = new function(){
 	this.numericPositionX;
 	this.numericPositionY;
 	this.numericAngle;
+	this.inputName;
 	
 	function _init(){
 
-        function sliderPositionXOnChange(e) {
-        	mainCanvas.canvas.getActiveObject().setLeft(e.value).setCoords();
-        	_updateControls();
-			mainCanvas.canvas.renderAll();
-        }
         
-        function sliderPositionYOnChange(e) {
-			mainCanvas.canvas.getActiveObject().setTop(e.value).setCoords();
-			_updateControls();
-			mainCanvas.canvas.renderAll();
-        }
-
-        function sliderScaleXOnChange(e) {
-        	mainCanvas.canvas.getActiveObject().setScaleX(e.value/100).setCoords();
-        	_updateControls();
-			mainCanvas.canvas.renderAll();
-        }
-        
-        function sliderScaleYOnChange(e) {
-        	mainCanvas.canvas.getActiveObject().setScaleY(e.value/100).setCoords();
-        	_updateControls();
-			mainCanvas.canvas.renderAll();
-        }
-        
-        function sliderAngleOnChange(e) {
-        	mainCanvas.canvas.getActiveObject().setAngle(e.value);	
-        	_updateControls();
-			mainCanvas.canvas.renderAll();
-        }
-        
-        function numericPositionXOnChange(e){
-        	mainCanvas.canvas.getActiveObject().setLeft(e.sender.value()).setCoords();
-        	_updateControls();
-			mainCanvas.canvas.renderAll();
-        }
-        
-        function numericPositionYOnChange(e){
-        	mainCanvas.canvas.getActiveObject().setTop(e.sender.value()).setCoords();	
-        	_updateControls();
-			mainCanvas.canvas.renderAll();
-        }
-        
-        function numericAngleOnChange(e){
-        	mainCanvas.canvas.getActiveObject().setAngle(e.sender.value());	
-        	_updateControls();
-			mainCanvas.canvas.renderAll();
-        }
         
         $("#sliderPositionX").kendoSlider({
                 change: sliderPositionXOnChange,
@@ -144,6 +99,10 @@ var rightUpperSlidder = new function(){
         });
 
         this.numericAngle = $("#numericAngle").data("kendoNumericTextBox");
+        
+        this.inputName = $("#inputName");
+        inputNameOnChange();
+        
 	}
 	
 	function _updateControls() {
@@ -156,8 +115,65 @@ var rightUpperSlidder = new function(){
 		rightUpperSlidder.numericPositionX.value(mainCanvas.canvas.getActiveObject().getLeft());
 		rightUpperSlidder.numericPositionY.value(mainCanvas.canvas.getActiveObject().getTop());
 		rightUpperSlidder.numericAngle.value(mainCanvas.canvas.getActiveObject().getAngle());
+		rightUpperSlidder.inputName.attr("value",leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).text);
 		
-	}	
+	}
+	
+	function sliderPositionXOnChange(e) {
+    	mainCanvas.canvas.getActiveObject().setLeft(e.value).setCoords();
+    	_updateControls();
+		mainCanvas.canvas.renderAll();
+    }
+    
+    function sliderPositionYOnChange(e) {
+		mainCanvas.canvas.getActiveObject().setTop(e.value).setCoords();
+		_updateControls();
+		mainCanvas.canvas.renderAll();
+    }
+
+    function sliderScaleXOnChange(e) {
+    	mainCanvas.canvas.getActiveObject().setScaleX(e.value/100).setCoords();
+    	_updateControls();
+		mainCanvas.canvas.renderAll();
+    }
+    
+    function sliderScaleYOnChange(e) {
+    	mainCanvas.canvas.getActiveObject().setScaleY(e.value/100).setCoords();
+    	_updateControls();
+		mainCanvas.canvas.renderAll();
+    }
+    
+    function sliderAngleOnChange(e) {
+    	mainCanvas.canvas.getActiveObject().setAngle(e.value);	
+    	_updateControls();
+		mainCanvas.canvas.renderAll();
+    }
+    
+    function numericPositionXOnChange(e){
+    	mainCanvas.canvas.getActiveObject().setLeft(e.sender.value()).setCoords();
+    	_updateControls();
+		mainCanvas.canvas.renderAll();
+    }
+    
+    function numericPositionYOnChange(e){
+    	mainCanvas.canvas.getActiveObject().setTop(e.sender.value()).setCoords();	
+    	_updateControls();
+		mainCanvas.canvas.renderAll();
+    }
+    
+    function numericAngleOnChange(e){
+    	mainCanvas.canvas.getActiveObject().setAngle(e.sender.value());	
+    	_updateControls();
+		mainCanvas.canvas.renderAll();
+    }
+    
+    function inputNameOnChange(){
+    	rightUpperSlidder.inputName.change(function(e){
+    		if(typeof mainCanvas.canvas.getActiveObject() != "undefined"){
+    			leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).text = e.srcElement.value;
+    		}
+    	})
+    }
 	
 	this.init = _init;
 	this.updateControls = _updateControls;

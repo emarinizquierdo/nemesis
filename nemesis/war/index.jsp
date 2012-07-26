@@ -108,6 +108,9 @@
 							            Angle:
 							            	<input id="sliderAngle" class="angle" /> <input id="numericAngle" value="2" />
 							            
+							            Draggable <input id="checkDraggable" type="checkbox" /><br/>
+							            Touchable <input id="checkDraggable" type="checkbox" /><br/>
+							            Name <input id="inputName" type="text" value=""/>
 			                        </div>									
 								</div>
 								<div>
