@@ -18,7 +18,7 @@ var mainCanvas = new function(){
 			  'object:moving': function(){rightUpperSlidder.updateControls();},
 			  'object:scaling': function(){rightUpperSlidder.updateControls();},
 			  'object:resizing': function(){rightUpperSlidder.updateControls();},
-			  'object:selected' : function(){rightUpperSlidder.updateControls();}
+			  'object:selected' : function(){rightUpperSlidder.updateControls(); leftTree.treeView.select(mainCanvas.canvas.getActiveObject().node)}
 			});		
 	}
 		

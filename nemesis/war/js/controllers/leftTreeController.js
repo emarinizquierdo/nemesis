@@ -18,18 +18,20 @@ var leftTree = new function(){
 	
 	function _addElement(p_dadaObj){
 		
-		var lastElement = this.treeView.dataSource._data[leftTree.treeView.dataSource.total()-1];
+		var lastElement = this.treeView.dataSource._data[this.treeView.dataSource._data.length-1];
 		var node;
 		window.console.log("esta es la imagen",p_dadaObj.imageObj);
 		//p_dadaObj.uid = guid();
 		if(typeof lastElement == "undefined"){
-			leftTree.treeView.dataSource.add({text : p_dadaObj.text});
-			this.treeView.dataSource._data[leftTree.treeView.dataSource.total()-1].imageObj = p_dadaObj.imageObj;
+			var nodeaux = leftTree.treeView.dataSource.add({text : p_dadaObj.text});
+			this.treeView.dataSource._data[0].imageObj = p_dadaObj.imageObj;
+			this.treeView.dataSource._data[0].imageObj.node = nodeaux;
 			
 		}else{
 			node = leftTree.treeView.findByUid(lastElement.uid);			
-			leftTree.treeView.insertAfter({ text: p_dadaObj.text}, node);	
-			this.treeView.dataSource._data[leftTree.treeView.dataSource.total()-1].imageObj = p_dadaObj.imageObj;
+			var nodeaux = leftTree.treeView.insertAfter({ text: p_dadaObj.text}, node);	
+			this.treeView.dataSource._data[this.treeView.dataSource._data.length-1].imageObj = p_dadaObj.imageObj;
+			this.treeView.dataSource._data[this.treeView.dataSource._data.length-1].imageObj.node = nodeaux;
 			
 		}		
 		
