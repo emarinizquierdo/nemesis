@@ -17,8 +17,7 @@ var leftTree = new function(){
 	
 	
 	function _addElement(p_dadaObj){	
-
-		//p_dadaObj.uid = guid();
+		
 		if(leftTree.treeView.dataSource._data.length <= 0){
 			leftTree.treeView.dataSource.add({
 				  text : p_dadaObj.text

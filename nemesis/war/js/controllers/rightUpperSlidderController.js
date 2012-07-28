@@ -221,6 +221,34 @@ var rightUpperSlidder = new function(){
     	})
     }
 	
+    function _enableAll(){
+    	rightUpperTab.rightUpper.find("input").attr("disabled",false);
+    	rightUpperSlidder.positionXSlidder.enable();
+		rightUpperSlidder.positionYSlidder.enable();
+		rightUpperSlidder.scaleXSlidder.enable();
+		rightUpperSlidder.scaleYSlidder.enable();
+		rightUpperSlidder.angleSlidder.enable();
+		rightUpperSlidder.numericPositionX.enable();
+		rightUpperSlidder.numericPositionY.enable();
+		rightUpperSlidder.numericAngle.enable();
+
+    }
+    
+    function _disableAll(){
+    	rightUpperTab.rightUpper.find("input").attr("disabled",true);
+    	rightUpperSlidder.positionXSlidder.disable();
+		rightUpperSlidder.positionYSlidder.disable();
+		rightUpperSlidder.scaleXSlidder.disable();
+		rightUpperSlidder.scaleYSlidder.disable();
+		rightUpperSlidder.angleSlidder.disable();
+		rightUpperSlidder.numericPositionX.enable(false);
+		rightUpperSlidder.numericPositionY.enable(false);
+		rightUpperSlidder.numericAngle.enable(false);
+
+    }
+    
 	this.init = _init;
 	this.updateControls = _updateControls;
+	this.enableAll = _enableAll;
+	this.disableAll = _disableAll;
 }

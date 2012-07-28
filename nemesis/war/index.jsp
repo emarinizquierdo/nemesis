@@ -120,7 +120,7 @@
 			                            
 			                        </div>									
 								</div>								
-							<div>	
+							</div>	
 			    			
 			    			
 			    		</div>
@@ -140,7 +140,8 @@
 								</ul>
 								<div>
 			                        <div class="bodyLowerTabStrip">
-			                            
+			                            Show Next Page Button <input id="nextButtonScene" type="checkbox" value="false"/><br/>
+			                            Show Previous Page Button <input id="previousButtonScene" type="checkbox" value="false"/><br/>
 			                        </div>									
 								</div>
 								<div>
@@ -153,7 +154,7 @@
 			                            
 			                        </div>									
 								</div>								
-							<div>		   			
+							</div>		   			
 			    			
 			    		</div>
 					</div>
@@ -186,6 +187,7 @@
 	imageSource.init();
 	
 	rightUpperSlidder.init();
+
 	
 	</script>
 	

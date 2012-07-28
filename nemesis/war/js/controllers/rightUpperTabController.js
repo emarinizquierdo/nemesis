@@ -1,10 +1,11 @@
 
 var rightUpperTab = new function(){
 	
+	this.rightUpper;
 	
 	function _init(){
 		
-		$("#rightUpperTabStripp").kendoTabStrip({
+		rightUpperTab.rightUpper = $("#rightUpperTabStripp").kendoTabStrip({
 			animation:	{
 				open: {
 					effects: "fadeIn"
@@ -13,9 +14,9 @@ var rightUpperTab = new function(){
 		
 		});
 		
+		rightUpperTab.rightUpper.find("input").attr("disabled",true);
+		
 	}
-	
-	
 	
 	this.init = _init;
 	
