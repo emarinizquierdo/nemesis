@@ -20,7 +20,12 @@ var leftTree = new function(){
 
 		//p_dadaObj.uid = guid();
 		if(leftTree.treeView.dataSource._data.length <= 0){
-			leftTree.treeView.dataSource.add({text : p_dadaObj.text});
+			leftTree.treeView.dataSource.add({
+				  text : p_dadaObj.text
+				, zindex : 0
+				, draggable : false
+				, touchable : false
+				});
 			leftTree.treeView.dataSource._data[0].imageObj = p_dadaObj.imageObj;
 			leftTree.treeView.dataSource._data[0].imageObj.node = leftTree.treeView.findByUid(leftTree.treeView.dataSource._data[0].uid);
 			
@@ -28,7 +33,12 @@ var leftTree = new function(){
 			var lastElement = leftTree.treeView.dataSource._data[leftTree.treeView.dataSource._data.length-1];
 			var node;
 			node = leftTree.treeView.findByUid(lastElement.uid);			
-			var nodeaux = leftTree.treeView.insertAfter({ text: p_dadaObj.text}, node);	
+			var nodeaux = leftTree.treeView.insertAfter({
+				  text: p_dadaObj.text
+				, zindex : 0
+				, draggable : false
+				, touchable : false
+				}, node);	
 			leftTree.treeView.dataSource._data[leftTree.treeView.dataSource._data.length-1].imageObj = p_dadaObj.imageObj;
 			leftTree.treeView.dataSource._data[leftTree.treeView.dataSource._data.length-1].imageObj.node = nodeaux;
 			

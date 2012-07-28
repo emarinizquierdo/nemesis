@@ -9,7 +9,10 @@ var rightUpperSlidder = new function(){
 	this.numericPositionX;
 	this.numericPositionY;
 	this.numericAngle;
+	this.checkboxDraggable;
+	this.checkboxTouchable;
 	this.inputName;
+	this.inputZindex;
 	
 	function _init(){
 
@@ -100,8 +103,17 @@ var rightUpperSlidder = new function(){
 
         this.numericAngle = $("#numericAngle").data("kendoNumericTextBox");
         
+        this.checkboxDraggable = $("#checkboxDraggable");
+        checkboxDraggableOnChange();
+        
+        this.checkboxTouchable = $("#checkboxTouchable");
+        checkboxTouchableOnChange();
+        
         this.inputName = $("#inputName");
         inputNameOnChange();
+        
+        this.inputZindex = $("#zindex");
+        inputZindexOnChange();
         
 	}
 	
@@ -116,6 +128,9 @@ var rightUpperSlidder = new function(){
 		rightUpperSlidder.numericPositionY.value(mainCanvas.canvas.getActiveObject().getTop());
 		rightUpperSlidder.numericAngle.value(mainCanvas.canvas.getActiveObject().getAngle());
 		rightUpperSlidder.inputName.attr("value",leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).text);
+		rightUpperSlidder.inputZindex.attr("value",leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).zindex);
+		rightUpperSlidder.checkboxDraggable.attr("checked",leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).draggable);
+		rightUpperSlidder.checkboxTouchable.attr("checked",leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).touchable);
 		
 	}
 	
@@ -167,11 +182,41 @@ var rightUpperSlidder = new function(){
 		mainCanvas.canvas.renderAll();
     }
     
+    function checkboxDraggableOnChange(){
+    	rightUpperSlidder.checkboxDraggable.click(function(){
+    		if(rightUpperSlidder.checkboxDraggable.is(':checked')) {  
+    			leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).draggable = true;
+            } else {  
+            	leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).draggable = false;
+            }     		
+    	})
+    			
+    }
+    
+    function checkboxTouchableOnChange(){    	
+    	rightUpperSlidder.checkboxTouchable.click(function(){
+    		if(rightUpperSlidder.checkboxTouchable.is(':checked')) {  
+    			leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).touchable = true;
+            } else {  
+            	leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).touchable = false;
+            }     		
+    	})
+    		
+    }
+    
     function inputNameOnChange(){
     	rightUpperSlidder.inputName.change(function(e){
     		if(typeof mainCanvas.canvas.getActiveObject() != "undefined"){
     			leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).text = e.srcElement.value;
     			leftTree.treeView.findByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).find(".k-in").html(e.srcElement.value);
+    		}
+    	})
+    }
+    
+    function inputZindexOnChange(){
+    	rightUpperSlidder.inputZindex.change(function(e){
+    		if(typeof mainCanvas.canvas.getActiveObject() != "undefined"){
+    			leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).zindex = e.srcElement.value;
     		}
     	})
     }

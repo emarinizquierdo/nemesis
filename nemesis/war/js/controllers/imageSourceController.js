@@ -89,10 +89,11 @@ var imageSource = new function(){
 			dadaObject.url = imageLocal.url;
 			dadaObject.text = imageLocal.title;
 			
+			
 			mainCanvas.addLocalImage(dadaObject.url,function(p_imageObj){
 				window.console.log(p_imageObj);	
 				dadaObject.imageObj = p_imageObj;
-				leftTree.addElement(dadaObject);
+				leftTree.addElement(dadaObject);				
 			});
 			
 			
