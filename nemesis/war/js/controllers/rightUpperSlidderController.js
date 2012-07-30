@@ -217,6 +217,9 @@ var rightUpperSlidder = new function(){
     	rightUpperSlidder.inputZindex.change(function(e){
     		if(typeof mainCanvas.canvas.getActiveObject() != "undefined"){
     			leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).zindex = e.srcElement.value;
+    			leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).imageObj.zindex = e.srcElement.value;
+    			mainCanvas.canvas._objects.sort(function(a,b){return a.zindex-b.zindex;});
+    			mainCanvas.canvas.renderAll();
     		}
     	})
     }

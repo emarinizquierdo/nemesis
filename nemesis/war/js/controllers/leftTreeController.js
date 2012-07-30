@@ -40,6 +40,7 @@ var leftTree = new function(){
 				}, node);	
 			leftTree.treeView.dataSource._data[leftTree.treeView.dataSource._data.length-1].imageObj = p_dadaObj.imageObj;
 			leftTree.treeView.dataSource._data[leftTree.treeView.dataSource._data.length-1].imageObj.node = nodeaux;
+			leftTree.treeView.dataSource._data[leftTree.treeView.dataSource._data.length-1].imageObj.zindex = 0;
 			
 		}		
 		
@@ -54,6 +55,13 @@ var leftTree = new function(){
 			rightUpperSlidder.updateControls();
 			window.console.log(node);
 		});
+		
+	}
+	
+	
+	this.groupsController = function(){
+		
+		
 		
 	}
 	

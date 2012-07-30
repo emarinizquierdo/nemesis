@@ -3,6 +3,8 @@ var mainCanvas = new function(){
 
 	this.canvas;
 	
+	
+	
 	function _init(){
 		
 	
@@ -62,8 +64,8 @@ var mainCanvas = new function(){
 		};
 		
 		
-	}
-	
+	}	
+
 	this.init = _init;
 	this.addLocalImage = _addLocalImage;
 	
