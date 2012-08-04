@@ -127,10 +127,12 @@ var rightUpperSlidder = new function(){
 		rightUpperSlidder.numericPositionX.value(mainCanvas.canvas.getActiveObject().getLeft());
 		rightUpperSlidder.numericPositionY.value(mainCanvas.canvas.getActiveObject().getTop());
 		rightUpperSlidder.numericAngle.value(mainCanvas.canvas.getActiveObject().getAngle());
+		if(mainCanvas.canvas.getActiveGroup() == null){
 		rightUpperSlidder.inputName.attr("value",leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).text);
-		rightUpperSlidder.inputZindex.attr("value",leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).zindex);
+		rightUpperSlidder.inputZindex.attr("value",leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).zindex);		
 		rightUpperSlidder.checkboxDraggable.attr("checked",leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).draggable);
 		rightUpperSlidder.checkboxTouchable.attr("checked",leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).touchable);
+		}
 		
 	}
 	
@@ -225,15 +227,16 @@ var rightUpperSlidder = new function(){
     }
 	
     function _enableAll(){
-    	rightUpperTab.rightUpper.find("input").attr("disabled",false);
-    	rightUpperSlidder.positionXSlidder.enable();
-		rightUpperSlidder.positionYSlidder.enable();
-		rightUpperSlidder.scaleXSlidder.enable();
-		rightUpperSlidder.scaleYSlidder.enable();
-		rightUpperSlidder.angleSlidder.enable();
-		rightUpperSlidder.numericPositionX.enable();
-		rightUpperSlidder.numericPositionY.enable();
-		rightUpperSlidder.numericAngle.enable();
+    	if(mainCanvas.canvas.getActiveGroup() == null){
+	    	rightUpperTab.rightUpper.find("input").attr("disabled",false);}
+	    	rightUpperSlidder.positionXSlidder.enable();
+			rightUpperSlidder.positionYSlidder.enable();
+			rightUpperSlidder.scaleXSlidder.enable();
+			rightUpperSlidder.scaleYSlidder.enable();
+			rightUpperSlidder.angleSlidder.enable();
+			rightUpperSlidder.numericPositionX.enable();
+			rightUpperSlidder.numericPositionY.enable();
+			rightUpperSlidder.numericAngle.enable();  	
 
     }
     

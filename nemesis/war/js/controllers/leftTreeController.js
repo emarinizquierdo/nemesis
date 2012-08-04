@@ -26,6 +26,7 @@ var leftTree = new function(){
 				, touchable : false
 				});
 			leftTree.treeView.dataSource._data[0].imageObj = p_dadaObj.imageObj;
+			leftTree.treeView.dataSource._data[0].imageObj.zindex = 0;
 			leftTree.treeView.dataSource._data[0].imageObj.node = leftTree.treeView.findByUid(leftTree.treeView.dataSource._data[0].uid);
 			
 		}else{

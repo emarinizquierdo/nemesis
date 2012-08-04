@@ -20,7 +20,12 @@ var mainCanvas = new function(){
 			  'object:moving': function(){rightUpperSlidder.updateControls();},
 			  'object:scaling': function(){rightUpperSlidder.updateControls();},
 			  'object:resizing': function(){rightUpperSlidder.updateControls();},
-			  'object:selected' : function(){rightUpperSlidder.enableAll();rightUpperSlidder.updateControls(); leftTree.treeView.select(leftTree.treeView.findByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid))},
+			  'object:selected' : function(){
+				  rightUpperSlidder.enableAll();rightUpperSlidder.updateControls();
+				  if(mainCanvas.canvas.getActiveGroup() == null){
+					  leftTree.treeView.select(leftTree.treeView.findByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid))
+				  }
+			   },
 			  'selection:cleared' : function(){rightUpperSlidder.disableAll();}
 			});		
 	}
