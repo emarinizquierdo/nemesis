@@ -80,7 +80,13 @@
 			    				<canvas id="mainCanvas" width="600" height="480"></canvas>
 							</div>
 			    		</div>
-			    		<div>Area 2</div>
+			    		<div>
+			    			<button id="newSceneButton">New Scene</button>
+			    			<button id="removeSceneButton">Remove Scene</button>
+							<button id="snapshotButton">Take Snapshot</button>
+							<img id="imgSnapshot" src="" width=100  />
+			    			<ul id="sceneList"></ul>			    		
+			    		</div>
 					</div>	    	
 			    </div>
 			    <div>
@@ -188,6 +194,7 @@
 	
 	rightUpperSlidder.init();
 
+	sceneList.init();
 	
 	</script>
 	
