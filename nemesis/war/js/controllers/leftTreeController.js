@@ -51,14 +51,42 @@ var leftTree = new function(){
 		var node;
 		
 		leftTree.treeView.bind("select", function(e) {
+			mainCanvas.canvas.discardActiveGroup()
+			
+			if(mainCanvas.canvas.getActiveObject()){
+				mainCanvas.canvas.getActiveObject().setActive(false);
+				mainCanvas.canvas.renderAll();
+			}
+			
 			node = leftTree.treeView.dataSource.getByUid(e.node.dataset.uid);
-			mainCanvas.canvas.setActiveObject(node.imageObj);
-			rightUpperSlidder.updateControls();
+			window.console.log(_recursiveSelectNode(node));
+			if(node.children._data.length == 0){
+				mainCanvas.canvas.setActiveObject(node.imageObj);
+				rightUpperSlidder.updateControls();
+			}else{
+				var aux = new fabric.Group(_recursiveSelectNode(node));
+				mainCanvas.canvas.setActiveGroup(aux);
+				mainCanvas.canvas.renderAll();
+				window.console.log(aux);
+				
+			}
 			window.console.log(node);
 		});
 		
 	}
 	
+	function _recursiveSelectNode(p_node){
+		
+		var   auxArray = [];
+		
+		if(p_node.children._data.length==0){
+			return [p_node.imageObj];
+		}else{
+			for(var i = 0; i<p_node.children._data.length; i++){
+				return auxArray.concat([p_node.imageObj],_recursiveSelectNode(p_node.children._data[i]));
+			}
+		}		
+	}
 	
 	this.groupsController = function(){
 		
