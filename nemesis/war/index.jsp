@@ -19,7 +19,6 @@
 	
 	<script src="lib/fabric/fabric.js" type="text/javascript"></script>
 	
-	
 	<%@ include file="libraries.html" %>
 	
 </head>
