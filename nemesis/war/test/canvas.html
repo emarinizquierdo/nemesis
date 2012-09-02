@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+
+<script src="/lib/kendo/js/jquery.min.js" type="text/javascript"></script>
+<script src="/lib/jquery.plist.js" type="text/javascript"></script>
+<script src="/lib/json2xml.js" type="text/javascript"></script>
+</head>
+<body>
+
+<canvas id="myCanvas">
+</canvas>
+
+<svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" version="1.1" width="300" height="300" space="preserve" id="mySVG" >
+</svg> 
+
+
+
+
+<!-- CANVAS EXAMPLE -->
+<script type="text/javascript">
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ctx.beginPath();
+ctx.arc(95,50,40,0,2*Math.PI);
+ctx.stroke();
+//console.log(document.getElementById("myCanvas"))
+</script>
+
+
+
+
+<!-- EJEMPLO DE PARSEO DE PLIST CON JQUERY.PLITS.JS -->
+<script type="text/javascript">
+
+var plist_xml;
+var plist_obj;
+var xml;
+
+$.get('/test/xml-example.xml', function(d){
+	plist_xml = d;
+	console.log('plist_xml', plist_xml);
+	
+	plist_obj = $.plist(plist_xml);
+	console.log('plist_obj', plist_obj)
+	
+	var xml = json2xml(plist_obj);
+
+	console.log(xml)
+})
+
+
+</script>
+
+
+
+
+<!-- EJEMPLO DE CONVERSIÓN DE CANVAS EN SVG -->
+<script type="text/javascript">
+
+
+// function importCanvas(sourceCanvas, targetSVG) {
+//     // get base64 encoded png data url from Canvas
+//     var img_dataurl = sourceCanvas.toDataURL("image/png");
+
+//     var svg_img = document.createElementNS("http://www.w3.org/2000/svg", "image");
+
+//     svg_img.setAttributeNS( "http://www.w3.org/1999/xlink", "xlink:href", img_dataurl);
+
+//     targetSVG.appendChild(svg_img);
+// }
+
+// var s = document.getElementById("myCanvas");
+// var t = document.getElementById("mySVG");
+
+// importCanvas(s,t)
+
+</script>
+
+
+
+<!--  json2xml example -->
+<script type="text/javascript">
+var obj = {
+	name: 'oscar',
+	surname: 'sanguino'
+}
+
+var xml = json2xml(obj);
+
+console.log(xml)
+
+</script>
+
+
+</body>
+</html>
