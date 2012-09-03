@@ -1,6 +1,6 @@
-function book(){
+function book(bookName){
 	
-	this.bookName = "";
+	this.bookName = bookName || "";
 	this.btnNextImage = "";
 	this.btnPrevImage = "";
 	this.mainBgMusic = "";
@@ -22,41 +22,33 @@ function book(){
 		 */
 		function actor(){
 			
+			this.uid = "";
 			this.image = "";
-			this.margins = "";
-			this.position = "";
-			this.type = "";
-			this.zIndex = "";
+			this.angle = "";
 			this.draggable = false;
 			this.touchable = false;
+			this.zindex = "";
+			this.height = "";
+			this.width = "";
+			this.top = "";
+			this.left = "";
+			this.scaleX = "";
+			this.scaleY = "";
 			this.anchor = false;
-			this.childrens = {};	
+			this.actors = {};	
 			
-			function _addChildren(childrenName){
-				
-				if (childrenName){
-					var newActor = {};
-					newActor[childrenName] = new actor();
-					$.extend(this.childrens, newActor);
-					return true;
-				}
-				else {
-					console.log('BOOK.JS: error in _addChildren()')
-					return false;
-				}
-			}
-			
-			this.addChildren = _addChildren;
+			this.addActor = _addActor;
 			return this;
 		}//end actor constructor
 		
-		function _addActor(actorName){
+		function _addActor(actorName, where){
 			
 			if (actorName){
 				var newActor = {};
 				newActor[actorName] = new actor();
 				$.extend(this.actors, newActor);
-				return true;
+				
+				return this.actors[actorName];
 			}
 			else {
 				console.log('BOOK.JS: error in _addActor()')
@@ -76,7 +68,7 @@ function book(){
 			newScene[sceneName] = new scene();
 			$.extend(this.scenes, newScene);
 			
-			return true;
+			return this.scenes[sceneName]
 		}
 		else {
 			console.log('BOOK.JS: error in _addScene()')

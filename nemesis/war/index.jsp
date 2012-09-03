@@ -19,7 +19,16 @@
 	
 	<script src="lib/fabric/fabric.js" type="text/javascript"></script>
 	
+	<script src="lib/BlobBuilder.min.js" type="text/javascript"></script>
+	<script src="lib/FileSaver.min.js" type="text/javascript"></script>
+	
 	<%@ include file="libraries.html" %>
+	
+	<script type="text/javascript" src="js/book.js"></script>
+	<script type="text/javascript" src="js/tree2book.js"></script>
+	<script type="text/javascript" src="js/json2plist.js"></script>
+	
+	<script src="js/main.js" type="text/javascript"></script>
 	
 </head>
 	
@@ -28,6 +37,7 @@
 	
 	<header>
 		Cabecera herramienta
+		<input id="exportBtn" type="button" value="export book" disabled	 />
 	</header>
 	
 	<div id="main">

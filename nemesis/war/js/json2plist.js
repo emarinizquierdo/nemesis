@@ -1,4 +1,4 @@
-function myjson2xml(o){
+function json2plist(o){
 
 	function parseObj(o){
 		
@@ -49,6 +49,11 @@ function myjson2xml(o){
 			switch (typeof value){
 			
 				case "string":
+					r += tab() + '<key>' + key + '</key>' + '\n';
+					r += tab() + '<string>' + value + '</string>' +'\n';
+					break;
+					
+				case "number":
 					r += tab() + '<key>' + key + '</key>' + '\n';
 					r += tab() + '<string>' + value + '</string>' +'\n';
 					break;
