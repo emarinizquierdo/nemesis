@@ -1,4 +1,4 @@
-function tree2book(){
+function tree2book(bookName){
 	
 	var DEFAULT_FIRST_SCENE_NAME = "main_scene";
 	
@@ -11,7 +11,7 @@ function tree2book(){
 	}
 	else {
 		//create empty book
-		b = new book('my_first_book');
+		b = new book(bookName);
 		
 		//create first scene
 		b.addScene(DEFAULT_FIRST_SCENE_NAME);

@@ -19,21 +19,20 @@ var imageSource = new function(){
                     dataType: "json"
 
                 }
-
+            },
+            
+            change: function(){
+            	
+            	_setStaticUID();
             },
 
             pageSize: 12
-
         });
-
-
+	
 	    $("#pager").kendoPager({
-	
+	    	
 	        dataSource: imageSource.dSource
-	
 	    });
-	
-	
 	
 	    imageSource.imageList = $("#listView").kendoListView({
 	
@@ -81,9 +80,11 @@ var imageSource = new function(){
 	
 	}
 	
-	function _addToLefTree(){		
+	function _addToLefTree(uid){	
 		
-		var imageLocal = imageSource.dSource.getByUid(imageSource.imageList.find(".k-state-selected").attr("data-uid"));
+		var _uid = uid || imageSource.imageList.find(".k-state-selected").attr("data-uid");
+		
+		var imageLocal = imageSource.dSource.getByUid( _uid );
 		var dadaObject = {}
 		
 		
@@ -108,6 +109,15 @@ var imageSource = new function(){
 		}	
 		
 		
+	}
+	
+	function _setStaticUID(){
+		
+		var c = 1000;
+		
+		$.each(imageSource.dSource.data(), function(i,e){
+			e.uid = "uid" + ++c;
+		})
 	}
 	
 	this.init = _init;

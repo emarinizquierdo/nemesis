@@ -18,6 +18,31 @@ header{
 	margin:11px
 }
 
+#openBookBtn{
+	float:left;
+	color:#fff;
+	text-decoration: underline;
+	margin:11px;
+	cursor: pointer;
+}
+
+/* open book window*/
+.k-window .k-window-content{
+	padding:30px;
+}
+
+.window-accept-btn{
+	cursor: pointer;
+}
+
+.window-msg{
+	margin: 20px 0;
+	color: #f00;
+}
+
+.ok-msg{
+	color:green;
+}
 
 
 
