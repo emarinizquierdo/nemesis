@@ -1583,7 +1583,7 @@ span.k-datepicker,span.k-numerictextbox,span.k-combobox,span.k-dropdown
 	position: relative;
 	vertical-align: middle;
 	white-space: nowrap;
-	width: 12.4em;
+	width: 9.4em;
 }
 .k-datetimepicker
 {
@@ -2415,7 +2415,7 @@ div.k-slider
 {
 	display: inline-block;
 	height: 6px;
-	width: 180px;
+	width: 140px;
 }
 .k-slider-wrap
 {
@@ -2430,7 +2430,7 @@ div.k-slider
 	outline: 0;
 	padding: 0;
 	position: absolute;
-	top: 0;
+	top: -2px;
 	width: 10px;
 }
 .k-slider .k-button .k-icon

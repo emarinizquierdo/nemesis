@@ -65,6 +65,21 @@ header{
 #leftPanel{
 	height:800px;
 }
+
+#leftPanelWrapper{
+	padding:10px;
+}
+
+#leftPanelWrapper span.title{
+	font-size:15px;
+	font-weight: bold;
+	color:#d1d1d1;
+}
+
+#treeview-left{
+	margin-top:10px;
+}
+
 #middlePanel{
 	
 	height:800px;
@@ -85,14 +100,31 @@ div.bodyLowerTabStrip{
 	min-height : 200px;
 }
 
+div.bodyTabStrip ul{
+	padding: 10px;
+}
+div.bodyTabStrip li{
+	 list-style: none;
+	 margin:6px;
+}
 
+.inputWrapper{
+	margin:5px;
+}
 #canvasWrapper{
 	width : 100%;
 	text-align : center;
+	padding-top:10px;
+}
+
+#canvasWrapper span.title{
+	font-size:15px;
+	font-weight: bold;
+	color:#d1d1d1;
 }
 
 #canvasWrapper .canvas-container{
-	margin : 50px auto;	
+	margin : 20px auto;	
 }
 
 #mainCanvas{

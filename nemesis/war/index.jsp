@@ -50,8 +50,8 @@
 			<div id="splitterWrapper">
 			    <div>	    	
 			    	<div id="leftPanel">
-			    		<div>
-			    						    			
+			    		<div id="leftPanelWrapper">
+			    			<span class="title">Explorador de objetos</span>			    			
 			    			<div id="treeview-left"></div>			    			
 			    			
 			    		</div>
@@ -90,6 +90,7 @@
 			    	<div id="middlePanel">
 			    		<div>
 			    			<div id="canvasWrapper">
+			    			<span class="title">Panel de dibujo</span>	
 			    				<canvas id="mainCanvas" width="600" height="480"></canvas>
 							</div>
 			    		</div>
@@ -122,21 +123,19 @@
 								</ul>
 								<div>
 			                        <div class="bodyTabStrip">
-			                            Position:<br/>
-							                <input id="sliderPositionX" class="positionX" /> <input id="numericPositionX" value="2" /><br/>							                
-							                <input id="sliderPositionY" class="positionY" /> <input id="numericPositionY" value="2" /><br/>
-							            Scale:							                    
-							            	<input id="sliderScaleX" class="scaleX" />
-							            	<input id="sliderScaleY" class="scaleY" /><br/>
-							            
-							            Angle:
-							            	<input id="sliderAngle" class="angle" /> <input id="numericAngle" value="2" /><br/>
-							            
-							            Draggable <input id="checkboxDraggable" type="checkbox" value="false"/><br/>
-							            Touchable <input id="checkboxTouchable" type="checkbox" value="false"/><br/>
-							            Name <input id="inputName" type="text" value=""/><br/>
-							            z-index <input id="zindex" type="text" value=""/><br/>
-							           
+			                        <ul>
+			                        	<li>Position:</li>
+			                        	<li><input id="sliderPositionX" class="positionX" />  <input id="numericPositionX" value="2" ></li>			                        	
+			                        	<li><input id="sliderPositionY" class="positionY" />  <input id="numericPositionY" value="2" /></li>
+			                        	<li>Scale:</li>
+			                        	<li><input id="sliderScaleX" class="scaleX" /></li>
+			                        	<li><input id="sliderScaleY" class="scaleY" /></li>
+			                        	<li>Angle:</li>
+			                        	<li><input id="sliderAngle" class="angle" />  <input id="numericAngle" value="2" /></li>			                        	
+			                        	<li>Draggable:<input id="checkboxDraggable" type="checkbox" value="false"/> Touchable: <input id="checkboxTouchable" type="checkbox" value="false"/></li>
+			                        	<li>Name:<input id="inputName" type="text" value=""/></li>
+			                        	<li>z-index:<input id="zindex" type="text" value=""/></li>			                        	
+			                        </ul>  
 			                        </div>									
 								</div>
 								<div>
