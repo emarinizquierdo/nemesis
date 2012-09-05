@@ -1,15 +1,19 @@
 /* -- global -- */
 
 body{
+	background-color:#2d2d2d;
 	padding:0px;
-	margin:0px;
+	margin:0px;	
+	font-family:Arial, Helvetica, sans-serif;
+	color:#8f8f8f;
+	font-size:12px;
 }
 
 /* -- headers -- */
 
 
 header{
-	background-color:#2195c8;
+	background-color:#000000;
 	height:45px;
 }
 
@@ -56,12 +60,18 @@ header{
 
 #splitterWrapper{
 	height:800px;
+	border-top:1px solid #7a7a7a;
 }
 #leftPanel{
 	height:800px;
 }
 #middlePanel{
+	
 	height:800px;
+}
+
+#middlePanel.k-pane{
+	background-color:#ff0000;
 }
 #rightPanel{
 	height:800px;
@@ -86,7 +96,7 @@ div.bodyLowerTabStrip{
 }
 
 #mainCanvas{
-	border : 1px solid #ccc;
+	border : 1px solid #7a7a7a;
 	background-color : #000000;
 
 }
