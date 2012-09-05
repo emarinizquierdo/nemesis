@@ -102,7 +102,7 @@
 			    			
 							
 			    			<ul id="sceneList">
-			    				<li><img id="imgSnapshot" src="" width=100  /></li>
+			    				<li><img id="imgSnapshot" src="" width=120  /></li>
 			    			</ul>			    		
 			    		</div>
 					</div>	    	
