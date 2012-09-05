@@ -181,8 +181,8 @@ footer{
 	margin:5px 15px;
 	padding:5px;
 	border-style: solid;
-	border-color: #fff;
-	border-width:5px;
+	border-color: #999;
+	border-width:2px;
 	border-radius: 15px;
 	cursor: pointer;
 }

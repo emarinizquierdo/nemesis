@@ -1,65 +1,80 @@
 var sceneList = new function(){
 	
-	var _sceneView;
-	var _selected;
+	var   _sceneView
+		, _selected
+	    , _scenes = [];
 	
 	var _SCENE_ITEM_TEMPLATE = "<img class='imgSnapshot' src='img/claqueta.jpg'>";
 	
 	function _init(){
 		
-		//init list
-//		sceneList.sceneView = $("#sceneList").kendoListView({
-//
-//			  template: "<div class=scene-list-item><img class=imgSnapshot src=img/claqueta.jpg></div>"
-//	        , selectable: true
-//	        , change: _onChange
-//	      
-//		}).data("kendoListView");
-		
 		_sceneView = $('#sceneList');
 	
-		_add();
-		_selected = _sceneView.children().first();
-		_selected.addClass('selected');
-		
-		_sceneView.find('li.scene-list-item').live('click', function(){
-			
-			_selected.toggleClass('selected');
-			_selected = $(this);
-			_selected.toggleClass('selected');
-		})
+		_createScene();
+		_selected = _scenes[0];
+		leftTree = _selected.tree;
+		_selected.item.addClass('selected');
 		
 		$("#snapshotButton").click(function(){
 			
 			var auxImgData = mainCanvas.canvas.toDataURL("png");
-			_selected.find('img.imgSnapshot').attr("src", auxImgData);
+			_selected.item.find('img.imgSnapshot').attr("src", auxImgData);
 		});
 		
 		 $('#newSceneButton').click(function(){
 		
-			 _add();
+			 _createScene();
 		 })
 		
 	}
 	
-	function _add(){
+	function _createScene(){
 		
-		 var newitem = $('<li>');
-		 newitem.addClass('scene-list-item');
-		 newitem.html(_SCENE_ITEM_TEMPLATE);
-		 _sceneView.append(newitem);
+		_scenes.push( new _scene() );
 	}
 	
-	function _onChange(e){
+	function _scene(){
+
+		var _this = this;
+		var _tree = null;
+		var _item = null;
 		
-		this.select().addClass('selected')
+		function _initScene(){
+			
+			_tree = new leftTreeConstructor();
+			_createItem();
+		}
+		
+		function _createItem(){
+			
+			 var newitem = $('<li>');
+			 newitem.addClass('scene-list-item');
+			 newitem.html(_SCENE_ITEM_TEMPLATE);
+			 _sceneView.append(newitem);
+			 
+			 newitem.click(function(){
+				 
+				_selected.item.toggleClass('selected');
+				_selected = _this
+				_selected.item.toggleClass('selected');
+			})
+			 
+			 _item = newitem;
+		}
+		
+		_initScene();
+		
+		this.tree = _tree;
+		this.item = _item;
+		
+		return this;	
 	}
 	
+	this.scenes = _scenes;
+	this.selected = _selected;
 	
-	
-	
+
 	this.init = _init;
-	this.add  = _add;
 	
 }
 

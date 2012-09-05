@@ -213,7 +213,7 @@
 		
 	mainPanel.init();
 
-	leftTree.init();
+	//leftTree.init();
 
 	rightUpperTab.init();
 	
