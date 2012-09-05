@@ -17,8 +17,8 @@ var mainPanel = new function(){
 		});
 				$("#leftPanel").kendoSplitter({
 		    panes: [
-		        { collapsible: false, min: "300px" },
-		        { size: "285px",collapsible: true, max: "285px"}
+		        { collapsible: true},
+		        { size: "685px",collapsible: true}
 		    ],
 		    orientation: "vertical"
 		});
