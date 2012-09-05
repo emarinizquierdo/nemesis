@@ -94,11 +94,16 @@
 							</div>
 			    		</div>
 			    		<div>
-			    			<button id="newSceneButton">New Scene</button>
-			    			<button id="removeSceneButton">Remove Scene</button>
-							<button id="snapshotButton">Take Snapshot</button>
-							<img id="imgSnapshot" src="" width=100  />
-			    			<ul id="sceneList"></ul>			    		
+			    			<div id="sceneButtonContainer">
+			    				<button id="newSceneButton">New Scene</button>
+			    				<button id="removeSceneButton">Remove Scene</button>
+								<button id="snapshotButton">Take Snapshot</button>
+			    			</div>
+			    			
+							
+			    			<ul id="sceneList">
+			    				<li><img id="imgSnapshot" src="" width=100  /></li>
+			    			</ul>			    		
 			    		</div>
 					</div>	    	
 			    </div>
