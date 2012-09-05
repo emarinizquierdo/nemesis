@@ -122,8 +122,8 @@
 								</ul>
 								<div>
 			                        <div class="bodyTabStrip">
-			                            Position:
-							                <input id="sliderPositionX" class="positionX" /> <input id="numericPositionX" value="2" />							                
+			                            Position:<br/>
+							                <input id="sliderPositionX" class="positionX" /> <input id="numericPositionX" value="2" /><br/>							                
 							                <input id="sliderPositionY" class="positionY" /> <input id="numericPositionY" value="2" /><br/>
 							            Scale:							                    
 							            	<input id="sliderScaleX" class="scaleX" />
