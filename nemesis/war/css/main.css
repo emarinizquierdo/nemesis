@@ -160,3 +160,40 @@ footer{
 	height:20px;
 }
 
+/* scenes */
+#sceneButtonContainer{
+	padding:5px;
+	height: 25px
+}
+#sceneButtonContainer button{
+	float: right;
+	
+}
+
+#sceneList{
+	clear:both;
+}
+
+.scene-list-item{
+	float: left;
+	width: 110px;
+	height:110px;
+	margin:5px 15px;
+	padding:5px;
+	border-style: solid;
+	border-color: #fff;
+	border-width:5px;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+.scene-list-item.selected{
+	border-color:#F0713A
+}
+.imgSnapshot{
+	width:110px;
+	height:110px;
+	border-radius: 10px;
+}
+
+
