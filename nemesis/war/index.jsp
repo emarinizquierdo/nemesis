@@ -40,8 +40,13 @@
 	
 	<header>
 		<a id="openBookBtn" class="button">Abrir libro</a>
-		<input id="exportBtn" type="button" value="Guardar libro" disabled	class="button" />
+		<a id="exportBtn" class="button">Guardar libro</a>
+		<input type="text" value="Mi primer libro" id="book-name-input" class="title" />
+		<a id="book-name-input-ok" class="title-ok"><img src="/img/tick-icon.png"/></a>
+		<input type="text" value="" id="scene-name-input" class="title" />
+		<a id="scene-name-input-ok" class="title-ok"><img src="/img/tick-icon.png"/></a>
 	</header>
+	
 	
 	<div id="main">
 	
@@ -88,17 +93,19 @@
 			    </div>
 			    <div>
 			    	<div id="middlePanel">
-			    		<div class="mainCanvasWrapper">
-			    			<div id="canvasWrapper">
-			    			<span class="title mainCanvas">Panel de dibujo</span>	
-			    				<canvas id="mainCanvas" width="600" height="480"></canvas>
+
+			 			<div class="mainCanvasWrapper">
+			    			<div id="canvasWrapper">				
+
 							</div>
 			    		</div>
 			    		<div>
 			    			<div id="sceneButtonContainer">
+
+			    				<button id="snapshotButton" class="button">Take Snapshot</button>
+<!-- 			    				<button id="removeSceneButton" class="button">Remove Scene</button> -->
 			    				<button id="newSceneButton" class="button">New Scene</button>
-			    				<button id="removeSceneButton" class="button">Remove Scene</button>
-								<button id="snapshotButton" class="button">Take Snapshot</button>
+
 			    			</div>
 			    			
 							
@@ -210,6 +217,9 @@
 	
 	<script type="text/javascript">
 		
+	
+	
+	
 	mainPanel.init();
 
 	//leftTree.init();
@@ -218,7 +228,7 @@
 	
 	rightLowerTab.init();
 	
-	mainCanvas.init();
+	//mainCanvas.init();
 	
 	imageSource.init();
 	
