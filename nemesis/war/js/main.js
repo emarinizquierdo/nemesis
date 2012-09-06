@@ -70,7 +70,7 @@ $(document).ready(function(){
 			
 			if ($.trim(fileName) == ""){
 				
-				errorMsg.text('No ha seleccionado ning�n fichero.')
+				errorMsg.text('No ha seleccionado ningún fichero.')
 			}
 			else {
 				
@@ -89,7 +89,7 @@ $(document).ready(function(){
 						window.data("kendoWindow").close();
 					}
 					, error: function(){
-						errorMsg.text('El fichero seleccionado no es v�lido.')
+						errorMsg.text('El fichero seleccionado no es válido.')
 					}
 				})
 			}
@@ -142,7 +142,7 @@ $(document).ready(function(){
 					
 					exportMsg
 						.addClass('ok-msg')
-						.text('�Libro guardado con �xito!');
+						.text('¡Libro guardado con éxito!');
 						_exportBook(fileName);	
 				}
 				else {
