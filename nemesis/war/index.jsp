@@ -103,7 +103,7 @@
 			    			
 							
 			    			<ul id="sceneList">
-			    				<li><img id="imgSnapshot" src="" width=100  /></li>
+			    				
 			    			</ul>			    		
 			    		</div>
 					</div>	    	
@@ -212,7 +212,7 @@
 		
 	mainPanel.init();
 
-	leftTree.init();
+	//leftTree.init();
 
 	rightUpperTab.init();
 	

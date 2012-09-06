@@ -1,7 +1,7 @@
 
 
 
-var leftTree = new function(){
+var leftTreeConstructor = function(){
 	
 	this.treeView;
 	
@@ -96,6 +96,8 @@ var leftTree = new function(){
 	
 	this.init = _init;
 	this.addElement = _addElement;
+	
+	return this;
 	
 }
 
