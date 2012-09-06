@@ -20,9 +20,15 @@ header{
 #main{
 	min-width:1200px;
 }
+
 .k-numeric-wrap{
 	margin-top:10px;
 }
+
+.mainCanvasWrapper{
+	background-color:#7F7F7F;	
+}
+
 #exportBtn{
 	float:right;
 	margin:11px
@@ -156,7 +162,7 @@ div.bodyTabStrip li{
 #canvasWrapper span.title{
 	font-size:15px;
 	font-weight: bold;
-	color:#d1d1d1;
+	color:#ffffff;
 }
 
 #canvasWrapper .canvas-container{

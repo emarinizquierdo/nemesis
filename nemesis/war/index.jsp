@@ -40,7 +40,7 @@
 	
 	<header>
 		<a id="openBookBtn" class="button">Abrir libro</a>
-		<input id="exportBtn" type="button" value="Guardar libro" disabled />
+		<input id="exportBtn" type="button" value="Guardar libro" disabled	class="button" />
 	</header>
 	
 	<div id="main">
@@ -88,9 +88,9 @@
 			    </div>
 			    <div>
 			    	<div id="middlePanel">
-			    		<div>
+			    		<div class="mainCanvasWrapper">
 			    			<div id="canvasWrapper">
-			    			<span class="title">Panel de dibujo</span>	
+			    			<span class="title mainCanvas">Panel de dibujo</span>	
 			    				<canvas id="mainCanvas" width="600" height="480"></canvas>
 							</div>
 			    		</div>
