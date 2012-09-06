@@ -1,4 +1,4 @@
-/* -- global -- */
+$("#new-canvas-" + n).show();/* -- global -- */
 
 body{
 	background-color:#2d2d2d;
@@ -173,6 +173,10 @@ div.bodyTabStrip li{
 	border : 1px solid #7a7a7a;
 	background-color : #000000;
 
+}
+.new-canvas{
+	border : 1px solid #7a7a7a;
+	background-color : #000000;
 }
 
 

@@ -3,11 +3,17 @@
 
 var leftTreeConstructor = function(){
 	
+	var _this = this;
 	this.treeView;
 	
-	function _init(){
+	function _init(n){
 		
-		leftTree.treeView = $("#treeview-left").kendoTreeView({
+		var newtree = $('<div>');
+		newtree.attr('id', "new-tree-" + n);
+		newtree.addClass("new-tree");
+		$("#treeview-left").append(newtree)
+		
+		_this.treeView = newtree.kendoTreeView({
             dragAndDrop: true,
             dataSource: []
         }).data("kendoTreeView");
@@ -15,33 +21,32 @@ var leftTreeConstructor = function(){
 		_OnSelectNode();
 	}
 	
-	
 	function _addElement(p_dadaObj){	
 		
-		if(leftTree.treeView.dataSource._data.length <= 0){
-			leftTree.treeView.dataSource.add({
+		if(_this.treeView.dataSource._data.length <= 0){
+			_this.treeView.dataSource.add({
 				  text : p_dadaObj.text
 				, zindex : 0
 				, draggable : false
 				, touchable : false
 				});
-			leftTree.treeView.dataSource._data[0].imageObj = p_dadaObj.imageObj;
-			leftTree.treeView.dataSource._data[0].imageObj.zindex = 0;
-			leftTree.treeView.dataSource._data[0].imageObj.node = leftTree.treeView.findByUid(leftTree.treeView.dataSource._data[0].uid);
+			_this.treeView.dataSource._data[0].imageObj = p_dadaObj.imageObj;
+			_this.treeView.dataSource._data[0].imageObj.zindex = 0;
+			_this.treeView.dataSource._data[0].imageObj.node = _this.treeView.findByUid(_this.treeView.dataSource._data[0].uid);
 			
 		}else{
-			var lastElement = leftTree.treeView.dataSource._data[leftTree.treeView.dataSource._data.length-1];
+			var lastElement = _this.treeView.dataSource._data[_this.treeView.dataSource._data.length-1];
 			var node;
-			node = leftTree.treeView.findByUid(lastElement.uid);			
-			var nodeaux = leftTree.treeView.insertAfter({
+			node = _this.treeView.findByUid(lastElement.uid);			
+			var nodeaux = _this.treeView.insertAfter({
 				  text: p_dadaObj.text
 				, zindex : 0
 				, draggable : false
 				, touchable : false
 				}, node);	
-			leftTree.treeView.dataSource._data[leftTree.treeView.dataSource._data.length-1].imageObj = p_dadaObj.imageObj;
-			leftTree.treeView.dataSource._data[leftTree.treeView.dataSource._data.length-1].imageObj.node = nodeaux;
-			leftTree.treeView.dataSource._data[leftTree.treeView.dataSource._data.length-1].imageObj.zindex = 0;
+			_this.treeView.dataSource._data[_this.treeView.dataSource._data.length-1].imageObj = p_dadaObj.imageObj;
+			_this.treeView.dataSource._data[_this.treeView.dataSource._data.length-1].imageObj.node = nodeaux;
+			_this.treeView.dataSource._data[_this.treeView.dataSource._data.length-1].imageObj.zindex = 0;
 			
 		}		
 		
@@ -50,7 +55,7 @@ var leftTreeConstructor = function(){
 	function _OnSelectNode(){
 		var node;
 		
-		leftTree.treeView.bind("select", function(e) {
+		_this.treeView.bind("select", function(e) {
 			mainCanvas.canvas.discardActiveGroup()
 			
 			if(mainCanvas.canvas.getActiveObject()){
@@ -58,7 +63,7 @@ var leftTreeConstructor = function(){
 				mainCanvas.canvas.renderAll();
 			}
 			
-			node = leftTree.treeView.dataSource.getByUid(e.node.dataset.uid);
+			node = _this.treeView.dataSource.getByUid(e.node.dataset.uid);
 			window.console.log(_recursiveSelectNode(node));
 			if(node.children._data.length == 0){
 				mainCanvas.canvas.setActiveObject(node.imageObj);

@@ -1,14 +1,19 @@
 
-var mainCanvas = new function(){
+var mainCanvasConstructor = function(){
 
+	var _this = this;
 	this.canvas;
 	
 	
 	
-	function _init(){
+	function _init(n){
 		
+		var newcanvas = $('<canvas width="600" height="480"></canvas>');
+		newcanvas.attr('id', "new-canvas-" + n);
+		newcanvas.addClass("new-canvas");
+		$("#canvasWrapper").append(newcanvas)
 	
-		mainCanvas.canvas = new fabric.Canvas('mainCanvas');		
+		_this.canvas = new fabric.Canvas( newcanvas.attr('id') );		
 		
 		_observeCanvas();
 		
@@ -16,14 +21,14 @@ var mainCanvas = new function(){
 	
 	function _observeCanvas(){
 		
-		mainCanvas.canvas.observe({ 
+		_this.canvas.observe({ 
 			  'object:moving': function(){rightUpperSlidder.updateControls();},
 			  'object:scaling': function(){rightUpperSlidder.updateControls();},
 			  'object:resizing': function(){rightUpperSlidder.updateControls();},
 			  'object:selected' : function(){
 				  rightUpperSlidder.enableAll();rightUpperSlidder.updateControls();
-				  if(mainCanvas.canvas.getActiveGroup() == null){
-					  leftTree.treeView.select(leftTree.treeView.findByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid))
+				  if(_this.canvas.getActiveGroup() == null){
+					  leftTree.treeView.select(leftTree.treeView.findByUid(_this.canvas.getActiveObject().node[0].dataset.uid))
 				  }
 			   },
 			  'selection:cleared' : function(){rightUpperSlidder.disableAll();}
@@ -35,7 +40,7 @@ var mainCanvas = new function(){
 		var oImg;
 		fabric.Image.fromURL(url,function(img) {
 			  oImg = img.set({ left: 300, top: 240}).scale(1);
-			  mainCanvas.canvas.add(oImg).renderAll(); 
+			  _this.canvas.add(oImg).renderAll(); 
 			  f_callback(oImg);			  
 		});
 		
