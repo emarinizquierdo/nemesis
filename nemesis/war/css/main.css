@@ -17,6 +17,12 @@ header{
 	height:45px;
 }
 
+#main{
+	min-width:1200px;
+}
+.k-numeric-wrap{
+	margin-top:10px;
+}
 #exportBtn{
 	float:right;
 	margin:11px
@@ -49,6 +55,36 @@ header{
 }
 
 
+/*buttons*/
+
+.button {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #999999), color-stop(1, #474747) );
+	background:-moz-linear-gradient( center top, #999999 5%, #474747 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#999999', endColorstr='#474747');
+	background-color:#999999;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #000000;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	padding:5px 25px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #545454;
+	cursor:pointer;
+	margin:5px;
+}.button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #474747), color-stop(1, #999999) );
+	background:-moz-linear-gradient( center top, #474747 5%, #999999 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#474747', endColorstr='#999999');
+	background-color:#474747;
+}.button:active {
+	position:relative;
+	top:1px;
+}
 
 
 

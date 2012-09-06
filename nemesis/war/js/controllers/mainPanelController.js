@@ -10,14 +10,14 @@ var mainPanel = new function(){
 		$("#splitterWrapper").kendoSplitter({
 		    panes: [
 		        { collapsible: false, min: "300px" },
-		       	{ collapsible: false, resizable: false, size: "700px" },
+		       	{ collapsible: false, resizable: false, size: "650px" },
 		       	{ collapsible: false, min: "300px" }
 		    ],
 		    orientation: "horizontal"
 		});
 				$("#leftPanel").kendoSplitter({
 		    panes: [
-		        { collapsible: true},
+		        { size: "400px",collapsible: true},
 		        { size: "685px",collapsible: true}
 		    ],
 		    orientation: "vertical"
@@ -25,7 +25,7 @@ var mainPanel = new function(){
 
 		$("#middlePanel").kendoSplitter({
 		    panes: [
-		         {resizable: false, size: "600px", collapsible: false, min: "600px" },
+		         {resizable: false, size: "550px", collapsible: false, min: "600px" },
 		         {collapsible: false, min: "200px" }
 		    ],
 		    orientation: "vertical"
@@ -34,7 +34,7 @@ var mainPanel = new function(){
 
 		$("#rightPanel").kendoSplitter({
 		    panes: [
-		         { size: "400px", collapsible: true, min: "300px" },
+		         { size: "450px", collapsible: true, min: "310px" },
 		        { collapsible: true, min: "200px" }
 		    ],
 		    orientation: "vertical"

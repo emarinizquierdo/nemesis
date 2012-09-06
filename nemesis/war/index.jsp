@@ -39,8 +39,8 @@
 <body>
 	
 	<header>
-		<a id="openBookBtn">Abrir libro</a>
-		<input id="exportBtn" type="button" value="Guardar libro" disabled	 />
+		<a id="openBookBtn" class="button">Abrir libro</a>
+		<input id="exportBtn" type="button" value="Guardar libro" disabled />
 	</header>
 	
 	<div id="main">
@@ -74,8 +74,8 @@
     						</script>
 
 
-<button id="addImageLocalButton">Add</button>
-<button id="removeImageLocalButton">Remove</button>
+<a id="addImageLocalButton" class="button">Add</a>
+<a id="removeImageLocalButton" class="button">Remove</a>
 
 
 
@@ -96,9 +96,9 @@
 			    		</div>
 			    		<div>
 			    			<div id="sceneButtonContainer">
-			    				<button id="newSceneButton">New Scene</button>
-			    				<button id="removeSceneButton">Remove Scene</button>
-								<button id="snapshotButton">Take Snapshot</button>
+			    				<button id="newSceneButton" class="button">New Scene</button>
+			    				<button id="removeSceneButton" class="button">Remove Scene</button>
+								<button id="snapshotButton" class="button">Take Snapshot</button>
 			    			</div>
 			    			
 							
