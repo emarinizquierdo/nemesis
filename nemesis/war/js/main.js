@@ -1,8 +1,7 @@
 $(document).ready(function(){
 	
 	$('#book-name-input, #scene-name-input')
-		.focus(function(){
-			$(this).select();
+		.focus(function(e){
 			var okBtn = $(this).attr('id') + '-ok';
 			$('#'+okBtn).css('visibility','visible');
 		})
@@ -143,7 +142,7 @@ $(document).ready(function(){
 					
 					exportMsg
 						.addClass('ok-msg')
-						.text('¡Libro guardado con éxito!');
+						.text('ï¿½Libro guardado con ï¿½xito!');
 						_exportBook(fileName);	
 				}
 				else {
