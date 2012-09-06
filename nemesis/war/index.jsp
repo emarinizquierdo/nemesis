@@ -62,6 +62,9 @@
 			    			
 			    		</div>
 			    		<div>
+			    		
+			    		<a id="addImageLocalButton" class="button">Add</a>
+<a id="removeImageLocalButton" class="button">Remove</a>
 			    		<div id="listView"></div>
 
 
@@ -80,8 +83,7 @@
     						</script>
 
 
-<a id="addImageLocalButton" class="button">Add</a>
-<a id="removeImageLocalButton" class="button">Remove</a>
+
 
 
 
