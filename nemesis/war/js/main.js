@@ -1,11 +1,33 @@
 $(document).ready(function(){
 	
+	$('#book-name-input, #scene-name-input')
+		.focus(function(){
+			$(this).select();
+			var okBtn = $(this).attr('id') + '-ok';
+			$('#'+okBtn).css('visibility','visible');
+		})
+		.blur(function(e){
+			var name = $.trim($(this).val());
+			if (name == ""){
+				$(this).focus();
+				return
+			}
+			var okBtn = $(this).attr('id') + '-ok';
+			$('#'+okBtn).css('visibility','hidden');
+			
+			if ($(this).attr('id') == 'scene-name-input'){
+				
+				sceneList.selected().item.attr('sceneName', name);
+			}
+			
+		});
+	
 	
 	//export button
 	$('#exportBtn').click(function(){
 		
 		$('#export-msg').empty().removeClass('ok-msg');
-		$('#export-file-name').val('');
+		$('#export-file-name').val($('#book-name-input').val());
 		$("#export-window").data("kendoWindow").center().open();
 	});
 	
@@ -49,7 +71,7 @@ $(document).ready(function(){
 			
 			if ($.trim(fileName) == ""){
 				
-				errorMsg.text('No ha seleccionado ningún fichero.')
+				errorMsg.text('No ha seleccionado ningï¿½n fichero.')
 			}
 			else {
 				
@@ -68,7 +90,7 @@ $(document).ready(function(){
 						window.data("kendoWindow").close();
 					}
 					, error: function(){
-						errorMsg.text('El fichero seleccionado no es válido.')
+						errorMsg.text('El fichero seleccionado no es vï¿½lido.')
 					}
 				})
 			}
@@ -108,26 +130,33 @@ $(document).ready(function(){
 			}
 			else {
 				
-				exportMsg
-				.addClass('ok-msg')
-				.text('¡Libro guardado con éxito!');
-				_exportBook(fileName);	
+				var book = tree2book(fileName);
+				if (book){
+					var plist = json2plist(book);
+					
+//					var uriContent = "data:application/octet-stream," + encodeURIComponent(plist);
+//					location.href = uriContent
+					
+					var bb = new BlobBuilder;
+					bb.append(plist);
+					saveAs(bb.getBlob("text/plain;charset=utf-8"), fileName + ".xml");
+					
+					exportMsg
+						.addClass('ok-msg')
+						.text('¡Libro guardado con éxito!');
+						_exportBook(fileName);	
+				}
+				else {
+					exportMsg.removeClass('ok-msg').text('Se ha producido un error.')
+				}
+				
+				
 			}
 		});	
 	}//end _initExportWindow function
 	
 	function _exportBook(fileName){
 		
-		var book = tree2book(fileName);
-		if (book){
-			var plist = json2plist(book);
-			
-//			var uriContent = "data:application/octet-stream," + encodeURIComponent(plist);
-//			location.href = uriContent
-			
-			var bb = new BlobBuilder;
-			bb.append(plist);
-			saveAs(bb.getBlob("text/plain;charset=utf-8"), fileName + ".xml");
-		}
+		
 	}
 })

@@ -21,8 +21,12 @@ var mainCanvasConstructor = function(){
 	
 	function _observeCanvas(){
 		
+		
+		
 		_this.canvas.observe({ 
-			  'object:moving': function(){rightUpperSlidder.updateControls();},
+			  'object:moving': function(){
+				  rightUpperSlidder.updateControls();
+			  },
 			  'object:scaling': function(){rightUpperSlidder.updateControls();},
 			  'object:resizing': function(){rightUpperSlidder.updateControls();},
 			  'object:selected' : function(){

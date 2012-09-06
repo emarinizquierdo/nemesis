@@ -13,10 +13,11 @@ var sceneList = new function(){
 		_sceneView = $('#sceneList');
 	
 		_createScene();
-		_selected = _scenes[0];
-		leftTree = _selected.tree;
-		mainCanvas = _selected.canvas;
-		_selected.item.addClass('selected');
+		_scenes[0].item.click();
+//		_selected = _scenes[0];
+//		leftTree = _selected.tree;
+//		mainCanvas = _selected.canvas;
+//		_selected.item.addClass('selected');
 		
 		$("#snapshotButton").click(function(){
 			
@@ -37,7 +38,7 @@ var sceneList = new function(){
 	}
 	
 	function _scene(){
-
+		
 		var _this = this;
 		var _tree = null;
 		var _item = null;
@@ -55,22 +56,24 @@ var sceneList = new function(){
 		
 		function _createItem(n){
 			
-			 var newitem = $('<li>');
-			 newitem.attr('id', 'scene-list-item-' + n)
-			 newitem.addClass('scene-list-item');
-			 newitem.html(_SCENE_ITEM_TEMPLATE);
-			 _sceneView.append(newitem);
+			var newitem = $('<li>')
+				.attr('id', 'scene-list-item-' + n)
+				.attr('sceneName', 'escena '+n)
+				.addClass('scene-list-item')
+				.html(_SCENE_ITEM_TEMPLATE);
+			
+			_sceneView.append(newitem);
 			 
-			 if (n != 1){
-				 $("#new-tree-" + n).hide();
-				 //$("#new-canvas-" + n).parent().hide();	 
-			 }
+			if (n != 1){
+				$("#new-tree-" + n).hide();
+				$("#new-canvas-" + n).parent().hide();	 
+			}
 			 
-			 
-			 newitem.click(function(){
+			newitem.click(function(){
 				 
-				 
-				_selected.item.toggleClass('selected');
+				if (_selected) {
+					_selected.item.toggleClass('selected');
+				}
 				_selected = _this;
 				leftTree = _selected.tree;
 				mainCanvas = _selected.canvas;
@@ -79,11 +82,18 @@ var sceneList = new function(){
 				$("#treeview-left").children().hide();
 				$("#new-tree-" + n).show();
 				
-				//$("#canvasWrapper").children().hide();
+				$("#canvasWrapper").children().hide();
 				$("#new-canvas-" + n).parent().show();
+				
+				$('#scene-name-input').val($(this).attr('sceneName'))
 			})
 			 
-			 _item = newitem;
+			_item = newitem;
+		}
+		
+		function _delete(){
+			
+			
 		}
 		
 		_initScene();

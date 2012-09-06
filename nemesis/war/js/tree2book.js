@@ -1,25 +1,20 @@
 function tree2book(bookName){
 	
-	var DEFAULT_FIRST_SCENE_NAME = "main_scene";
+	var DEFAULT_FIRST_SCENE_NAME = "escena_01";
 	
 	var b = new book();
 	var t = leftTree.treeView.dataSource.data();
 	
-	if (t.length == 0){
-		console.log('tree2book error: no hay ningún elemento en la escena');
-		return false
-	}
-	else {
-		//create empty book
-		b = new book(bookName);
-		
-		//create first scene
-		b.addScene(DEFAULT_FIRST_SCENE_NAME);
-		
-		_addTreeActors(t, b.scenes[DEFAULT_FIRST_SCENE_NAME])
-		
-		return b;
-	}
+	//create empty book
+	b = new book(bookName);
+	
+	//create first scene
+	var sceneName = $.trim( $('#scene-name-input').val() ).replace(/\s/g,"_") || DEFAULT_FIRST_SCENE_NAME;
+	b.addScene(sceneName);
+	
+	_addTreeActors(t, b.scenes[sceneName])
+	
+	return b;
 	
 	function _addTreeActors(actors, parent){
 		

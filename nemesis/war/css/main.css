@@ -1,4 +1,4 @@
-$("#new-canvas-" + n).show();/* -- global -- */
+/* -- global -- */
 
 body{
 	background-color:#2d2d2d;
@@ -14,11 +14,39 @@ body{
 
 header{
 	background-color:#000000;
-	height:45px;
+	z-index:999;
+	padding:10px;
+	min-width:100%;
+	position:fixed;
+	top:0px;
+	border-bottom:solid 1px #8F8F8F;
+}
+
+header input.title{
+	background-color: black;
+	border: none;
+	color: white;
+	font-style: italic;
+	font-weight: bold;
+	width:auto;
+}
+#book-name-input{
+	font-size:15px;
+}
+
+book-name-ok{
+	display: inline-block;
+	width:16px;
+	height:16px;
+}
+
+header a.title-ok{
+	visibility:hidden;
 }
 
 #main{
 	min-width:1200px;
+	margin-top:45px;
 }
 
 .k-numeric-wrap{
@@ -31,14 +59,13 @@ header{
 
 #exportBtn{
 	float:right;
-	margin:11px
+	margin:0 5px
 }
 
 #openBookBtn{
-	float:left;
+	float:right;
 	color:#fff;
-	text-decoration: underline;
-	margin:11px;
+	margin:0 20px 0 5px;
 	cursor: pointer;
 }
 
@@ -120,6 +147,10 @@ header{
 
 #treeview-left{
 	margin-top:10px;
+}
+
+#treeview-left span.k-in{
+	color:#d1d1d1;
 }
 
 #middlePanel{
@@ -256,7 +287,7 @@ footer{
 	float: left;
 	width: 110px;
 	height:110px;
-	margin:5px 15px;
+	margin:5px 20px 5px 0;
 	padding:5px;
 	border-style: solid;
 	border-color: #999;
