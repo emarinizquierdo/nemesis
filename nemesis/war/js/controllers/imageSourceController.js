@@ -45,9 +45,7 @@ var imageSource = new function(){
 	    
 	    $("#addImageLocalButton").click(function(){
 	    	imageSource.addToLeftTree();
-	    	
-	    	//Habilitar el botón de exportar
-	    	$('#exportBtn').removeAttr('disabled');
+	    
 	    })
 	    
 	    $("#removeImageLocalButton").click(function(){
@@ -71,10 +69,6 @@ var imageSource = new function(){
 	    	
 	    	}
 	    	
-	    	//Deshabilitar botón de exportar al vaciar el treeView
-	    	if(leftTree.treeView.dataSource.data().length==0){
-	    		$('#exportBtn').attr('disabled', true);
-	    	}
 	    })
 	    
 	

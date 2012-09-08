@@ -9,44 +9,56 @@ body{
 	font-size:12px;
 }
 
-/* -- headers -- */
 
+
+/* -- headers -- */
 
 header{
 	background-color:#000000;
 	z-index:999;
-	padding:10px;
 	min-width:100%;
 	position:fixed;
 	top:0px;
 	border-bottom:solid 1px #8F8F8F;
+	height:40px;
 }
 
-header input.title{
-	background-color: black;
+header #menu{
+	float:right;
+	margin:4px 0 0 0;
+	background-color:#000;
+	border: none;
+}
+
+/* book title & scene title */
+input.title{
 	border: none;
 	color: white;
 	font-style: italic;
 	font-weight: bold;
-	width:auto;
+	width:300px;
 }
+
 #book-name-input{
-	font-size:15px;
+	background-color: black;
+	font-size:20px;
+	font-family:serif;
+	margin: 8px 0 0 10px;
 }
 
-book-name-ok{
-	display: inline-block;
-	width:16px;
-	height:16px;
+#scene-name-input{
+/* 	margin:10px 0 0 25px; */
+	background-color: #7F7F7F;
+	text-align: center;
+	display:block;
+	margin:10px auto 0 auto;
 }
 
-header a.title-ok{
-	visibility:hidden;
-}
 
+/* -- main -- */
 #main{
 	min-width:1200px;
-	margin-top:45px;
+	margin-top:40px;
 }
 
 .k-numeric-wrap{
@@ -57,17 +69,6 @@ header a.title-ok{
 	background-color:#7F7F7F;	
 }
 
-#exportBtn{
-	float:right;
-	margin:0 5px
-}
-
-#openBookBtn{
-	float:right;
-	color:#fff;
-	margin:0 20px 0 5px;
-	cursor: pointer;
-}
 
 /* open book window*/
 .k-window .k-window-content{
@@ -118,11 +119,6 @@ header a.title-ok{
 	position:relative;
 	top:1px;
 }
-
-
-
-
-/* -- main -- */
 
 
 /* -- mainPanel -- */
@@ -187,7 +183,6 @@ div.bodyTabStrip li{
 #canvasWrapper{
 	width : 100%;
 	text-align : center;
-	padding-top:10px;
 }
 
 #canvasWrapper span.title{
@@ -197,7 +192,7 @@ div.bodyTabStrip li{
 }
 
 #canvasWrapper .canvas-container{
-	margin : 20px auto;	
+	margin : 15px auto;
 }
 
 #mainCanvas{

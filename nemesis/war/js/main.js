@@ -1,25 +1,31 @@
 $(document).ready(function(){
 	
+	//Header menu
+	$("#menu").kendoMenu();
+	
+	//Book title & scene title
 	$('#book-name-input, #scene-name-input')
-		.focus(function(e){
-			var okBtn = $(this).attr('id') + '-ok';
-			$('#'+okBtn).css('visibility','visible');
-		})
 		.blur(function(e){
+			
 			var name = $.trim($(this).val());
 			if (name == ""){
 				$(this).focus();
 				return
 			}
-			var okBtn = $(this).attr('id') + '-ok';
-			$('#'+okBtn).css('visibility','hidden');
 			
 			if ($(this).attr('id') == 'scene-name-input'){
-				
 				sceneList.selected().item.attr('sceneName', name);
 			}
+		})
+		.keyup(function(keyEvent){
 			
-		});
+			keyEvent = keyEvent? keyEvent : window.event;
+			var keyCode = (keyEvent.keyCode ? keyEvent.keyCode : keyEvent.which);
+			
+            if ( keyCode == 13){ 
+				$(this).blur();
+            }
+		})
 	
 	
 	//export button
@@ -138,7 +144,7 @@ $(document).ready(function(){
 					
 					var bb = new BlobBuilder;
 					bb.append(plist);
-					saveAs(bb.getBlob("text/plain;charset=utf-8"), fileName + ".xml");
+					saveAs(bb.getBlob("text/plain;charset=utf-8"), fileName + ".plist");
 					
 					exportMsg
 						.addClass('ok-msg')
