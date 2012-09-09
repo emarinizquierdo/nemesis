@@ -49,24 +49,13 @@ var imageSource = new function(){
 	    })
 	    
 	    $("#removeImageLocalButton").click(function(){
-	    	if(typeof leftTree.treeView.select().attr("data-uid") != "undefined"){
-	    		_recursiveRemoveNode(leftTree.treeView.dataSource.getByUid(leftTree.treeView.select().attr("data-uid")));
-		    	leftTree.treeView.remove(leftTree.treeView.select());	    	
-		    	
-		    	function _recursiveRemoveNode(p_node){
-		    		
-		    		if(p_node.children._data.length > 0){
-		    			
-		    			for(var i = 0; i < p_node.children._data.length; i++){
-		    				
-		    				_recursiveRemoveNode(p_node.children._data[i]);
-		    			}
-		    			
-		    		}
-		    	
-		    		mainCanvas.canvas.remove(p_node.imageObj);
-		    	}
-	    	
+	    	if(leftTree.treeView.select().length){
+	    		
+	    		var selected = leftTree.treeView.dataSource.getByUid(leftTree.treeView.select().attr("data-uid"));
+	    		_removeElement(selected);
+	    	}
+	    	else {
+	    		console.log('No hay ningún elemento seleccionado.')
 	    	}
 	    	
 	    })
@@ -77,32 +66,53 @@ var imageSource = new function(){
 	function _addToLefTree(uid){	
 		
 		var _uid = uid || imageSource.imageList.find(".k-state-selected").attr("data-uid");
-		
 		var imageLocal = imageSource.dSource.getByUid( _uid );
 		var dadaObject = {}
-		
-		
-		
+
 		//imageToTree.uid = guid();
 		
 		if(typeof imageLocal == "undefined"){
-			alert("No has seleccionado ninguna imagen a añadir");
-		}else{
+			console.log("No has seleccionado ninguna imagen a añadir");
+		}
+		else{
 			
 			dadaObject.url = imageLocal.url;
 			dadaObject.text = imageLocal.title;
-			
 			
 			mainCanvas.addLocalImage(dadaObject.url,function(p_imageObj){
 				window.console.log(p_imageObj);	
 				dadaObject.imageObj = p_imageObj;
 				leftTree.addElement(dadaObject);				
 			});
-			
-			
 		}	
+	}
+	
+	function _removeElement(e){
 		
+		//Es necesario desactivar los elementos del canvas antes de eliminarlos
+		mainCanvas.canvas.deactivateAll();
 		
+		if(e.hasChildren){
+			
+			$.each(e.children.data(), function(i,children){
+				_removeElement(children)
+			});
+		}
+		
+		mainCanvas.canvas.remove(e.imageObj);
+		var uid = e.uid;
+		var treeElem = leftTree.treeView.element.find('[data-uid="' + uid + '"]');			
+		leftTree.treeView.remove(treeElem)
+	} 
+	
+	
+	function _removeAllElements(){
+		
+		while (leftTree.treeView.dataSource.total() > 0){
+			
+			var first = leftTree.treeView.dataSource.data()[0];
+			_removeElement(first);
+		}
 	}
 	
 	function _setStaticUID(){
@@ -116,6 +126,8 @@ var imageSource = new function(){
 	
 	this.init = _init;
 	this.addToLeftTree = _addToLefTree;
+	this.removeElement = _removeElement;
+	this.removeAllElement = _removeAllElements;
 	
 }
 

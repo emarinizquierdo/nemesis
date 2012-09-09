@@ -46,7 +46,7 @@
 			<li>
 				<img src="/img/settings-wheel.png" width="24" height="24" />
 				<ul>
-					<li>Nuevo libro</li>
+					<li id="newBookBtn">Nuevo libro</li>
 					<li id="openBookBtn">Abrir libro</li>
 					<li id="exportBtn">Guardar libro</li>
 				</ul>
@@ -64,7 +64,7 @@
 		<div id="mainWrapper">
 			
 			<div id="splitterWrapper">
-			    <div>	    	
+			    	    	
 			    	<div id="leftPanel">
 			    		<div id="leftPanelWrapper">
 			    			<span class="title">Explorador de objetos</span>			    			
@@ -86,8 +86,8 @@
 					<!-- end leftPanel -->    
 					
 					
-			    </div>
-			    <div>
+			    
+			    
 			    	<div id="middlePanel">
 
 			 			<div class="mainCanvasWrapper">
@@ -110,10 +110,9 @@
 					<!-- end middlePanel --> 
 					
 						
-			    </div>
-			    <div>
+			    
 			    	<div id="rightPanel">
-			    		<div>	    			
+			    			    			
 			    			<div id="rightUpperTabStripp">
 								<ul>
 									<li class="k-state-active">
@@ -148,8 +147,8 @@
 							<!-- end  rightUpperTabStripp-->
 							
 							
-			    		</div>
-			    		<div>
+			    		
+			    		
 			    			 <div id="rightLowerTabStripp">
 								<ul>
 									<li class="k-state-active">
@@ -180,12 +179,12 @@
 							<!-- end rightLowerTabStripp -->	
 							   			
 			    			
-			    		</div>
+			    		
 					</div>
 					<!-- end rightPanel -->
 					
 					
-			    </div>
+
 			</div>
 			<!-- end splitterWrapper -->
 		
@@ -214,27 +213,6 @@
 		<input type="button" id="accept-export-btn" value="Guardar libro" class="window-accept-btn" />
 		<div id="export-msg" class="window-msg"></div>
 	</div>
-	
-	
-	<script type="text/javascript">
-	
-		mainPanel.init();
-	
-		//leftTree.init();
-	
-		rightUpperTab.init();
-		
-		rightLowerTab.init();
-		
-		//mainCanvas.init();
-		
-		imageSource.init();
-		
-		rightUpperSlidder.init();
-	
-		sceneList.init();
-	
-	</script>
 	
 </body>	
 </html>

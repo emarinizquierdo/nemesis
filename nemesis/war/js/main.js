@@ -1,5 +1,27 @@
 $(document).ready(function(){
 	
+	//Resize main container
+	var h = $(window).height() - $('header').height() - $('footer').height();
+	$('#splitterWrapper').height(h);
+	
+	
+	mainPanel.init();
+	
+	//leftTree.init();
+
+	rightUpperTab.init();
+	
+	rightLowerTab.init();
+	
+	//mainCanvas.init();
+	
+	imageSource.init();
+	
+	rightUpperSlidder.init();
+
+	sceneList.init();
+	
+	
 	//Header menu
 	$("#menu").kendoMenu();
 	
@@ -26,6 +48,12 @@ $(document).ready(function(){
 				$(this).blur();
             }
 		})
+		
+	//new book button
+	$('#newBookBtn').click(function(){
+		//TODO: incluir confirm
+		document.location.reload();
+	})
 	
 	
 	//export button

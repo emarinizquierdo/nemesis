@@ -8,7 +8,7 @@ var mainCanvasConstructor = function(){
 	
 	function _init(n){
 		
-		var newcanvas = $('<canvas width="600" height="480"></canvas>');
+		var newcanvas = $('<canvas width="500" height="400"></canvas>');
 		newcanvas.attr('id', "new-canvas-" + n);
 		newcanvas.addClass("new-canvas");
 		$("#canvasWrapper").append(newcanvas)
