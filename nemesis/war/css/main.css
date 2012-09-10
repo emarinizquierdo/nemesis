@@ -7,7 +7,7 @@ body{
 	font-family:Arial, Helvetica, sans-serif;
 	color:#8f8f8f;
 	font-size:12px;
-/* 	overflow:hidden; */
+	overflow:hidden;
 }
 
 
@@ -199,7 +199,8 @@ div.bodyTabStrip li{
 	background-color : #000000;
 
 }
-.new-canvas{
+
+#canvas{
 	border : 1px solid #7a7a7a;
 	background-color : #000000;
 }

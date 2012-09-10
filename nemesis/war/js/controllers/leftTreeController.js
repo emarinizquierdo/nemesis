@@ -29,6 +29,7 @@ var leftTreeConstructor = function(){
 				, zindex : 0
 				, draggable : false
 				, touchable : false
+				, source : p_dadaObj.url
 				});
 			_this.treeView.dataSource._data[0].imageObj = p_dadaObj.imageObj;
 			_this.treeView.dataSource._data[0].imageObj.zindex = 0;
@@ -43,6 +44,7 @@ var leftTreeConstructor = function(){
 				, zindex : 0
 				, draggable : false
 				, touchable : false
+				, source : p_dadaObj.url
 				}, node);	
 			_this.treeView.dataSource._data[_this.treeView.dataSource._data.length-1].imageObj = p_dadaObj.imageObj;
 			_this.treeView.dataSource._data[_this.treeView.dataSource._data.length-1].imageObj.node = nodeaux;
@@ -80,27 +82,47 @@ var leftTreeConstructor = function(){
 		
 	}
 	
+	
 	function _recursiveSelectNode(p_node){
 		
 		var   auxArray = [];
+
 		
 		if(p_node.children._data.length==0){
 			return [p_node.imageObj];
+			
 		}else{
+			
+			auxArray = [p_node.imageObj];
+			
 			for(var i = 0; i<p_node.children._data.length; i++){
-				return auxArray.concat([p_node.imageObj],_recursiveSelectNode(p_node.children._data[i]));
+				auxArray = auxArray.concat(_recursiveSelectNode(p_node.children._data[i]));
+				
 			}
-		}		
+		}	
+		
+		return auxArray;
 	}
 	
-	this.groupsController = function(){
+	function _drawTree(){
 		
+		var t = leftTree.treeView.dataSource.data();
 		
-		
+		$.each(t, function(i,e){
+			
+			var settings = {
+				top: e.top
+			}
+			
+			mainCanvas.addLocalImage(e.source, function(p_imageObj){
+				
+			}, settings);
+		});
 	}
 	
 	this.init = _init;
 	this.addElement = _addElement;
+	this.drawTree = _drawTree;
 	
 	return this;
 	

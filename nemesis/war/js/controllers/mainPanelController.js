@@ -75,6 +75,9 @@ var mainPanel = new function(){
 		    orientation: "vertical"
 		});
 		
+		//Activo el scroll después del kendoSplitter porque si no calcula mal su ancho
+		$('body').css('overflow','auto')
+		
 	}
 	
 	this.init = _init;

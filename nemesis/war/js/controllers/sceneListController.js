@@ -46,15 +46,12 @@ var sceneList = new function(){
 		var _id;
 		var _tree = null;
 		var _item = null;
-		var _canvas = null;
 		
 		function _initScene(n){
 			
 			_id = 'scene_' + n;
 			_tree = new leftTreeConstructor();
 			_tree.init(n);
-			_canvas = new mainCanvasConstructor();
-			_canvas.init(n);
 			_createItem(n);
 		}
 		
@@ -69,8 +66,7 @@ var sceneList = new function(){
 			_sceneView.append(newitem);
 			 
 			if (n != 1){
-				$("#new-tree-" + n).hide();
-				$("#new-canvas-" + n).parent().hide();	 
+				$("#new-tree-" + n).hide(); 
 			}
 			 
 			newitem.click(function(){
@@ -80,14 +76,11 @@ var sceneList = new function(){
 				}
 				_selected = $(this).attr('id');
 				leftTree = _scenes[_selected].tree;
-				mainCanvas = _scenes[_selected].canvas;
+				mainCanvas.loadScene();
 				_scenes[_selected].item.toggleClass('selected');
 				
 				$("#treeview-left").children().hide();
 				$("#new-tree-" + n).show();
-				
-				$("#canvasWrapper").children().hide();
-				$("#new-canvas-" + n).parent().show();
 				
 				$('#scene-name-input').val($(this).attr('sceneName'))
 			})
@@ -99,7 +92,6 @@ var sceneList = new function(){
 		
 		this.tree = _tree;
 		this.item = _item;
-		this.canvas = _canvas;
 		
 		return this;
 	}
@@ -109,7 +101,7 @@ var sceneList = new function(){
 		if (_selected != ""){
 			
 			//vaciar canvas
-			imageSource.removeAllElements();
+			mainCanvas.canvas.clear();
 			
 			//eliminar domElement icono de escena
 			_scenes[_selected].tree.treeView.element.remove();

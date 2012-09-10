@@ -94,6 +94,9 @@
 			 			
 			 				<input type="text" value="" id="scene-name-input" class="title" />
 			    			<div id="canvasWrapper">
+			    			
+			    				<canvas id="canvas" width="500" height="400"></canvas>
+			    			
 			    			</div>
 			    		</div>
 			    		<div>

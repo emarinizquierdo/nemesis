@@ -20,11 +20,6 @@ var imageSource = new function(){
 
                 }
             },
-            
-            change: function(){
-            	
-            	_setStaticUID();
-            },
 
             pageSize: 12
         });
@@ -68,8 +63,6 @@ var imageSource = new function(){
 		var _uid = uid || imageSource.imageList.find(".k-state-selected").attr("data-uid");
 		var imageLocal = imageSource.dSource.getByUid( _uid );
 		var dadaObject = {}
-
-		//imageToTree.uid = guid();
 		
 		if(typeof imageLocal == "undefined"){
 			console.log("No has seleccionado ninguna imagen a añadir");
@@ -80,7 +73,7 @@ var imageSource = new function(){
 			dadaObject.text = imageLocal.title;
 			
 			mainCanvas.addLocalImage(dadaObject.url,function(p_imageObj){
-				window.console.log(p_imageObj);	
+				//window.console.log(p_imageObj);	
 				dadaObject.imageObj = p_imageObj;
 				leftTree.addElement(dadaObject);				
 			});
@@ -113,15 +106,6 @@ var imageSource = new function(){
 			var first = leftTree.treeView.dataSource.data()[0];
 			_removeElement(first);
 		}
-	}
-	
-	function _setStaticUID(){
-		
-		var c = 1000;
-		
-		$.each(imageSource.dSource.data(), function(i,e){
-			e.uid = "uid" + ++c;
-		})
 	}
 	
 	this.init = _init;
