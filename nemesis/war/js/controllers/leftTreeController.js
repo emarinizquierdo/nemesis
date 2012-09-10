@@ -83,14 +83,22 @@ var leftTreeConstructor = function(){
 	function _recursiveSelectNode(p_node){
 		
 		var   auxArray = [];
+
 		
 		if(p_node.children._data.length==0){
 			return [p_node.imageObj];
+			
 		}else{
+			
+			auxArray = [p_node.imageObj];
+			
 			for(var i = 0; i<p_node.children._data.length; i++){
-				return auxArray.concat([p_node.imageObj],_recursiveSelectNode(p_node.children._data[i]));
+				auxArray = auxArray.concat(_recursiveSelectNode(p_node.children._data[i]));
+				
 			}
-		}		
+		}	
+		
+		return auxArray;
 	}
 	
 	this.groupsController = function(){
