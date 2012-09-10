@@ -1,7 +1,3 @@
-
-
-//commit de prueba
-
 var mainPanel = new function(){
 	
 	
@@ -15,9 +11,6 @@ var mainPanel = new function(){
 //		    ],
 //		    orientation: "horizontal"
 //		});
-		
-		console.log($(window).width())
-		console.log($('#splitterWrapper').width())
 		
 		$("#splitterWrapper").kendoSplitter({
 		    panes: [
@@ -82,12 +75,7 @@ var mainPanel = new function(){
 		    orientation: "vertical"
 		});
 		
-		console.log($(window).width())
-		
 	}
-	
-	
-	
 	
 	this.init = _init;
 	

@@ -127,7 +127,7 @@ var imageSource = new function(){
 	this.init = _init;
 	this.addToLeftTree = _addToLefTree;
 	this.removeElement = _removeElement;
-	this.removeAllElement = _removeAllElements;
+	this.removeAllElements = _removeAllElements;
 	
 }
 

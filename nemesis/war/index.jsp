@@ -99,7 +99,7 @@
 			    		<div>
 			    			<div id="sceneButtonContainer">
 			    				<button id="snapshotButton" class="button">Take Snapshot</button>
-<!-- 			    			<button id="removeSceneButton" class="button">Remove Scene</button> -->
+			    				<button id="removeSceneButton" class="button">Remove Scene</button>
 			    				<button id="newSceneButton" class="button">New Scene</button>
 			    			</div>
 			    			

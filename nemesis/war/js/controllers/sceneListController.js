@@ -2,7 +2,7 @@ var sceneList = new function(){
 	
 	var   _sceneView
 		, _selected
-	    , _scenes = []
+	    , _scenes = {}
 		, _sceneNumber = 1
 	;
 	
@@ -13,16 +13,12 @@ var sceneList = new function(){
 		_sceneView = $('#sceneList');
 	
 		_createScene();
-		_scenes[0].item.click();
-//		_selected = _scenes[0];
-//		leftTree = _selected.tree;
-//		mainCanvas = _selected.canvas;
-//		_selected.item.addClass('selected');
+		_scenes['scene_1'].item.click();
 		
 		$("#snapshotButton").click(function(){
 			
 			var auxImgData = mainCanvas.canvas.toDataURL("png");
-			_selected.item.find('img.imgSnapshot').attr("src", auxImgData);
+			_scenes[_selected].item.find('img.imgSnapshot').attr("src", auxImgData);
 		});
 		
 		 $('#newSceneButton').click(function(){
@@ -30,23 +26,31 @@ var sceneList = new function(){
 			 _createScene();
 		 })
 		
+		 
+		 $('#removeSceneButton').click(function(){
+			
+			 _removeSelectedScene();
+		 })
 	}
 	
 	function _createScene(){
 		
-		_scenes.push( new _scene() );
+		//_scenes.push( new _scene() );
+		_scenes['scene_'+_sceneNumber] = new _scene(_sceneNumber);
+		_sceneNumber++;
 	}
 	
-	function _scene(){
+	function _scene(n){
 		
 		var _this = this;
+		var _id;
 		var _tree = null;
 		var _item = null;
 		var _canvas = null;
 		
-		function _initScene(){
+		function _initScene(n){
 			
-			var n = _sceneNumber++;
+			_id = 'scene_' + n;
 			_tree = new leftTreeConstructor();
 			_tree.init(n);
 			_canvas = new mainCanvasConstructor();
@@ -57,7 +61,7 @@ var sceneList = new function(){
 		function _createItem(n){
 			
 			var newitem = $('<li>')
-				.attr('id', 'scene-list-item-' + n)
+				.attr('id', 'scene_' + n)
 				.attr('sceneName', 'escena '+n)
 				.addClass('scene-list-item')
 				.html(_SCENE_ITEM_TEMPLATE);
@@ -72,12 +76,12 @@ var sceneList = new function(){
 			newitem.click(function(){
 				 
 				if (_selected) {
-					_selected.item.toggleClass('selected');
+					_scenes[_selected].item.toggleClass('selected');
 				}
-				_selected = _this;
-				leftTree = _selected.tree;
-				mainCanvas = _selected.canvas;
-				_selected.item.toggleClass('selected');
+				_selected = $(this).attr('id');
+				leftTree = _scenes[_selected].tree;
+				mainCanvas = _scenes[_selected].canvas;
+				_scenes[_selected].item.toggleClass('selected');
 				
 				$("#treeview-left").children().hide();
 				$("#new-tree-" + n).show();
@@ -91,18 +95,31 @@ var sceneList = new function(){
 			_item = newitem;
 		}
 		
-		function _delete(){
-			
-			
-		}
-		
-		_initScene();
+		_initScene(n);
 		
 		this.tree = _tree;
 		this.item = _item;
 		this.canvas = _canvas;
 		
-		return this;	
+		return this;
+	}
+	
+	function _removeSelectedScene(){
+		
+		if (_selected != ""){
+			
+			//vaciar canvas
+			imageSource.removeAllElements();
+			
+			//eliminar domElement icono de escena
+			_scenes[_selected].tree.treeView.element.remove();
+			_scenes[_selected].item.remove();
+			
+			//borrar escena
+			delete _scenes[_selected]	
+			_selected = "";
+		}
+		
 	}
 	
 	this.scenes = _scenes;
