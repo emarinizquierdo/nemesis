@@ -70,7 +70,7 @@
 			    			<span class="title">Explorador de objetos</span>			    			
 			    			<div id="treeview-left"></div>			    			
 			    		</div>
-			    		<div>
+			    		<div id="imagesPanel">
 			    			<a id="addImageLocalButton" class="button">Add</a>
 							<a id="removeImageLocalButton" class="button">Remove</a>
 			    			<div id="listView"></div>

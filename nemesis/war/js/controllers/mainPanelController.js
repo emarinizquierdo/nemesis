@@ -16,11 +16,14 @@ var mainPanel = new function(){
 //		    orientation: "horizontal"
 //		});
 		
+		console.log($(window).width())
+		console.log($('#splitterWrapper').width())
+		
 		$("#splitterWrapper").kendoSplitter({
 		    panes: [
-		        { collapsible: false, size:	"25%" },
-		       	{ collapsible: false, resizable: false, size:"50%"},
-		       	{ collapsible: false, min: "25%" }
+		        { size:"25%" },
+		       	{ size:"50%" },
+		       	{ size:"25%" }
 		    ],
 		    orientation: "horizontal"
 		});
@@ -35,13 +38,13 @@ var mainPanel = new function(){
 //		    orientation: "vertical"
 //		});
 		
-		$("#leftPanel").kendoSplitter({
-		    panes: [
-		        { size: "50%", collapsible: false},
-		        { size: "50%", collapsible: false}
-		    ],
-		    orientation: "vertical"
-		});
+//		$("#leftPanel").kendoSplitter({
+//		    panes: [
+//		        { size: "50%", collapsible: false},
+//		        { size: "50%", collapsible: false}
+//		    ],
+//		    orientation: "vertical"
+//		});
 		
 		
 //		$("#middlePanel").kendoSplitter({
@@ -54,8 +57,8 @@ var mainPanel = new function(){
 		
 		$("#middlePanel").kendoSplitter({
 		    panes: [
-		         {resizable: false, size: "450px", collapsible: false },
-		         {collapsible: false }
+		         {resizable: false, size: "450px" },
+		         {}
 		    ],
 		    orientation: "vertical"
 		});
@@ -78,6 +81,8 @@ var mainPanel = new function(){
 		    ],
 		    orientation: "vertical"
 		});
+		
+		console.log($(window).width())
 		
 	}
 	

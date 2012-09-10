@@ -4,7 +4,6 @@ $(document).ready(function(){
 	var h = $(window).height() - $('header').height() - $('footer').height();
 	$('#splitterWrapper').height(h);
 	
-	
 	mainPanel.init();
 	
 	//leftTree.init();
