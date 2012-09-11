@@ -70,8 +70,9 @@ var sceneList = new function(){
 			}
 			 
 			newitem.click(function(){
-				 
+				
 				if (_selected) {
+					_scenes[_selected].tree.saveCurrentCanvas();
 					_scenes[_selected].item.toggleClass('selected');
 				}
 				_selected = $(this).attr('id');

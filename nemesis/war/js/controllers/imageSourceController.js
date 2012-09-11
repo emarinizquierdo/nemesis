@@ -62,20 +62,19 @@ var imageSource = new function(){
 		
 		var _uid = uid || imageSource.imageList.find(".k-state-selected").attr("data-uid");
 		var imageLocal = imageSource.dSource.getByUid( _uid );
-		var dadaObject = {}
 		
 		if(typeof imageLocal == "undefined"){
 			console.log("No has seleccionado ninguna imagen a añadir");
 		}
 		else{
 			
-			dadaObject.url = imageLocal.url;
-			dadaObject.text = imageLocal.title;
+			var settings = {
+				  source: imageLocal.url
+				, text: imageLocal.title
+			}
 			
-			mainCanvas.addLocalImage(dadaObject.url,function(p_imageObj){
-				//window.console.log(p_imageObj);	
-				dadaObject.imageObj = p_imageObj;
-				leftTree.addElement(dadaObject);				
+			mainCanvas.addLocalImage(settings.source,function(p_imageObj){
+				leftTree.addElement(p_imageObj, settings);				
 			});
 		}	
 	}

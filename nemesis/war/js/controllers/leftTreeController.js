@@ -21,32 +21,46 @@ var leftTreeConstructor = function(){
 		_OnSelectNode();
 	}
 	
-	function _addElement(p_dadaObj){	
+	function _addElement(p_imageObj, p_settings){	
+		
+		//settings no acepta campo url
+		var settings = {
+				
+			  angle: ""
+			, height: ""
+			, left: ""
+			, scaleX: ""
+			, scaleY: ""
+			, source: ""
+			, text: ""
+			, top: ""
+			, width: ""
+			, zindex: ""
+		};
+		
+		$.extend(settings, p_settings);
+		
+		/*
+		{
+			  text : p_dadaObj.text
+			, zindex : 0
+			, draggable : false
+			, touchable : false
+			, source : p_dadaObj.url
+		}
+		*/
 		
 		if(_this.treeView.dataSource._data.length <= 0){
-			_this.treeView.dataSource.add({
-				  text : p_dadaObj.text
-				, zindex : 0
-				, draggable : false
-				, touchable : false
-				, source : p_dadaObj.url
-				});
-			_this.treeView.dataSource._data[0].imageObj = p_dadaObj.imageObj;
+			_this.treeView.dataSource.add(settings);
+			_this.treeView.dataSource._data[0].imageObj = p_imageObj
 			_this.treeView.dataSource._data[0].imageObj.zindex = 0;
 			_this.treeView.dataSource._data[0].imageObj.node = _this.treeView.findByUid(_this.treeView.dataSource._data[0].uid);
 			
 		}else{
 			var lastElement = _this.treeView.dataSource._data[_this.treeView.dataSource._data.length-1];
-			var node;
-			node = _this.treeView.findByUid(lastElement.uid);			
-			var nodeaux = _this.treeView.insertAfter({
-				  text: p_dadaObj.text
-				, zindex : 0
-				, draggable : false
-				, touchable : false
-				, source : p_dadaObj.url
-				}, node);	
-			_this.treeView.dataSource._data[_this.treeView.dataSource._data.length-1].imageObj = p_dadaObj.imageObj;
+			var node = _this.treeView.findByUid(lastElement.uid);			
+			var nodeaux = _this.treeView.insertAfter(settings, node);	
+			_this.treeView.dataSource._data[_this.treeView.dataSource._data.length-1].imageObj = p_imageObj;
 			_this.treeView.dataSource._data[_this.treeView.dataSource._data.length-1].imageObj.node = nodeaux;
 			_this.treeView.dataSource._data[_this.treeView.dataSource._data.length-1].imageObj.zindex = 0;
 			
@@ -111,18 +125,53 @@ var leftTreeConstructor = function(){
 		$.each(t, function(i,e){
 			
 			var settings = {
-				top: e.top
+				  angle  : e.angle
+				, height : e.height
+				, left   : e.left
+				, scaleX : e.scaleX
+				, scaleY : e.scaleY
+				, top    : e.top
+				, width  : e.width
+				, zindex : e.zindex
 			}
 			
 			mainCanvas.addLocalImage(e.source, function(p_imageObj){
-				
+				e.imageObj = p_imageObj;
+				e.imageObj.node = leftTree.treeView.findByUid(e.uid);
 			}, settings);
+		});
+	}
+	
+	function _saveCurrentCanvas(p_tree){
+		
+		
+		var t = p_tree || leftTree.treeView.dataSource.data();
+		
+		$.each(t, function(i,e){
+			
+			var img = e.imageObj;
+			
+			e.angle  = img.getAngle();
+			e.height = img.getHeight();
+			e.left   = img.getLeft();
+			e.scaleX = img.getScaleX();
+			e.scaleY = img.getScaleY();
+			e.top    = img.getTop();
+			e.width  = img.getWidth();
+			e.zindex = img.get('zindex');
+			
+			if (e.hasChildren){
+				
+				var childrens = e.children.data();
+				_saveCurrentCanvas(childrens)
+			}
 		});
 	}
 	
 	this.init = _init;
 	this.addElement = _addElement;
 	this.drawTree = _drawTree;
+	this.saveCurrentCanvas = _saveCurrentCanvas;
 	
 	return this;
 	

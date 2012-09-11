@@ -78,6 +78,7 @@ var mainCanvas = new function(){
 	
 	function _loadScene(){
 		
+		mainCanvas.canvas.deactivateAll();
 		mainCanvas.canvas.clear();
 		leftTree.drawTree();
 		mainCanvas.canvas.renderAll(); 
