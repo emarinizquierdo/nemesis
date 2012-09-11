@@ -71,6 +71,7 @@
 			    			<div id="treeview-left"></div>			    			
 			    		</div>
 			    		<div id="imagesPanel">
+			    			<a id="uploadImagesLocalButton" class="button">Upload Images</a>
 			    			<a id="addImageLocalButton" class="button">Add</a>
 							<a id="removeImageLocalButton" class="button">Remove</a>
 			    			<div id="listView"></div>
@@ -94,12 +95,15 @@
 			 			
 			 				<input type="text" value="" id="scene-name-input" class="title" />
 			    			<div id="canvasWrapper">
+			    			
+			    				<canvas id="canvas" width="500" height="400"></canvas>
+			    			
 			    			</div>
 			    		</div>
 			    		<div>
 			    			<div id="sceneButtonContainer">
 			    				<button id="snapshotButton" class="button">Take Snapshot</button>
-<!-- 			    			<button id="removeSceneButton" class="button">Remove Scene</button> -->
+			    				<button id="removeSceneButton" class="button">Remove Scene</button>
 			    				<button id="newSceneButton" class="button">New Scene</button>
 			    			</div>
 			    			
@@ -212,6 +216,25 @@
 		<input type="text" id="export-file-name" size="33" />
 		<input type="button" id="accept-export-btn" value="Guardar libro" class="window-accept-btn" />
 		<div id="export-msg" class="window-msg"></div>
+	</div>
+	
+	<div id="upload-window">
+		<span>Escoge un nombre para tu libro:</span>
+		<form method="post" action="submit" style="width:45%">
+				                <div>
+				                    <input name="files" id="files" type="file" />
+				                    <p>
+				                        <input type="submit" value="Submit" class="k-button" />
+				                    </p>
+				                </div>
+				            </form>
+				             <script>
+                $(document).ready(function() {
+                    $("#files").kendoUpload({
+                    	 async: { saveUrl: "/s/upload" }
+                    });
+                });
+            </script>
 	</div>
 	
 </body>	

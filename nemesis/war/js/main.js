@@ -70,10 +70,15 @@ $(document).ready(function(){
 		$("#import-window").data("kendoWindow").center().open();
 	});
 	
+	//Open book button
+	$('#uploadImagesLocalButton').click(function(){
+
+		$("#upload-window").data("kendoWindow").center().open();
+	});
 	
 	_initImportWindow();
 	_initExportWindow();
-	
+	_initUploadWindow();
 	
 	//Init import window
 	function _initImportWindow(){
@@ -191,4 +196,21 @@ $(document).ready(function(){
 		
 		
 	}
+	
+	//Init upload window
+	function _initUploadWindow(){
+		var window = $("#upload-window");
+		window.kendoWindow({
+			  width: "600px"
+			, height: "250px"
+			, title: "Subir imágenes"
+			, modal: true
+			, visible: false
+			, draggable: false
+			, resizable: false
+		});
+		//window.data("kendoWindow").center().open();
+		
+		
+	}//end _initExportWindow function
 })
