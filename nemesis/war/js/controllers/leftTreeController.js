@@ -80,7 +80,7 @@ var leftTreeConstructor = function(){
 			}
 			
 			node = _this.treeView.dataSource.getByUid(e.node.dataset.uid);
-			window.console.log(_recursiveSelectNode(node));
+			//window.console.log(_recursiveSelectNode(node));
 			if(node.children._data.length == 0){
 				mainCanvas.canvas.setActiveObject(node.imageObj);
 				rightUpperSlidder.updateControls();
@@ -91,7 +91,7 @@ var leftTreeConstructor = function(){
 				window.console.log(aux);
 				
 			}
-			window.console.log(node);
+			//window.console.log(node);
 		});
 		
 	}
@@ -118,6 +118,7 @@ var leftTreeConstructor = function(){
 		return auxArray;
 	}
 	
+	/*
 	function _drawTree(){
 		
 		var t = leftTree.treeView.dataSource.data();
@@ -141,7 +142,9 @@ var leftTreeConstructor = function(){
 			}, settings);
 		});
 	}
+	*/
 	
+	/*
 	function _saveCurrentCanvas(p_tree){
 		
 		
@@ -167,11 +170,12 @@ var leftTreeConstructor = function(){
 			}
 		});
 	}
+	*/
 	
 	this.init = _init;
 	this.addElement = _addElement;
-	this.drawTree = _drawTree;
-	this.saveCurrentCanvas = _saveCurrentCanvas;
+	//this.drawTree = _drawTree;
+	//this.saveCurrentCanvas = _saveCurrentCanvas;
 	
 	return this;
 	

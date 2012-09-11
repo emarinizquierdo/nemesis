@@ -12,7 +12,7 @@ $(document).ready(function(){
 	
 	rightLowerTab.init();
 	
-	mainCanvas.init();
+	//mainCanvas.init();
 	
 	imageSource.init();
 	

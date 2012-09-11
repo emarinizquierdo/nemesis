@@ -7149,8 +7149,10 @@ fabric.util.object.extend(fabric.StaticCanvas.prototype, {
   loadFromJSON: function (json, callback) {
     if (!json) return;
 
-    var serialized = JSON.parse(json);
-    if (!serialized || (serialized && !serialized.objects)) return;
+    //var serialized = JSON.parse(json);
+    //if (!serialized || (serialized && !serialized.objects)) return;
+    
+    var serialized = json
 
     this.clear();
     var _this = this;
@@ -7451,8 +7453,11 @@ fabric.util.object.extend(fabric.StaticCanvas.prototype, {
         hasControls:      this.hasControls,
         hasBorders:       this.hasBorders,
         hasRotatingPoint: this.hasRotatingPoint
+        
+        
       };
-
+      
+      debugger
       if (!this.includeDefaultValues) {
         object = this._removeDefaultValues(object);
       }
@@ -8546,6 +8551,7 @@ fabric.util.object.extend(fabric.StaticCanvas.prototype, {
      */
     toJSON: function() {
       // delegate, not alias
+      console.log(1)
       return this.toObject();
     },
 

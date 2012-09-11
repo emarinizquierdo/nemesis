@@ -45,6 +45,7 @@ var sceneList = new function(){
 		var _this = this;
 		var _id;
 		var _tree = null;
+		var _canvas = null;
 		var _item = null;
 		
 		function _initScene(n){
@@ -52,6 +53,8 @@ var sceneList = new function(){
 			_id = 'scene_' + n;
 			_tree = new leftTreeConstructor();
 			_tree.init(n);
+			_canvas = new mainCanvasConstructor();
+			_canvas.init(n);
 			_createItem(n);
 		}
 		
@@ -67,21 +70,27 @@ var sceneList = new function(){
 			 
 			if (n != 1){
 				$("#new-tree-" + n).hide(); 
+				$("#new-canvas-" + n).parent().hide();
 			}
 			 
 			newitem.click(function(){
 				
 				if (_selected) {
-					_scenes[_selected].tree.saveCurrentCanvas();
+					//_scenes[_selected].tree.saveCurrentCanvas();
 					_scenes[_selected].item.toggleClass('selected');
 				}
 				_selected = $(this).attr('id');
 				leftTree = _scenes[_selected].tree;
-				mainCanvas.loadScene();
+				mainCanvas = _scenes[_selected].canvas;
+				//mainCanvas.loadScene();
 				_scenes[_selected].item.toggleClass('selected');
 				
 				$("#treeview-left").children().hide();
 				$("#new-tree-" + n).show();
+				$('#canvasWrapper').children().hide();
+				$("#new-canvas-" + n).parent().show();
+				
+				mainCanvas.canvas.calcOffset();
 				
 				$('#scene-name-input').val($(this).attr('sceneName'))
 			})
@@ -93,6 +102,7 @@ var sceneList = new function(){
 		
 		this.tree = _tree;
 		this.item = _item;
+		this.canvas = _canvas;
 		
 		return this;
 	}
@@ -102,10 +112,12 @@ var sceneList = new function(){
 		if (_selected != ""){
 			
 			//vaciar canvas
-			mainCanvas.canvas.clear();
+			//mainCanvas.canvas.clear();
 			
 			//eliminar domElement icono de escena
 			_scenes[_selected].tree.treeView.element.remove();
+			$(_scenes[_selected].canvas.canvas.wrapperEl).remove();
+			$("#scene-name-input").val('')
 			_scenes[_selected].item.remove();
 			
 			//borrar escena

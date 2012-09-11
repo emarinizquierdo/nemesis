@@ -1,16 +1,19 @@
-var mainCanvas = new function(){
+var mainCanvasConstructor = function(){
 
+	var _this = this;
 	this.canvas;
 	
 	function _init(n){
 	
-		mainCanvas.canvas = new fabric.Canvas( 'canvas' );		
+		var newCanvas = $('<canvas id="new-canvas-' + n + '" width="500" height="400" class="canvas"></canvas>');
+		$('#canvasWrapper').append(newCanvas);
+		_this.canvas = new fabric.Canvas( 'new-canvas-' + n );		
 		_observeCanvas();
 	}
 	
 	function _observeCanvas(){
 		
-		mainCanvas.canvas.observe({ 
+		_this.canvas.observe({ 
 		  'object:moving': function(){
 			  rightUpperSlidder.updateControls();
 		  },
@@ -18,8 +21,8 @@ var mainCanvas = new function(){
 		  'object:resizing': function(){rightUpperSlidder.updateControls();},
 		  'object:selected' : function(){
 			  rightUpperSlidder.enableAll();rightUpperSlidder.updateControls();
-			  if(mainCanvas.canvas.getActiveGroup() == null){
-				  leftTree.treeView.select(leftTree.treeView.findByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid))
+			  if(_this.canvas.getActiveGroup() == null){
+				  leftTree.treeView.select(leftTree.treeView.findByUid(_this.canvas.getActiveObject().node[0].dataset.uid))
 			  }
 		   },
 		  'selection:cleared' : function(){rightUpperSlidder.disableAll();}
@@ -39,7 +42,7 @@ var mainCanvas = new function(){
 			$.extend(settings, p_settings)
 			
 			oImg = img.set(settings).scale(1);
-			mainCanvas.canvas.add(oImg).renderAll(); 
+			_this.canvas.add(oImg).renderAll(); 
 		
 			if (f_callback && typeof f_callback === "function") f_callback(oImg);			  
 		});
@@ -52,42 +55,43 @@ var mainCanvas = new function(){
 		var angleControl = $('angle-control');
 		angleControl.onchange = function() {
 		  rect.setAngle(this.value).setCoords();
-		  mainCanvas.canvas.renderAll();
+		  _this.canvas.renderAll();
 		};
 		
 		var scaleControl = $('scale-control');
 		scaleControl.onchange = function() {
 		  rect.scale(this.value).setCoords();
-		  mainCanvas.canvas.renderAll();
+		  _this.canvas.renderAll();
 		};
 		
 		var topControl = $('top-control');
 		topControl.onchange = function() {
 		  rect.setTop(this.value).setCoords();
-		  mainCanvas.canvas.renderAll();
+		  _this.canvas.renderAll();
 		};
 		
 		var leftControl = $('left-control');
 		leftControl.onchange = function() {
 		  rect.setLeft(this.value).setCoords();
-		  mainCanvas.canvas.renderAll();
+		  _this.canvas.renderAll();
 		};
 		
 		
 	}	
 	
+	/*
 	function _loadScene(){
 		
-		mainCanvas.canvas.deactivateAll();
-		mainCanvas.canvas.clear();
+		_this.canvas.deactivateAll();
+		_this.canvas.clear();
 		leftTree.drawTree();
-		mainCanvas.canvas.renderAll(); 
-		
-		
+		_this.canvas.renderAll(); 
 	}
+	*/
 
 	this.init = _init;
 	this.addLocalImage = _addLocalImage;
-	this.loadScene = _loadScene;
+	//this.loadScene = _loadScene;
 	
+	return this;
 }
