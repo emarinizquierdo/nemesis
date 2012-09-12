@@ -40,16 +40,6 @@ var leftTreeConstructor = function(){
 		
 		$.extend(settings, p_settings);
 		
-		/*
-		{
-			  text : p_dadaObj.text
-			, zindex : 0
-			, draggable : false
-			, touchable : false
-			, source : p_dadaObj.url
-		}
-		*/
-		
 		if(_this.treeView.dataSource._data.length <= 0){
 			_this.treeView.dataSource.add(settings);
 			_this.treeView.dataSource._data[0].imageObj = p_imageObj

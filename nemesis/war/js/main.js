@@ -122,7 +122,7 @@ $(document).ready(function(){
 						window.data("kendoWindow").close();
 					}
 					, error: function(){
-						errorMsg.text('El fichero seleccionado no es válido.')
+						errorMsg.text('No se encuentra el fichero seleccionado.')
 					}
 				})
 			}
@@ -176,7 +176,7 @@ $(document).ready(function(){
 					exportMsg
 						.addClass('ok-msg')
 						.text('¡Libro guardado con éxito!');
-						_exportBook(fileName);	
+		
 				}
 				else {
 					exportMsg.removeClass('ok-msg').text('Se ha producido un error.')
@@ -186,9 +186,5 @@ $(document).ready(function(){
 			}
 		});	
 	}//end _initExportWindow function
-	
-	function _exportBook(fileName){
-		
-		
-	}
+
 })

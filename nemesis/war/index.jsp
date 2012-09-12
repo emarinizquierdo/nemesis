@@ -46,7 +46,7 @@
 			<li>
 				<img src="/img/settings-wheel.png" width="24" height="24" />
 				<ul>
-					<li id="newBookBtn">Nuevo libro</li>
+<!-- 					<li id="newBookBtn">Nuevo libro</li> -->
 					<li id="openBookBtn">Abrir libro</li>
 					<li id="exportBtn">Guardar libro</li>
 				</ul>

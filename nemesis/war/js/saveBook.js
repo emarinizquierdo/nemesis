@@ -12,7 +12,7 @@ function saveBook(){
 	$.each(sceneList.scenes, function(i,e){
 		
 		var sceneName = e.item.attr('scenename');
-		sceneName =  $.trim(sceneName).replace(/\s/g,"_");
+		sceneName =  $.trim(sceneName)/*.replace(/\s/g,"_")*/;
 		var scene = b.addScene(sceneName);
 		
 		_addTreeActors(e.tree.treeView.dataSource.data(), scene)

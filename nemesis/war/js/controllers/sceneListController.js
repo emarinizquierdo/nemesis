@@ -1,6 +1,6 @@
 var sceneList = new function(){
 	
-	var   _sceneView
+	var   _sceneContainer
 		, _selected
 	    , _scenes = []
 		, _sceneNumber = 1
@@ -10,9 +10,9 @@ var sceneList = new function(){
 	
 	function _init(){
 		
-		_sceneView = $('#sceneList');
+		_sceneContainer = $('#sceneList');
 	
-		_createScene();
+		_addScene();
 		_scenes[0].item.click();
 		
 		$("#snapshotButton").click(function(){
@@ -23,7 +23,7 @@ var sceneList = new function(){
 		
 		 $('#newSceneButton').click(function(){
 		
-			 _createScene();
+			 _addScene();
 		 })
 		
 		 
@@ -33,11 +33,14 @@ var sceneList = new function(){
 		 })
 	}
 	
-	function _createScene(){
+	function _addScene(){
 		
 		//_scenes.push( new _scene() );
-		_scenes.push( new _scene(_sceneNumber) );
+		var newScene = new _scene(_sceneNumber)
+		_scenes.push( newScene );
 		_sceneNumber++;
+		
+		return newScene;
 	}
 	
 	function _scene(n){
@@ -66,7 +69,7 @@ var sceneList = new function(){
 				.addClass('scene-list-item')
 				.html(_SCENE_ITEM_TEMPLATE);
 			
-			_sceneView.append(newitem);
+			_sceneContainer.append(newitem);
 			 
 			if (n != 1){
 				$("#new-tree-" + n).hide(); 
@@ -111,22 +114,35 @@ var sceneList = new function(){
 	function _removeSelectedScene(){
 		
 		if (_selected){
-			
-			//eliminar elementos asociados a la escena
-			_selected.tree.treeView.element.remove();
-			$(_selected.canvas.canvas.wrapperEl).remove();
-			_selected.item.remove();
-			$("#scene-name-input").val('')
-			
-			//eliminar escena
-			_scenes.splice( $.inArray(_selected, _scenes), 1);
+			_removeScene(_selected);	
+		}
+	}
+	
+	function _removeScene(s){
+		
+		s.tree.treeView.element.remove();
+		$(s.canvas.canvas.wrapperEl).remove();
+		s.item.remove();
+		if (s == _selected){
+			$("#scene-name-input").val('');
 			_selected = null;
 		}
+		_scenes.splice( $.inArray(s, _scenes), 1);
+	}
+	
+	function _removeAllScenes(){
 		
+		while (_scenes.length){
+			_removeScene( _scenes[0] );
+		}
+		_sceneNumber = 1;
 	}
 	
 	this.scenes = _scenes;
 	this.selected = function(){ return _selected};
+	this.addScene = _addScene;
+	this.removeScene = _removeScene;
+	this.removeAllScenes = _removeAllScenes;
 	
 
 	this.init = _init;
