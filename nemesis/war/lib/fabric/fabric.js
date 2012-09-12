@@ -7457,7 +7457,6 @@ fabric.util.object.extend(fabric.StaticCanvas.prototype, {
         
       };
       
-      debugger
       if (!this.includeDefaultValues) {
         object = this._removeDefaultValues(object);
       }

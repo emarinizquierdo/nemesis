@@ -21,17 +21,23 @@ function json2plist(o){
 	function parseArray(a){
 		
 		var r = "";
-		r += tab() + '<array>' + '\n';
+		r += tab() + '<dict>' + '\n';
 		
 		ntab++;
 		
 		$.each(a, function(i,e){
-			r += parseElement(i, e);
+			//r += parseElement(i, e);
+
+			//Las escenas vienen en un array para mantener el orden
+			//A su vez cada posición del array contiene un objeto con la escena
+			$.each(e, function(x, y){
+				r += parseElement(x, y);
+			})
 		})
 		
 		ntab--;
 		
-		r += tab() + '</array>' + '\n';
+		r += tab() + '</dict>' + '\n';
 		
 		return r;
 	}

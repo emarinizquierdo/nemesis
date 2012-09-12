@@ -5,7 +5,7 @@ function book(bookName){
 	this.btnPrevImage = "";
 	this.mainBgMusic = "";
 	this.openingScene = "";
-	this.scenes = {};
+	this.scenes = [];
 	this.showBoundingBox = false;
 	
 	/*
@@ -66,9 +66,10 @@ function book(bookName){
 		if (sceneName){
 			var newScene = {};
 			newScene[sceneName] = new scene();
-			$.extend(this.scenes, newScene);
+			//$.extend(this.scenes, newScene);
+			this.scenes.push (newScene);
 			
-			return this.scenes[sceneName]
+			return newScene[sceneName]
 		}
 		else {
 			console.log('BOOK.JS: error in _addScene()')

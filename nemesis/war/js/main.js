@@ -35,7 +35,7 @@ $(document).ready(function(){
 			}
 			
 			if ($(this).attr('id') == 'scene-name-input'){
-				sceneList.scenes[sceneList.selected()].item.attr('sceneName', name);
+				sceneList.selected().item.attr('sceneName', name);
 			}
 		})
 		.keyup(function(keyEvent){
@@ -162,7 +162,7 @@ $(document).ready(function(){
 			}
 			else {
 				
-				var book = tree2book(fileName);
+				var book = saveBook();
 				if (book){
 					var plist = json2plist(book);
 					

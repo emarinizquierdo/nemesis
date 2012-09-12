@@ -1,28 +1,30 @@
-function tree2book(bookName){
+function saveBook(){
 	
-	var DEFAULT_FIRST_SCENE_NAME = "escena_01";
+	var DEFAULT_BOOK_NAME = "MY_BOOK"
 	
 	var b = new book();
-	var t = leftTree.treeView.dataSource.data();
 	
 	//create empty book
+	var bookName = $.trim( $('#book-name-input').val() ) || DEFAULT_BOOK_NAME;
 	b = new book(bookName);
 	
-	//create first scene
-	var sceneName = $.trim( $('#scene-name-input').val() ).replace(/\s/g,"_") || DEFAULT_FIRST_SCENE_NAME;
-	b.addScene(sceneName);
+	//add scenes
+	$.each(sceneList.scenes, function(i,e){
+		
+		var sceneName = e.item.attr('scenename');
+		sceneName =  $.trim(sceneName).replace(/\s/g,"_");
+		var scene = b.addScene(sceneName);
+		
+		_addTreeActors(e.tree.treeView.dataSource.data(), scene)
+	});
 	
-	_addTreeActors(t, b.scenes[sceneName])
-	
-	return b;
-	
-	function _addTreeActors(actors, parent){
+	function _addTreeActors(actors, scene){
 		
 		$.each(actors, function(i,e){
 		
 			//create an actor
 			var actorName = e.text;
-			var actor = parent.addActor(actorName);
+			var actor = scene.addActor(actorName);
 			
 			//set actor attributes
 			actor.draggable = e.draggable;
@@ -52,4 +54,5 @@ function tree2book(bookName){
 		
 	}
 	
+	return b;
 }

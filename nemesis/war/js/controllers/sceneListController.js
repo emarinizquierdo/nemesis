@@ -2,7 +2,7 @@ var sceneList = new function(){
 	
 	var   _sceneView
 		, _selected
-	    , _scenes = {}
+	    , _scenes = []
 		, _sceneNumber = 1
 	;
 	
@@ -13,12 +13,12 @@ var sceneList = new function(){
 		_sceneView = $('#sceneList');
 	
 		_createScene();
-		_scenes['scene_1'].item.click();
+		_scenes[0].item.click();
 		
 		$("#snapshotButton").click(function(){
 			
 			var auxImgData = mainCanvas.canvas.toDataURL("png");
-			_scenes[_selected].item.find('img.imgSnapshot').attr("src", auxImgData);
+			_selected.item.find('img.imgSnapshot').attr("src", auxImgData);
 		});
 		
 		 $('#newSceneButton').click(function(){
@@ -36,7 +36,7 @@ var sceneList = new function(){
 	function _createScene(){
 		
 		//_scenes.push( new _scene() );
-		_scenes['scene_'+_sceneNumber] = new _scene(_sceneNumber);
+		_scenes.push( new _scene(_sceneNumber) );
 		_sceneNumber++;
 	}
 	
@@ -77,13 +77,13 @@ var sceneList = new function(){
 				
 				if (_selected) {
 					//_scenes[_selected].tree.saveCurrentCanvas();
-					_scenes[_selected].item.toggleClass('selected');
+					_selected.item.toggleClass('selected');
 				}
-				_selected = $(this).attr('id');
-				leftTree = _scenes[_selected].tree;
-				mainCanvas = _scenes[_selected].canvas;
+				_selected = _this;
+				leftTree = _selected.tree;
+				mainCanvas = _selected.canvas;
 				//mainCanvas.loadScene();
-				_scenes[_selected].item.toggleClass('selected');
+				_selected.item.toggleClass('selected');
 				
 				$("#treeview-left").children().hide();
 				$("#new-tree-" + n).show();
@@ -100,6 +100,7 @@ var sceneList = new function(){
 		
 		_initScene(n);
 		
+		this.id = _id;
 		this.tree = _tree;
 		this.item = _item;
 		this.canvas = _canvas;
@@ -109,26 +110,23 @@ var sceneList = new function(){
 	
 	function _removeSelectedScene(){
 		
-		if (_selected != ""){
+		if (_selected){
 			
-			//vaciar canvas
-			//mainCanvas.canvas.clear();
-			
-			//eliminar domElement icono de escena
-			_scenes[_selected].tree.treeView.element.remove();
-			$(_scenes[_selected].canvas.canvas.wrapperEl).remove();
+			//eliminar elementos asociados a la escena
+			_selected.tree.treeView.element.remove();
+			$(_selected.canvas.canvas.wrapperEl).remove();
+			_selected.item.remove();
 			$("#scene-name-input").val('')
-			_scenes[_selected].item.remove();
 			
-			//borrar escena
-			delete _scenes[_selected]	
-			_selected = "";
+			//eliminar escena
+			_scenes.splice( $.inArray(_selected, _scenes), 1);
+			_selected = null;
 		}
 		
 	}
 	
 	this.scenes = _scenes;
-	this.selected = function(){return _selected};
+	this.selected = function(){ return _selected};
 	
 
 	this.init = _init;
