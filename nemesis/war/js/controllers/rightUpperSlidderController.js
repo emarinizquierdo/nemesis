@@ -129,7 +129,7 @@ var rightUpperSlidder = new function(){
 		rightUpperSlidder.numericAngle.value(mainCanvas.canvas.getActiveObject().getAngle());
 		if(mainCanvas.canvas.getActiveGroup() == null){
 		rightUpperSlidder.inputName.attr("value",leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).text);
-		rightUpperSlidder.inputZindex.attr("value",leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).zindex);		
+		rightUpperSlidder.inputZindex.attr("value",leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).imageObj.get('zindex'));
 		rightUpperSlidder.checkboxDraggable.attr("checked",leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).draggable);
 		rightUpperSlidder.checkboxTouchable.attr("checked",leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).touchable);
 		}
@@ -218,8 +218,8 @@ var rightUpperSlidder = new function(){
     function inputZindexOnChange(){
     	rightUpperSlidder.inputZindex.change(function(e){
     		if(typeof mainCanvas.canvas.getActiveObject() != "undefined"){
-    			leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).zindex = e.srcElement.value;
-    			leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).imageObj.zindex = e.srcElement.value;
+    			//leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).zindex = e.srcElement.value;
+    			leftTree.treeView.dataSource.getByUid(mainCanvas.canvas.getActiveObject().node[0].dataset.uid).imageObj.set('zindex', e.srcElement.value);
     			mainCanvas.canvas._objects.sort(function(a,b){return a.zindex-b.zindex;});
     			mainCanvas.canvas.renderAll();
     		}

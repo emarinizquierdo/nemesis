@@ -43,7 +43,7 @@ var leftTreeConstructor = function(){
 		if(_this.treeView.dataSource._data.length <= 0){
 			_this.treeView.dataSource.add(settings);
 			_this.treeView.dataSource._data[0].imageObj = p_imageObj
-			_this.treeView.dataSource._data[0].imageObj.zindex = 0;
+			_this.treeView.dataSource._data[0].imageObj.set('zindex', 0);
 			_this.treeView.dataSource._data[0].imageObj.node = _this.treeView.findByUid(_this.treeView.dataSource._data[0].uid);
 			
 		}else{
@@ -52,9 +52,12 @@ var leftTreeConstructor = function(){
 			var nodeaux = _this.treeView.insertAfter(settings, node);	
 			_this.treeView.dataSource._data[_this.treeView.dataSource._data.length-1].imageObj = p_imageObj;
 			_this.treeView.dataSource._data[_this.treeView.dataSource._data.length-1].imageObj.node = nodeaux;
-			_this.treeView.dataSource._data[_this.treeView.dataSource._data.length-1].imageObj.zindex = 0;
+			_this.treeView.dataSource._data[_this.treeView.dataSource._data.length-1].imageObj.set('zindex', 0);
 			
-		}		
+		}	
+		
+		mainCanvas.canvas._objects.sort(function(a,b){return a.zindex-b.zindex;});
+		mainCanvas.canvas.renderAll();
 		
 	}
 	

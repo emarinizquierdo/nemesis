@@ -31,7 +31,6 @@ function saveBook(){
 			actor.image     = e.text;
 			actor.touchable = e.touchable;
 			actor.uid       = e.uid;
-			actor.zindex    = e.zindex;
 			
 			//get fabric element attributes
 			var fe = e.imageObj;
@@ -42,6 +41,7 @@ function saveBook(){
 			actor.left   = fe.getLeft();
 			actor.scaleX = fe.getScaleX();
 			actor.scaleY = fe.getScaleY();
+			actor.zindex = fe.get('zindex');
 			
 			//get element childrens
 			if (e.hasChildren){
