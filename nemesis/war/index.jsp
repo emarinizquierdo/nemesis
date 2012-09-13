@@ -119,16 +119,22 @@
 			    			    			
 			    			<div id="rightUpperTabStripp">
 								<ul>
-									<li>Propiedades</li>
-									<li class="k-state-active">Animaciones</li>
+									<li class="k-state-active">Properties</li>
+									<li>Actions</li>
 								</ul>
 								
 			                        <div class="bodyTabStrip">
-				                        <ul>
-				                        	<li>Position:</li>
-				                        	<li><input id="sliderPositionX" class="positionX" />  <input id="numericPositionX" value="2" ></li>			                        	
-				                        	<li><input id="sliderPositionY" class="positionY" />  <input id="numericPositionY" value="2" /></li>
-				                        	<li>Scale:</li>
+				                        <ul id="properties-list">
+				                        	
+				                        	<li><span class="inputSpan">Name:</span><input id="inputName" type="text" value="" class="k-textbox" /></li>
+				                        	
+				                        	<li><span class="inputSpan">Layer:</span><input id="zindex" type="text" value="" class="k-textbox" /></li>
+				                        	
+				                        	<li class="prop-title">Position:</li>
+				                        	<li><input id="sliderPositionX" class="positionX" />  <input id="numericPositionX" value="0" ></li>			                        	
+				                        	<li><input id="sliderPositionY" class="positionY" />  <input id="numericPositionY" value="0" /></li>
+				                        	
+				                        	<li class="prop-title">Scale:</li>
 				                        	<li><input id="sliderScaleX" class="scaleX" /></li>
 				                        	<li><input id="sliderScaleY" class="scaleY" /></li>
 				                        	
@@ -281,6 +287,14 @@
 				<td>Eje vertical</td>
 				<td><input id="move-y" type="number" value="0" min="0" step="1" /></td>
 			</tr>
+			<tr class="action-param" id="tr-rotate">
+				<td>Ángulo:</td>
+				<td><input id="angle" type="number" value="0" min="0" step="1" /></td>
+				<td><input id="move-y" type="number" value="0" min="0" step="1" /></td>
+			</tr>
+			<tr class="action-param" id="tr-scale-x">
+				<td>Escala horizontal:</td>
+				<td><input id="scale-x" type="number" value="0" min="0" step="0.1" /></td>	
 			<tr class="action-param" id="tr-rotate">
 				<td>Ángulo:</td>
 				<td><input id="angle" type="number" value="0" min="0" step="1" /></td>
