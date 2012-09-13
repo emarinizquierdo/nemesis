@@ -71,6 +71,7 @@
 			    			<div id="treeview-left"></div>			    			
 			    		</div>
 			    		<div id="imagesPanel">
+			    			<a id="uploadImagesLocalButton" class="button">Upload Images</a>
 			    			<a id="addImageLocalButton" class="button">Add</a>
 							<a id="removeImageLocalButton" class="button">Remove</a>
 			    			<div id="listView"></div>
@@ -118,14 +119,10 @@
 			    			    			
 			    			<div id="rightUpperTabStripp">
 								<ul>
-									<li class="k-state-active">
-										Propiedades
-									</li>
-									<li>
-										Acciones
-									</li>
+									<li>Propiedades</li>
+									<li class="k-state-active">Animaciones</li>
 								</ul>
-								<div>
+								
 			                        <div class="bodyTabStrip">
 				                        <ul>
 				                        	<li>Position:</li>
@@ -136,16 +133,21 @@
 				                        	<li><input id="sliderScaleY" class="scaleY" /></li>
 				                        	<li>Angle:</li>
 				                        	<li><input id="sliderAngle" class="angle" />  <input id="numericAngle" value="2" /></li>			                        	
-				                        	<li>Draggable:<input id="checkboxDraggable" type="checkbox" value="false"/> Touchable: <input id="checkboxTouchable" type="checkbox" value="false"/></li>
-				                        	<li>Name:<input id="inputName" type="text" value=""/></li>
-				                        	<li>z-index:<input id="zindex" type="text" value=""/></li>			                        	
+				                        	<li><span>Draggable:</span>
+				                        		<input id="checkboxDraggable" type="checkbox" value="false"/>
+				                        		<span>Touchable:</span>
+				                        		<input id="checkboxTouchable" type="checkbox" value="false"/>
+				                        	</li>
+				                        	<li><span>Name:</span><input id="inputName" type="text" value=""/></li>
+				                        	<li><span>z-index:</span><input id="zindex" type="text" value=""/></li>			                        	
 				                        </ul>  
 			                        </div>									
-								</div>
-								<div>
+								
 			                        <div class="bodyTabStrip">
+			                        	<ul id="actionsList"></ul>
+			                        	<button>Add action</button>
 			                        </div>									
-								</div>								
+															
 							</div>	
 							<!-- end  rightUpperTabStripp-->
 							
@@ -215,6 +217,75 @@
 		<input type="text" id="export-file-name" size="33" />
 		<input type="button" id="accept-export-btn" value="Guardar libro" class="window-accept-btn" />
 		<div id="export-msg" class="window-msg"></div>
+	</div>
+	
+	<div id="upload-window">
+		<span>Selecciona imágenes a subir:</span>
+		<form method="post" action="submit" style="width:45%">
+				                <div>
+				                    <input name="files" id="files" type="file" />
+				                    <p>
+				                        
+				                    </p>
+				                </div>
+				            </form>
+				             <script>
+                $(document).ready(function() {
+                    $("#files").kendoUpload({
+                    	 async: { saveUrl: "/s/upload" }
+                    });
+                });
+            </script>
+	</div>
+	
+	<div id="new-action-window">
+		<table>
+			<tr><td>Nombre:</td>
+				<td><input type="text" id="action-name" size="40" class="k-textbox" /></td>
+			</tr>
+			<tr><td>Duración:</td>
+				<td><input id="action-duration" type="number" value="0" min="0" step="0.1" /></td>
+			</tr>
+			<tr><td>Tipo:</td>
+				<td>
+					<select id="action-type">
+						<option value="DDMoveTo">Mover hasta</option>
+						<option value="DDMoveBy">Mover desde</option>
+						<option value="DDRotateTo">Girar hasta</option>
+						<option value="DDRotateBy">Girar desde</option>
+						<option value="DDScaleTo">Escalar hasta</option>
+						<option value="DDScaleBy">Escalar desde</option>
+						<option value="DDFadeIn">Aumentar opacidad</option>
+						<option value="DDFadeOut">Disminuir opacidad</option>
+						<option value="DDDelay">Aplicar retraso</option>
+						<option value="DDRepeat">Repetir animación</option>
+						<option value="DDRepeatForever">Repetir animación ininterrumpidamente</option>
+						<option value="DDSequence">Animación secuencial</option>
+						<option value="DDRepeatForever">Animación secuencial ininterrumpida</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Eje horizontal:</td>
+				<td>Eje vertical</td>
+			</tr>
+			<tr>
+				<td><input id="move-to-x" type="number" value="0" min="0" step="1" /></td>
+				<td><input id="move-to-y" type="number" value="0" min="0" step="1" /></td>
+			</tr>
+			<tr>
+				<td>Ángulo:</td>
+			</tr>
+			<tr>
+				<td><input id="angle" type="number" value="0" min="0" step="1" /></td>
+			</tr>
+		
+		</table>
+		<div id="action-window-buttons">
+			<div id="action-msg" class="window-msg"></div>
+			<button id="accept-export-btn" class="window-accept-btn">Cancelar</button>
+			<button id="cancel-action-btn" class="window-accept-btn">Aceptar</button>
+		</div>
 	</div>
 	
 </body>	

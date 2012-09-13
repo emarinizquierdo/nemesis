@@ -295,4 +295,21 @@ footer{
 	border: none;
 }
 
+/* -- Action window -- */
+
+#action-window-buttons{
+	margin-top:40px;
+}
+#action-window-buttons button{
+	float:right;
+}
+
+#action-window-buttons .window-msg{
+	float:left;
+	width:200px;
+	margin:0;
+	padding-top:6px;
+}
+
+
 
