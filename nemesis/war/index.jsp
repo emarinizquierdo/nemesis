@@ -290,11 +290,11 @@
 			<tr class="action-param" id="tr-rotate">
 				<td>Ángulo:</td>
 				<td><input id="angle" type="number" value="0" min="0" step="1" /></td>
-				<td><input id="move-y" type="number" value="0" min="0" step="1" /></td>
 			</tr>
 			<tr class="action-param" id="tr-scale-x">
 				<td>Escala horizontal:</td>
 				<td><input id="scale-x" type="number" value="0" min="0" step="0.1" /></td>	
+			</tr>
 			<tr class="action-param" id="tr-rotate">
 				<td>Ángulo:</td>
 				<td><input id="angle" type="number" value="0" min="0" step="1" /></td>
