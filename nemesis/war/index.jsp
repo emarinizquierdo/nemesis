@@ -246,21 +246,9 @@
 	
 	<div id="upload-window">
 		<span>Selecciona imágenes a subir:</span>
-		<form method="post" action="submit" style="width:45%">
-				                <div>
-				                    <input name="files" id="files" type="file" />
-				                    <p>
-				                        
-				                    </p>
-				                </div>
-				            </form>
-				             <script>
-                $(document).ready(function() {
-                    $("#files").kendoUpload({
-                    	 async: { saveUrl: "/s/upload" }
-                    });
-                });
-            </script>
+		<div style="width:45%">
+                <input name="files" id="files" type="file" />
+            </div>
 	</div>
 	
 
@@ -299,6 +287,14 @@
 				<td>Eje vertical</td>
 				<td><input id="move-y" type="number" value="0" min="0" step="1" /></td>
 			</tr>
+			<tr class="action-param" id="tr-rotate">
+				<td>Ángulo:</td>
+				<td><input id="angle" type="number" value="0" min="0" step="1" /></td>
+				<td><input id="move-y" type="number" value="0" min="0" step="1" /></td>
+			</tr>
+			<tr class="action-param" id="tr-scale-x">
+				<td>Escala horizontal:</td>
+				<td><input id="scale-x" type="number" value="0" min="0" step="0.1" /></td>	
 			<tr class="action-param" id="tr-rotate">
 				<td>Ángulo:</td>
 				<td><input id="angle" type="number" value="0" min="0" step="1" /></td>
