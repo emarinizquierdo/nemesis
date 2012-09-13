@@ -119,33 +119,44 @@
 			    			    			
 			    			<div id="rightUpperTabStripp">
 								<ul>
-									<li>Propiedades</li>
-									<li class="k-state-active">Animaciones</li>
+									<li class="k-state-active">Properties</li>
+									<li>Actions</li>
 								</ul>
 								
 			                        <div class="bodyTabStrip">
-				                        <ul>
-				                        	<li>Position:</li>
-				                        	<li><input id="sliderPositionX" class="positionX" />  <input id="numericPositionX" value="2" ></li>			                        	
-				                        	<li><input id="sliderPositionY" class="positionY" />  <input id="numericPositionY" value="2" /></li>
-				                        	<li>Scale:</li>
+				                        <ul id="properties-list">
+				                        	
+				                        	<li><span class="inputSpan">Name:</span><input id="inputName" type="text" value="" class="k-textbox" /></li>
+				                        	
+				                        	<li><span class="inputSpan">Layer:</span><input id="zindex" type="text" value="" class="k-textbox" /></li>
+				                        	
+				                        	<li class="prop-title">Position:</li>
+				                        	<li><input id="sliderPositionX" class="positionX" />  <input id="numericPositionX" value="0" ></li>			                        	
+				                        	<li><input id="sliderPositionY" class="positionY" />  <input id="numericPositionY" value="0" /></li>
+				                        	
+				                        	<li class="prop-title">Scale:</li>
 				                        	<li><input id="sliderScaleX" class="scaleX" /></li>
 				                        	<li><input id="sliderScaleY" class="scaleY" /></li>
-				                        	<li>Angle:</li>
-				                        	<li><input id="sliderAngle" class="angle" />  <input id="numericAngle" value="2" /></li>			                        	
-				                        	<li><span>Draggable:</span>
+				                        	
+				                        	<li class="prop-title">Angle:</li>
+				                        	<li><input id="sliderAngle" class="angle" />  <input id="numericAngle" value="0" /></li>			                        	
+				                        	
+				                        	<li class="prop-title">
 				                        		<input id="checkboxDraggable" type="checkbox" value="false"/>
-				                        		<span>Touchable:</span>
-				                        		<input id="checkboxTouchable" type="checkbox" value="false"/>
+				                        		<span>Draggable</span>
 				                        	</li>
-				                        	<li><span>Name:</span><input id="inputName" type="text" value=""/></li>
-				                        	<li><span>z-index:</span><input id="zindex" type="text" value=""/></li>			                        	
+				                        	
+				                        	<li>
+				                        		<input id="checkboxTouchable" type="checkbox" value="false"/>
+				                        		<span>Touchable</span>
+				                        	</li>
+				                        				                        	
 				                        </ul>  
 			                        </div>									
 								
 			                        <div class="bodyTabStrip">
-			                        	<ul id="actionsList"></ul>
-			                        	<button>Add action</button>
+			                        	<ul id="action-list"></ul>
+			                        	<button class="button" id="new-action-button">New action</button>
 			                        </div>									
 															
 							</div>	
@@ -160,26 +171,40 @@
 										Scene
 									</li>
 									<li>
-										Lib
-									</li>
-									<li>
 										Config Book
 									</li>
 								</ul>
-								<div>
-			                        <div class="bodyLowerTabStrip">
-			                            Show Next Page Button <input id="nextButtonScene" type="checkbox" value="false"/><br/>
-			                            Show Previous Page Button <input id="previousButtonScene" type="checkbox" value="false"/><br/>
-			                        </div>									
-								</div>
-								<div>
-			                        <div class="bodyLowerTabStrip"> 
-			                        </div>									
-								</div>
-								<div>
-			                        <div class="bodyLowerTabStrip">
-			                        </div>									
-								</div>								
+								
+		                        <div class="bodyLowerTabStrip">
+		                        	<table>
+		                        		<tr>
+		                        			<td><input id="nextButtonScene" type="checkbox" value="false"/></td>
+		                        			<td><span>Show Next Page Button</span></td>
+		                        		</tr>
+		                        		<tr>
+		                        			<td><input id="previousButtonScene" type="checkbox" value="false"/></td>
+		                        			<td><span>Show Previous Page Button</span></td>
+		                        		</tr>
+		                        	</table>
+		                        </div>									
+								
+		                        <div class="bodyLowerTabStrip">
+		                        	<table>
+		                        		<tr>
+		                        			<td><span>Version Engine:</span></td>
+		                        			<td><span></span></td>
+		                        		</tr>
+		                        		<tr>
+		                        			<td><span>Previous escene icon:</span></td>
+		                        			<td><span></span></td>
+		                        		</tr>
+		                        		<tr>
+		                        			<td><span>Next escene icon:</span></td>
+		                        			<td><span></span></td>
+		                        		</tr>
+		                        	</table>
+		                        </div>									
+															
 							</div>	
 							<!-- end rightLowerTabStripp -->	
 							   			
@@ -207,15 +232,15 @@
 	
 	<div id="import-window">
 		<span>Indica el nombre del fichero:</span>
-		<input type="text" id="file-name" size="40" />
-		<input type="button" id="accept-file-btn" value="Abrir libro" class="window-accept-btn" />
+		<input type="text" id="file-name" size="35" />
+		<input type="button" id="accept-file-btn" value="Abrir libro" class="button" />
 		<div id="error-msg" class="window-msg"></div>
 	</div>
 	
 	<div id="export-window">
 		<span>Escoge un nombre para tu libro:</span>
-		<input type="text" id="export-file-name" size="33" />
-		<input type="button" id="accept-export-btn" value="Guardar libro" class="window-accept-btn" />
+		<input type="text" id="export-file-name" size="30" />
+		<input type="button" id="accept-export-btn" value="Guardar libro" class="button" />
 		<div id="export-msg" class="window-msg"></div>
 	</div>
 	
@@ -249,7 +274,7 @@
 			</tr>
 			<tr><td>Tipo:</td>
 				<td>
-					<select id="action-type">
+					<select id="action-type" style="width:300px">
 						<option value="DDMoveTo">Mover hasta</option>
 						<option value="DDMoveBy">Mover desde</option>
 						<option value="DDRotateTo">Girar hasta</option>
@@ -262,30 +287,41 @@
 						<option value="DDRepeat">Repetir animación</option>
 						<option value="DDRepeatForever">Repetir animación ininterrumpidamente</option>
 						<option value="DDSequence">Animación secuencial</option>
-						<option value="DDRepeatForever">Animación secuencial ininterrumpida</option>
+						<option value="DDSequenceForever">Animación secuencial ininterrumpidamente</option>
 					</select>
 				</td>
 			</tr>
-			<tr>
+			<tr class="action-param" id="tr-move-x">
 				<td>Eje horizontal:</td>
+				<td><input id="move-x" type="number" value="0" min="0" step="1" /></td>
+			</tr>
+			<tr class="action-param" id="tr-move-y">
 				<td>Eje vertical</td>
+				<td><input id="move-y" type="number" value="0" min="0" step="1" /></td>
 			</tr>
-			<tr>
-				<td><input id="move-to-x" type="number" value="0" min="0" step="1" /></td>
-				<td><input id="move-to-y" type="number" value="0" min="0" step="1" /></td>
-			</tr>
-			<tr>
+			<tr class="action-param" id="tr-rotate">
 				<td>Ángulo:</td>
-			</tr>
-			<tr>
 				<td><input id="angle" type="number" value="0" min="0" step="1" /></td>
+			</tr>
+			<tr class="action-param" id="tr-scale-x">
+				<td>Escala horizontal:</td>
+				<td><input id="scale-x" type="number" value="0" min="0" step="0.1" /></td>	
+			</tr>
+			<tr class="action-param" id="tr-scale-y">
+				<td>Escala vertical:</td>
+				<td><input id="scale-y" type="number" value="0" min="0" step="0.1" /></td>
+			</tr>
+			<tr  class="action-param" id="tr-related">
+				<td>Animación:</td>
+				<td><select id="related-action"></select></td>
 			</tr>
 		
 		</table>
 		<div id="action-window-buttons">
+			
+			<button id="cancel-action-btn" class="button" >Cancelar</button>
+			<button id="accept-action-btn" class="button">Aceptar</button>
 			<div id="action-msg" class="window-msg"></div>
-			<button id="accept-export-btn" class="window-accept-btn">Cancelar</button>
-			<button id="cancel-action-btn" class="window-accept-btn">Aceptar</button>
 		</div>
 	</div>
 	

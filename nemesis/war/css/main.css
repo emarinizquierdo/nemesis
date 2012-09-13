@@ -166,6 +166,19 @@ input.title{
 /* 	height:800px; */
 }
 
+#properties-list{
+	padding:0;	
+}
+#properties-list li.prop-title{
+	margin-top:15px;
+}
+
+#properties-list span.inputSpan{
+	display:inline-block;
+	width:50px;
+}
+
+
 div.bodyTabStrip{
 /* 	min-height : 250px; */
 }
@@ -298,18 +311,60 @@ footer{
 /* -- Action window -- */
 
 #action-window-buttons{
-	margin-top:40px;
+	position:absolute;
+	bottom: 15px;
+	width: 550px;
 }
 #action-window-buttons button{
 	float:right;
 }
 
 #action-window-buttons .window-msg{
-	float:left;
-	width:200px;
-	margin:0;
-	padding-top:6px;
+	float:right;
+	margin:0 10px;
+	padding-top:10px;
 }
 
+#new-action-window .action-param{
+	display:none;
+}
 
+#new-action-window td{
+	padding-bottom: 10px;
+}
 
+#new-action-window table tr td:first-child{
+	width:100px;
+	text-align: right;
+	padding-right:5px;
+}
+
+#new-action-window table tr td{
+	width:300px;
+	
+}
+
+.k-numeric-wrap{
+	margin-top:0!important;
+}
+
+#action-type{
+	width:400px;
+}
+
+button.k-button{
+	margin:0 5px;
+}
+
+#action-list{
+	padding:0;
+}
+
+#action-list span{
+	vertical-align: top;
+	padding-left:5px;
+}
+
+#action-list a{
+	cursor:pointer;
+}

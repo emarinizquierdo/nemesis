@@ -1,6 +1,8 @@
 function book(bookName){
 	
 	this.bookName = bookName || "";
+	this.versionEngine = "";
+	this.openingScene = "";
 	this.btnNextImage = "";
 	this.btnPrevImage = "";
 	this.mainBgMusic = "";
