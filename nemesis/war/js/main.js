@@ -35,7 +35,7 @@ $(document).ready(function(){
 			}
 			
 			if ($(this).attr('id') == 'scene-name-input'){
-				sceneList.selected().item.attr('sceneName', name);
+				sceneList.scenes[sceneList.selected()].item.attr('sceneName', name);
 			}
 		})
 		.keyup(function(keyEvent){
