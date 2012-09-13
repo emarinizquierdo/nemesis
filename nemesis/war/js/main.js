@@ -76,6 +76,18 @@ $(document).ready(function(){
 	//Open book button
 	$('#uploadImagesLocalButton').click(function(){
 
+		if($("#files").data("kendoUpload")){
+			$("#upload-window div").html('<input name="files" id="files" type="file" />');
+		}
+		
+		$("#files").kendoUpload({
+        	async: {
+                saveUrl: "/s/upload",
+                removeUrl: "remove",
+                autoUpload: true
+            } 
+        });
+		
 		$("#upload-window").data("kendoWindow").center().open();
 	});
 	
@@ -209,6 +221,8 @@ $(document).ready(function(){
 			, resizable: false
 		});
 		//window.data("kendoWindow").center().open();
+		
+		
 
 	}//end _initExportWindow function
 })
