@@ -38,7 +38,7 @@ $(document).ready(function(){
 			}
 			
 			if ($(this).attr('id') == 'scene-name-input'){
-				sceneList.selected().item.attr('sceneName', name);
+				sceneList.scenes[sceneList.selected()].item.attr('sceneName', name);
 			}
 		})
 		.keyup(function(keyEvent){
@@ -209,7 +209,6 @@ $(document).ready(function(){
 			, resizable: false
 		});
 		//window.data("kendoWindow").center().open();
-		
-		
+
 	}//end _initExportWindow function
 })
