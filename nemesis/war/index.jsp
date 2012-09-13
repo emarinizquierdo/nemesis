@@ -219,12 +219,12 @@
 	</div>
 	
 	<div id="upload-window">
-		<span>Escoge un nombre para tu libro:</span>
+		<span>Selecciona imágenes a subir:</span>
 		<form method="post" action="submit" style="width:45%">
 				                <div>
 				                    <input name="files" id="files" type="file" />
 				                    <p>
-				                        <input type="submit" value="Submit" class="k-button" />
+				                        
 				                    </p>
 				                </div>
 				            </form>
