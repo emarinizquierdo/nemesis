@@ -2,16 +2,20 @@ package com.project.nemesis;
 
 import com.google.appengine.api.blobstore.BlobInfo;
 import com.google.appengine.api.blobstore.BlobInfoFactory;
+import com.google.appengine.api.blobstore.BlobstoreService;
+import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class LocalImages extends HttpServlet {
+public class GetFileInfo extends HttpServlet {
 
 	/**
 	 * 
@@ -32,16 +36,14 @@ public class LocalImages extends HttpServlet {
 	       
         	if(iterator.hasNext()){
         		info = iterator.next();
-        		if("image/jpg".equals(info.getContentType().toString()) || "image/png".equals(info.getContentType().toString()) || "image/gif".equals(info.getContentType().toString()) || "image/jpeg".equals(info.getContentType().toString()))
-        			res.getWriter().print("{ \"title\" : \"" + info.getFilename().toString() + "\", \"url\" : \"/s/getfile?fileName=" + info.getFilename().toString() + "\" }");
+        		res.getWriter().print("{ key : \"" + info.getBlobKey().getKeyString() + "\" }");
         	}
         	
 	        while(iterator.hasNext()){
 	        	info = iterator.next();
-	        	if("image/jpg".equals(info.getContentType().toString()) || "image/png".equals(info.getContentType().toString()) || "image/gif".equals(info.getContentType().toString()) || "image/jpeg".equals(info.getContentType().toString())){
-		        	res.getWriter().print(", ");
-		        	res.getWriter().print("{ \"title\" : \"" + info.getFilename().toString() + "\", \"url\" : \"/s/getfile?fileName=" + info.getFilename().toString() + "\" }");
-	        	}
+	        	res.getWriter().print(", ");
+	        	res.getWriter().print("{ key : \"" + info.getBlobKey().getKeyString() + "\" }");
+	        	
 	        }
 		        
 						
