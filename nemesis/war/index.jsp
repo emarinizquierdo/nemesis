@@ -134,12 +134,12 @@
 				                        	<li><input id="sliderPositionX" class="positionX" />  <input id="numericPositionX" value="0" ></li>			                        	
 				                        	<li><input id="sliderPositionY" class="positionY" />  <input id="numericPositionY" value="0" /></li>
 				                        	
+				                        	<li class="prop-title">Angle:</li>
+				                        	<li><input id="sliderAngle" class="angle" />  <input id="numericAngle" value="0" /></li>
+				                        	
 				                        	<li class="prop-title">Scale:</li>
 				                        	<li><input id="sliderScaleX" class="scaleX" /></li>
 				                        	<li><input id="sliderScaleY" class="scaleY" /></li>
-				                        	
-				                        	<li class="prop-title">Angle:</li>
-				                        	<li><input id="sliderAngle" class="angle" />  <input id="numericAngle" value="0" /></li>			                        	
 				                        	
 				                        	<li class="prop-title">
 				                        		<input id="checkboxDraggable" type="checkbox" value="false"/>
@@ -179,11 +179,11 @@
 		                        	<table>
 		                        		<tr>
 		                        			<td><input id="nextButtonScene" type="checkbox" value="false"/></td>
-		                        			<td><span>Show Next Page Button</span></td>
+		                        			<td><span>Show next scene button</span></td>
 		                        		</tr>
 		                        		<tr>
 		                        			<td><input id="previousButtonScene" type="checkbox" value="false"/></td>
-		                        			<td><span>Show Previous Page Button</span></td>
+		                        			<td><span>Show previous scene button</span></td>
 		                        		</tr>
 		                        	</table>
 		                        </div>									
@@ -231,10 +231,9 @@
 	
 	
 	<div id="import-window">
-		<span>Indica el nombre del fichero:</span>
-		<input type="text" id="file-name" size="35" />
-		<input type="button" id="accept-file-btn" value="Abrir libro" class="button" />
-		<div id="error-msg" class="window-msg"></div>
+		<p>Indica el nombre del fichero:</p>
+			<input id="import-book-button" name="import-book-button" type="file" />	
+        	<div id="error-msg" class="window-msg"></div>
 	</div>
 	
 	<div id="export-window">
@@ -247,8 +246,8 @@
 	<div id="upload-window">
 		<span>Selecciona imágenes a subir:</span>
 		<div style="width:45%">
-                <input name="files" id="files" type="file" />
-            </div>
+			<input name="files" id="files" type="file" />
+        </div>
 	</div>
 	
 
@@ -290,11 +289,11 @@
 			<tr class="action-param" id="tr-rotate">
 				<td>Ángulo:</td>
 				<td><input id="angle" type="number" value="0" min="0" step="1" /></td>
-				<td><input id="move-y" type="number" value="0" min="0" step="1" /></td>
 			</tr>
 			<tr class="action-param" id="tr-scale-x">
 				<td>Escala horizontal:</td>
 				<td><input id="scale-x" type="number" value="0" min="0" step="0.1" /></td>	
+			</tr>
 			<tr class="action-param" id="tr-rotate">
 				<td>Ángulo:</td>
 				<td><input id="angle" type="number" value="0" min="0" step="1" /></td>

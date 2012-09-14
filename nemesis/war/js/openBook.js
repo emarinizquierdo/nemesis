@@ -1,6 +1,6 @@
 function openBook(b){
 	
-	var IMAGES_SRC = "/resources/images/";
+	var IMAGES_SRC = "/s/getfile?fileName=";
 	
 	//Reset current book
 	sceneList.removeAllScenes();
@@ -51,8 +51,8 @@ function openBook(b){
 				if (actor.actors){
 					_loadActors(actor, p_scene, leaf);
 				}
-				
-				mainCanvas.canvas.renderAll()
+			
+				mainCanvas.canvas.renderAll();
 			});
 			
 			

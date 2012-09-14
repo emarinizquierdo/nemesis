@@ -70,6 +70,7 @@ $(document).ready(function(){
 	//Open book button
 	$('#openBookBtn').click(function(){
 
+		
 		$("#import-window").data("kendoWindow").center().open();
 	});
 	
@@ -85,6 +86,7 @@ $(document).ready(function(){
                 saveUrl: "/s/upload",
                 removeUrl: "remove",
                 autoUpload: true
+               
             } 
         });
 		
@@ -97,7 +99,10 @@ $(document).ready(function(){
 	
 	//Init import window
 	function _initImportWindow(){
+		
 		var window = $("#import-window");
+		var errorMsg = $('#error-msg');
+		
 		window.kendoWindow({
 			  width: "600px"
 			, height: "150px"
@@ -107,46 +112,56 @@ $(document).ready(function(){
 			, draggable: false
 			, resizable: false
 		});
-		//window.data("kendoWindow").center().open();
 		
-		$('#file-name').focus(function(){
-			
-			$('#error-msg').empty();
+		//Book upload button		
+		$("#import-book-button").kendoUpload({
+        	async: {
+                saveUrl: "/s/upload",
+                autoUpload: true,
+            },
+            success: _onUploadSuccess,
+            error: _onUploadError
 		});
 		
+		function _onUploadError(e){
 		
-		$('#accept-file-btn').click(function(){
+			console.log('Upload error', e);	
+			_onUploadComplete(e);
+		}
+		function _onUploadSuccess(e){
 			
-			var errorMsg = $('#error-msg');
-			var file = $('#file-name');
-			var fileName = file.val();
+			console.log('Upload success', e);	
+			_onUploadComplete(e);
+		}
+		
+		function _onUploadComplete(e){
 			
-			if ($.trim(fileName) == ""){
+			var extension = e.files[0].extension;
+			if (extension == ".plist"){
 				
-				errorMsg.text('No ha seleccionado ningún fichero.')
+				var fileName = e.files[0].name;
+				$.ajax({
+						  url: "/s/getfile?fileName=" + fileName
+						, dataType: "xml"
+						, success: function(data){
+							
+							var book = $.plist(data);
+							console.log('Book loaded: ', book);
+							openBook(book);
+							errorMsg.empty();
+							$("#import-window").data("kendoWindow").close();
+						}
+						, error: function(){
+							errorMsg.text('No se encuentra el fichero seleccionado.')
+						}
+					})
 			}
 			else {
-				
-				$.ajax({
-					  url: "/books/" + fileName
-					, dataType: "xml"
-					, success: function(data){
-						
-						var book = $.plist(data);
-						console.log('Book imported: ', book);
-						openBook(book);
-						$('#exportBtn').attr('disabled', false)
-						
-						file.val('');
-						errorMsg.empty();
-						window.data("kendoWindow").close();
-					}
-					, error: function(){
-						errorMsg.text('No se encuentra el fichero seleccionado.')
-					}
-				})
+				errorMsg.text('El fichero seleccionado no tiene extensión .plist');
 			}
-		});	
+			
+		}
+		
 	}//end _initImportWindow function
 	
 	
