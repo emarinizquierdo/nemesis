@@ -131,7 +131,7 @@ var actionController = new function(){
 	}
 	
 	function _addAction(){
-		var action = $('<li><a><img width=16 height=16 src=/img/red_cross.png/></a><span>' + $.trim(_$name.val()) + '</span></li>' );
+		var action = $('<li><a><img width=16 height=16 src="/img/red_cross.png" /></a><span>' + $.trim(_$name.val()) + '</span></li>' );
 		_$actionList.append(action);
 	}
 	
