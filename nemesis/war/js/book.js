@@ -17,7 +17,7 @@ function book(bookName){
 		
 		this.showNextBtn = false;
 		this.showPrevBtn = false;
-		this.actors = {};
+		this.actors = [];
 		
 		/*
 		 *  actor constructor
@@ -48,9 +48,10 @@ function book(bookName){
 			if (actorName){
 				var newActor = {};
 				newActor[actorName] = new actor();
-				$.extend(this.actors, newActor);
+				//$.extend(this.actors, newActor);
+				this.actors.push(newActor);
 				
-				return this.actors[actorName];
+				return newActor[actorName];
 			}
 			else {
 				console.log('BOOK.JS: error in _addActor()')

@@ -38,7 +38,7 @@ $(document).ready(function(){
 			}
 			
 			if ($(this).attr('id') == 'scene-name-input'){
-				sceneList.scenes[sceneList.selected()].item.attr('sceneName', name);
+				sceneList.selected().item.attr('sceneName', name);
 			}
 		})
 		.keyup(function(keyEvent){
@@ -61,26 +61,31 @@ $(document).ready(function(){
 	//export button
 	$('#exportBtn').click(function(){
 		
-		$('#export-msg').empty().removeClass('ok-msg');
-		$('#export-file-name').val($('#book-name-input').val());
-		$("#export-window").data("kendoWindow").center().open();
+		if (_checkNames()){
+			
+			$('#export-msg').empty().removeClass('ok-msg');
+			$('#export-file-name').val($('#book-name-input').val());
+			$("#export-window").data("kendoWindow").center().open();	
+		}
+		
 	});
 	
 	
 	//Open book button
 	$('#openBookBtn').click(function(){
 
-		
+
 		$("#import-window").data("kendoWindow").center().open();
 	});
 	
-	//Open book button
+	
+	//Upload image button
 	$('#uploadImagesLocalButton').click(function(){
 
 		if($("#files").data("kendoUpload")){
 			$("#upload-window div").html('<input name="files" id="files" type="file" />');
 		}
-		
+
 		$("#files").kendoUpload({
         	async: {
                 saveUrl: "/s/upload",
@@ -89,9 +94,10 @@ $(document).ready(function(){
                
             } 
         });
-		
+
 		$("#upload-window").data("kendoWindow").center().open();
 	});
+
 	
 	_initImportWindow();
 	_initExportWindow();
@@ -145,6 +151,7 @@ $(document).ready(function(){
 						, dataType: "xml"
 						, success: function(data){
 							
+							console.log('Data: ', data)
 							var book = $.plist(data);
 							console.log('Book loaded: ', book);
 							openBook(book);
@@ -240,4 +247,50 @@ $(document).ready(function(){
 		
 
 	}//end _initExportWindow function
+	
+	/*
+	 *  Comprobar que no haya nombres de escena duplicados
+	 *  ni nombres de actor duplicados en la misma escena 
+	 *  
+	 */
+	function _checkNames(){
+		
+		var   repeated = false
+			, i = 0
+			, j = 0
+			, scenesLength = sceneList.scenes.length
+			, actorNames = []
+		;
+
+		while (!repeated && i < scenesLength){
+			
+			//Comprobamos que no haya nombres de escena duplicados
+			j = 0;
+			while (!repeated && j < scenesLength){
+				
+				if(i != j && sceneList.scenes[i].item.attr('sceneName') == sceneList.scenes[j].item.attr('sceneName')){
+					repeated = true;
+				}
+				else {
+					j++
+				}
+				
+			}
+			
+			i++;
+			
+			//TODO: comprobación de nombres de actores repetidos en la misma escena
+		}
+		
+		if (repeated){
+			alert('No puede haber escenas con el mismo nombre.');
+			return false;
+		}
+		else {
+			return true;
+		}
+
+	}
+	
+	
 })

@@ -26,7 +26,7 @@ function openBook(b){
 		$.each(bookScene.actors, function(actorName, actor){
 			
 			var settings = {
-				  source: IMAGES_SRC + actorName
+				  source: IMAGES_SRC + actor.image
 				, text: actorName
 			}
 			
@@ -34,16 +34,17 @@ function openBook(b){
 				var leaf = p_scene.tree.treeView.append({text: settings.text}, parent);
 				var uid = leaf.attr('data-uid');
 				
+				p_imageObj.set('scaleX', actor.scaleX).setCoords();
+				p_imageObj.set('scaleY', actor.scaleY).setCoords();
 				p_imageObj.set('angle', actor.angle);
-				p_imageObj.set('height', actor.height);
-				p_imageObj.set('width', actor.width);
-				p_imageObj.set('top', actor.top);
-				p_imageObj.set('left', actor.left);
-				p_imageObj.set('scaleX', actor.scaleX);
-				p_imageObj.set('scaleY', actor.scaleY);
-				p_imageObj.set('zindex', actor.zindex);
+				p_imageObj.set('top', actor.top).setCoords();
+				p_imageObj.set('left', actor.left).setCoords();
+				p_imageObj.set('zindex', actor.zindex).setCoords();
 				
-				
+				//Sin el parseInt falla el cálculo de los cuadraditos azulejos para el drag&drop
+				p_imageObj.set('width', parseInt(actor.width));
+				p_imageObj.set('height', parseInt(actor.height));
+
 				//incluye en el árbol la referencia al nodo
 				p_scene.tree.treeView.dataSource.getByUid(uid).imageObj = p_imageObj;
 				p_scene.tree.treeView.dataSource.getByUid(uid).imageObj.node = leaf;
