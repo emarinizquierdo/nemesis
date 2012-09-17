@@ -41,7 +41,7 @@ function openBook(b){
 				p_imageObj.set('left', actor.left).setCoords();
 				p_imageObj.set('zindex', actor.zindex).setCoords();
 				
-				//Sin el parseInt falla el cálculo de los cuadraditos azulejos para el drag&drop
+				//Sin el parseInt falla el cálculo de los cuadraditos azules para el drag&drop
 				p_imageObj.set('width', parseInt(actor.width));
 				p_imageObj.set('height', parseInt(actor.height));
 
