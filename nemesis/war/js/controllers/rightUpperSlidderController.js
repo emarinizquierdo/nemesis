@@ -1,4 +1,3 @@
-
 var rightUpperSlidder = new function(){
 
 	this.positionXSlidder;

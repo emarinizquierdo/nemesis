@@ -20,12 +20,18 @@ var mainCanvasConstructor = function(){
 		  'object:scaling': function(){rightUpperSlidder.updateControls();},
 		  'object:resizing': function(){rightUpperSlidder.updateControls();},
 		  'object:selected' : function(){
-			  rightUpperSlidder.enableAll();rightUpperSlidder.updateControls();
+			  rightUpperSlidder.enableAll();
+			  rightUpperSlidder.updateControls();
 			  if(_this.canvas.getActiveGroup() == null){
-				  leftTree.treeView.select(leftTree.treeView.findByUid(_this.canvas.getActiveObject().node[0].dataset.uid))
+				  leftTree.treeView.select(leftTree.treeView.findByUid(_this.canvas.getActiveObject().node[0].dataset.uid));
+				  actionController.updateActionList();
 			  }
 		   },
-		  'selection:cleared' : function(){rightUpperSlidder.disableAll();}
+		  'selection:cleared' : function(){
+			  rightUpperSlidder.disableAll(); 
+			  leftTree.unselectAllNodes();
+			  actionController.updateActionList();
+		  }
 		});		
 	}
 		

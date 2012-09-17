@@ -1,6 +1,3 @@
-
-
-
 var leftTreeConstructor = function(){
 	
 	var _this = this;
@@ -77,6 +74,11 @@ var leftTreeConstructor = function(){
 			if(node.children._data.length == 0){
 				mainCanvas.canvas.setActiveObject(node.imageObj);
 				rightUpperSlidder.updateControls();
+				
+				//se actualiza la lista de acciones asociadas al objeto
+				actionController.updateActionList();	
+				
+				
 			}else{
 				var aux = new fabric.Group(_recursiveSelectNode(node));
 				mainCanvas.canvas.setActiveGroup(aux);
@@ -109,6 +111,17 @@ var leftTreeConstructor = function(){
 		}	
 		
 		return auxArray;
+	}
+	
+	function _unselectAllNodes(){
+		var selected = leftTree.treeView.select();
+		if (selected){
+			selected.find("span.k-state-selected").removeClass("k-state-selected")
+		}
+	}
+	
+	function _selected(){
+		return leftTree.treeView.dataSource.getByUid(leftTree.treeView.select().attr('data-uid'));
 	}
 	
 	/*
@@ -167,7 +180,9 @@ var leftTreeConstructor = function(){
 	
 	this.init = _init;
 	this.addElement = _addElement;
-	//this.drawTree = _drawTree;
+	this.unselectAllNodes = _unselectAllNodes;
+	this.selected = _selected
+	//this.drawTree = _drawTree;;
 	//this.saveCurrentCanvas = _saveCurrentCanvas;
 	
 	return this;
