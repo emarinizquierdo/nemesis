@@ -1,14 +1,26 @@
 function book(bookName){
 	
 	this.bookName = bookName || "";
-	this.versionEngine = "";
-	this.openingScene = "";
-	this.btnNextImage = "";
+	this.versionEngine = $('#version-engine').text() || "";
 	this.btnPrevImage = "";
+	this.btnNextImage = "";
 	this.mainBgMusic = "";
 	this.openingScene = "";
 	this.scenes = [];
 	this.showBoundingBox = false;
+	
+	//scene icons
+	var prev = $.trim( $('#prev-scene-icon').val() );
+	var next = $.trim( $('#next-scene-icon').val() );
+	if (prev != "" && prev.lastIndexOf('\\') != -1){
+		prev = prev.substring(prev.lastIndexOf('\\')+1);
+	}
+	if (next != "" && next.lastIndexOf('\\') != -1){
+		next = next.substring(next.lastIndexOf('\\')+1);
+	}
+	this.btnPrevImage = prev;
+	this.btnNextImage = next;
+	
 	
 	/*
 	 *  scene constructor

@@ -190,9 +190,30 @@ div.bodyLowerTabStrip{
 /* 	min-height : 200px; */
 }
 
+div.bodyLowerTabStrip ul{
+	list-style: none;
+	padding: 0;
+}
+
+div.bodyLowerTabStrip li{
+	margin-top:15px;
+}
+div.bodyLowerTabStrip li:first-child{
+	margin-top:0;
+}
+
+div.bodyLowerTabStrip p{
+	margin:0
+}
+
+div.bodyLowerTabStrip input{
+	margin:0;
+}
+
 div.bodyTabStrip ul{
 /* 	padding: 10px; */
 }
+
 div.bodyTabStrip li{
 	 list-style: none;
 	 margin:6px;

@@ -189,20 +189,22 @@
 		                        </div>									
 								
 		                        <div class="bodyLowerTabStrip">
-		                        	<table>
-		                        		<tr>
-		                        			<td><span>Version Engine:</span></td>
-		                        			<td><span></span></td>
-		                        		</tr>
-		                        		<tr>
-		                        			<td><span>Previous escene icon:</span></td>
-		                        			<td><span></span></td>
-		                        		</tr>
-		                        		<tr>
-		                        			<td><span>Next escene icon:</span></td>
-		                        			<td><span></span></td>
-		                        		</tr>
-		                        	</table>
+		                        	<ul>
+		                        		<li>
+		                        			<p>Version Engine: <span id="version-engine">0.3</span></p>
+		                        		</li>
+		                        		
+		                        		<li>
+		                        			<p>Previous escene icon:</p>
+		                        			<p><input type="file" id="prev-scene-icon"/></p>
+		                        		</li>
+		                        		
+		                        		<li>
+		                        			<p>Next escene icon:</p>
+		                        			<p><input type="file" id="next-scene-icon"/></p>
+		                        		</li>
+		                        	
+		                        	</ul>
 		                        </div>									
 															
 							</div>	
