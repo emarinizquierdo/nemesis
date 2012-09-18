@@ -20,6 +20,7 @@
 	<script src="lib/kendo/js/kendo.web.min.js" type="text/javascript"></script>
 	
 	<script src="lib/fabric/fabric.js" type="text/javascript"></script>
+	<script src="fonts/Delicious_500.font.js" type="text/javascript"></script>
 	
 	<script src="lib/BlobBuilder.min.js" type="text/javascript"></script>
 	<script src="lib/FileSaver.min.js" type="text/javascript"></script>
@@ -71,9 +72,11 @@
 			    			<div id="treeview-left"></div>			    			
 			    		</div>
 			    		<div id="imagesPanel">
-			    			<a id="uploadImagesLocalButton" class="button">Upload Images</a>
-			    			<a id="addImageLocalButton" class="button">Add</a>
+			    			<a id="uploadImagesLocalButton" class="button">Upload image</a>
+			    			<a id="addImageLocalButton" class="button">Add image</a>
+			    			<a id="addTextButton" class="button">Add text</a>
 							<a id="removeImageLocalButton" class="button">Remove</a>
+							
 			    			<div id="listView"></div>
 							<div id="pager" class="k-pager-wrap"></div>
 			    		
@@ -191,7 +194,7 @@
 		                        <div class="bodyLowerTabStrip">
 		                        	<ul>
 		                        		<li>
-		                        			<p>Version Engine: <span id="version-engine">0.3</span></p>
+		                        			<p>Engine version: <span id="version-engine">0.1.3</span></p>
 		                        		</li>
 		                        		
 		                        		<li>
@@ -252,6 +255,29 @@
         </div>
 	</div>
 	
+	<div id="text-window">
+		<table>
+			<tr>
+				<td>Texto:</td>
+				<td><input type="text" id="text" name="text" class="k-textbox" /></td>
+			</tr>
+			<tr>
+				<td>Tamaño:</td>
+				<td><input type="number" id="size" value="50" min="0" step="1" name="size" /></td>
+			</tr>
+			<tr>
+				<td>Color:</td>
+				<td><input type="text" maxlength="7" id="color" name="color" class="k-textbox" /></td>
+			</tr>
+		</table>
+		
+		<div id="text-window-buttons">
+			
+			<button id="cancel-text-btn" class="button" >Cancelar</button>
+			<button id="accept-text-btn" class="button">Aceptar</button>
+			<div id="text-msg" class="window-msg"></div>
+		</div>
+	</div>
 
 	<div id="new-action-window">
 		<table>

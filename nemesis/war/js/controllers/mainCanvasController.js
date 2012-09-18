@@ -55,6 +55,15 @@ var mainCanvasConstructor = function(){
 		
 	}
 	
+	function _addText(p_text, p_settings, f_callback){
+		
+		var textObj = new fabric.Text(p_text,p_settings);
+		mainCanvas.canvas.add(textObj);
+		
+		if (f_callback && typeof f_callback === "function") f_callback(textObj);
+		
+	}
+	
 	function _none(){
 		var $ = function(id){return document.getElementById(id)};
 		
@@ -97,6 +106,7 @@ var mainCanvasConstructor = function(){
 
 	this.init = _init;
 	this.addLocalImage = _addLocalImage;
+	this.addText = _addText;
 	//this.loadScene = _loadScene;
 	
 	return this;

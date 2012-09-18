@@ -22,6 +22,8 @@ $(document).ready(function(){
 	
 	actionController.init();
 	
+	textController.init();
+	
 	
 	
 	//Header menu
