@@ -75,10 +75,10 @@
 			    		
 			    			<table id="images-panel-buttons">
 			    				<tr>
-				    				<td><a id="uploadImagesLocalButton"><img src="/img/upload.png" /></a></td>
-				    				<td><a id="addImageLocalButton"><img src="/img/image_add.png" /></a></td>
-				    				<td class="ico-text"><a id="addTextButton"><img src="/img/insert-text.png" /></a></td>
-				    				<td><a id="removeImageLocalButton"><img src="/img/image_remove.png" /></a></td>
+				    				<td><a title="Upload image" id="uploadImagesLocalButton"><img src="/img/upload.png" /></a></td>
+				    				<td><a title="Add image object" id="addImageLocalButton"><img src="/img/image_add.png" /></a></td>
+				    				<td class="ico-text"><a title="Add text object" id="addTextButton"><img src="/img/insert-text.png" /></a></td>
+				    				<td><a title="Remove selected object" id="removeImageLocalButton"><img src="/img/image_remove.png" /></a></td>
 			    				</tr>
 			    			</table>			    			
 							
