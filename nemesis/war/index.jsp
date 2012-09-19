@@ -72,10 +72,15 @@
 			    			<div id="treeview-left"></div>			    			
 			    		</div>
 			    		<div id="imagesPanel">
-			    			<a id="uploadImagesLocalButton" class="button">Upload image</a>
-			    			<a id="addImageLocalButton" class="button">Add image</a>
-			    			<a id="addTextButton" class="button">Add text</a>
-							<a id="removeImageLocalButton" class="button">Remove</a>
+			    		
+			    			<table id="images-panel-buttons">
+			    				<tr>
+				    				<td><a id="uploadImagesLocalButton"><img src="/img/upload.png" /></a></td>
+				    				<td><a id="addImageLocalButton"><img src="/img/image_add.png" /></a></td>
+				    				<td class="ico-text"><a id="addTextButton"><img src="/img/insert-text.png" /></a></td>
+				    				<td><a id="removeImageLocalButton"><img src="/img/image_remove.png" /></a></td>
+			    				</tr>
+			    			</table>			    			
 							
 			    			<div id="listView"></div>
 							<div id="pager" class="k-pager-wrap"></div>
