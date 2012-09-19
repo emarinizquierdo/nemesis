@@ -40,6 +40,7 @@ function saveBook(){
 				actor.color = fe.getFill();
 				actor.fontFamily = fe.get('fontFamily');
 				actor.fontSize = fe.get('fontSize');
+				actor.textAlignment = fe.get('textAlign');
 				
 			}
 			else {
