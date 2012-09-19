@@ -91,12 +91,46 @@ $(document).ready(function(){
 		$("#files").kendoUpload({
         	async: {
                 saveUrl: "/s/upload",
-                removeUrl: "remove",
                 autoUpload: true
-               
-            } 
+            },
+            multiple: false,
+            showFileList: false,
+            success: _onUploadImageSuccess,
+            error: _onUploadImageError
         });
-
+		
+		function _onUploadImageError(e){
+			
+			console.log('Upload image error', e);	
+			_onUploadImageComplete(e);
+		}
+		function _onUploadImageSuccess(e){
+			
+			console.log('Upload image success', e);	
+			_onUploadImageComplete(e);
+		}
+		
+		function _onUploadImageComplete(e){
+			
+			var extension = e.files[0].extension;
+			if (extension == ".jpg" || extension == ".png" || extension == ".gif"){
+				
+				var fileName = e.files[0].name;
+				var newImage = {
+					url:  "/s/getfile?fileName=" + fileName,
+					title: fileName
+				}
+				imageSource.dSource.add(newImage)
+				imageSource.imageList.data('kendoListView').refresh();
+				$("#upload-window").data("kendoWindow").close();
+			}
+			else {
+				$('#upload-msg').text('La imagen seleccionada no es válida.');
+			}
+			
+		}
+		
+		$('#upload-msg').text('');
 		$("#upload-window").data("kendoWindow").center().open();
 	});
 
@@ -125,8 +159,9 @@ $(document).ready(function(){
 		$("#import-book-button").kendoUpload({
         	async: {
                 saveUrl: "/s/upload",
-                autoUpload: true,
+                autoUpload: true
             },
+            showFileList: false,
             success: _onUploadSuccess,
             error: _onUploadError
 		});
@@ -237,8 +272,8 @@ $(document).ready(function(){
 		var window = $("#upload-window");
 		window.kendoWindow({
 			  width: "600px"
-			, height: "250px"
-			, title: "Subir imágenes"
+			, height: "170px"
+			, title: "Subir imagen"
 			, modal: true
 			, visible: false
 			, draggable: false

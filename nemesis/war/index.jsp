@@ -87,7 +87,7 @@
 			    		
 				    		<script type="text/x-kendo-tmpl" id="template">
         						<div class="localImage">
-            						<img src="\${url}" alt="\${title} image" />
+            						<img src="\${url}" title="\${title}" />
         						</div>
     						</script>
 						</div>
@@ -258,6 +258,7 @@
 		<div style="width:45%">
 			<input name="files" id="files" type="file" />
         </div>
+        <div id="upload-msg" class="window-msg"></div>
 	</div>
 	
 	<div id="text-window">

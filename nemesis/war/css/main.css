@@ -283,6 +283,10 @@ div.bodyTabStrip li{
             
 }
 
+#listView{
+	min-height: 100px;
+}
+
         
 .k-listview:after, .localImages dl:after{
 

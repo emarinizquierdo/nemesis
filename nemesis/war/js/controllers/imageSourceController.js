@@ -10,16 +10,16 @@ var imageSource = new function(){
 		
 		imageSource.dSource = new kendo.data.DataSource({
 
-            transport: {
-
-                read: {
-
-                    url: "/localImages",
-
-                    dataType: "json"
-
-                }
-            },
+//            transport: {
+//
+//                read: {
+//
+//                    url: "/localImages",
+//
+//                    dataType: "json"
+//
+//                }
+//            },
 
             pageSize: 12
         });
