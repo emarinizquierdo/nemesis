@@ -14,6 +14,10 @@ function saveBook(){
 		var sceneName = e.item.attr('scenename');
 		sceneName =  $.trim(sceneName)/*.replace(/\s/g,"_")*/;
 		var scene = b.addScene(sceneName);
+		
+		scene.showNextBtn = e.nextBtn;
+		scene.showPrevBtn = e.prevBtn;
+			
 		_addTreeActors(e.tree.treeView.dataSource.data(), scene)
 		
 		if (i==0){
@@ -30,13 +34,21 @@ function saveBook(){
 			var actor = scene.addActor(actorName);
 			
 			//set actor attributes
-			actor.draggable = e.draggable;
-			actor.image     = e.text;
-			actor.touchable = e.touchable;
-			actor.uid       = e.uid;
-			
-			//get fabric element attributes
 			var fe = e.imageObj;
+			if (fe.getText){
+				actor.text = fe.getText();	
+				actor.color = fe.getFill();
+				actor.fontFamily = fe.get('fontFamily');
+				actor.fontSize = fe.get('fontSize');
+				
+			}
+			else {
+				actor.image = e.text;
+			}
+			
+			actor.draggable = e.draggable;
+			actor.touchable = e.touchable;
+			//actor.uid       = e.uid;
 			actor.angle  = fe.getAngle();
 			actor.height = fe.getHeight();
 			actor.width  = fe.getWidth();
@@ -45,6 +57,10 @@ function saveBook(){
 			actor.scaleX = fe.getScaleX();
 			actor.scaleY = fe.getScaleY();
 			actor.zindex = fe.get('zindex');
+			
+			
+			
+			
 			
 			//get element childrens
 			if (e.hasChildren){

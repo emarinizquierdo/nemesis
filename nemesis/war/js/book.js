@@ -6,8 +6,8 @@ function book(bookName){
 	this.btnNextImage = "";
 	this.mainBgMusic = "";
 	this.openingScene = "";
-	this.scenes = [];
-	this.showBoundingBox = false;
+	//this.scenes = [];
+	//this.showBoundingBox = false;
 	
 	//scene icons
 	var prev = $.trim( $('#prev-scene-icon').val() );
@@ -27,17 +27,17 @@ function book(bookName){
 	 */
 	function scene(){
 		
-		this.showNextBtn = false;
-		this.showPrevBtn = false;
-		this.actors = [];
+		this.showNextBtn = true;
+		this.showPrevBtn = true;
+		//this.actors = [];
 		
 		/*
 		 *  actor constructor
 		 */
 		function actor(){
 			
-			this.uid = "";
-			this.image = "";
+			//this.uid = "";
+			//this.image = "";
 			this.angle = "";
 			this.draggable = false;
 			this.touchable = false;
@@ -48,8 +48,8 @@ function book(bookName){
 			this.left = "";
 			this.scaleX = "";
 			this.scaleY = "";
-			this.anchor = false;
-			this.actors = {};	
+			this.anchor = true;
+			//this.actors = [];	
 			
 			this.addActor = _addActor;
 			return this;
@@ -61,6 +61,9 @@ function book(bookName){
 				var newActor = {};
 				newActor[actorName] = new actor();
 				//$.extend(this.actors, newActor);
+				if (!this.actors){
+					this.actors = [];
+				}
 				this.actors.push(newActor);
 				
 				return newActor[actorName];
@@ -82,6 +85,9 @@ function book(bookName){
 			var newScene = {};
 			newScene[sceneName] = new scene();
 			//$.extend(this.scenes, newScene);
+			if(!this.scenes){
+				this.scenes = [];
+			}
 			this.scenes.push (newScene);
 			
 			return newScene[sceneName]

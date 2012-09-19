@@ -4,6 +4,9 @@ var sceneList = new function(){
 		, _selected
 	    , _scenes = []
 		, _sceneNumber = 1
+		, _nextSceneBtn
+		, _prevSceneBtn
+		, _sceneButtonsContainer
 	;
 	
 	var _SCENE_ITEM_TEMPLATE = "<img class='imgSnapshot' src='img/claqueta.jpg'>";
@@ -11,6 +14,9 @@ var sceneList = new function(){
 	function _init(){
 		
 		_sceneContainer = $('#sceneList');
+		_nextSceneBtn = $('#nextButtonScene');
+		_prevSceneBtn = $('#previousButtonScene');
+		_sceneButtonsContainer = $('#sceneButtonsContainer');
 	
 		_addScene();
 		_scenes[0].item.click();
@@ -31,6 +37,15 @@ var sceneList = new function(){
 			
 			 _removeSelectedScene();
 		 })
+		 
+		//next previous scene buttons
+		_prevSceneBtn.change(function(){
+			sceneList.selected().prevBtn = ($(this).attr('checked') == 'checked') ? true : false;
+		})
+		_nextSceneBtn.change(function(){
+			sceneList.selected().nextBtn = ($(this).attr('checked') == 'checked') ? true : false;
+		})
+		
 	}
 	
 	function _addScene(){
@@ -50,6 +65,8 @@ var sceneList = new function(){
 		var _tree = null;
 		var _canvas = null;
 		var _item = null;
+		var _prevBtn = true;
+		var _nextBtn = true;
 		
 		function _initScene(n){
 			
@@ -59,6 +76,8 @@ var sceneList = new function(){
 			_canvas = new mainCanvasConstructor();
 			_canvas.init(n);
 			_createItem(n);
+			_nextSceneBtn.attr('checked', _nextBtn);
+			_prevSceneBtn.attr('checked', _prevBtn);
 		}
 		
 		function _createItem(n){
@@ -95,7 +114,10 @@ var sceneList = new function(){
 				
 				mainCanvas.canvas.calcOffset();
 				
-				$('#scene-name-input').val($(this).attr('sceneName'))
+				$('#scene-name-input').val($(this).attr('sceneName'));
+				_nextSceneBtn.attr('checked', _selected.nextBtn);
+				_prevSceneBtn.attr('checked', _selected.prevBtn);
+				_sceneButtonsContainer.show();
 			})
 			 
 			_item = newitem;
@@ -107,6 +129,8 @@ var sceneList = new function(){
 		this.tree = _tree;
 		this.item = _item;
 		this.canvas = _canvas;
+		this.prevBtn = _prevBtn;
+		this.nextBtn = _nextBtn;
 		
 		return this;
 	}
@@ -128,6 +152,8 @@ var sceneList = new function(){
 			_selected = null;
 		}
 		_scenes.splice( $.inArray(s, _scenes), 1);
+		
+		_sceneButtonsContainer.hide();
 	}
 	
 	function _removeAllScenes(){
@@ -137,6 +163,7 @@ var sceneList = new function(){
 		}
 		_sceneNumber = 1;
 	}
+
 	
 	this.scenes = _scenes;
 	this.selected = function(){ return _selected};

@@ -25,7 +25,7 @@ var textController = new function(){
 			
 			_$text.val('');
 			_$size.value(50);
-			_$color.val('#FF0000');
+			_$color.val('FF0000');
 			_$msg.text('');
 			_$newTextWindow.data("kendoWindow").center().open();
 		})
@@ -85,14 +85,9 @@ var textController = new function(){
 			_$msg.text('Indica un texto.')
 			return false;
 		}
-		else if (color.substring(0,1) != "#"){
-
-			_$msg.text('El código de color debe comenzar con #.')
-			return false;
-		}
-		else if (color.length != 7){
+		else if (color.length != 6){
 	
-			_$msg.text('El código de color tiene 7 caracteres.')
+			_$msg.text('El código de color tiene 6 caracteres.')
 			return false;
 		}
 		else {

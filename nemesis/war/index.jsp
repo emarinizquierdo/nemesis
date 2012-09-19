@@ -184,13 +184,13 @@
 								</ul>
 								
 		                        <div class="bodyLowerTabStrip">
-		                        	<table>
+		                        	<table id=sceneButtonsContainer>
 		                        		<tr>
-		                        			<td><input id="nextButtonScene" type="checkbox" value="false"/></td>
+		                        			<td><input id="nextButtonScene" type="checkbox" checked /></td>
 		                        			<td><span>Show next scene button</span></td>
 		                        		</tr>
 		                        		<tr>
-		                        			<td><input id="previousButtonScene" type="checkbox" value="false"/></td>
+		                        			<td><input id="previousButtonScene" type="checkbox" checked /></td>
 		                        			<td><span>Show previous scene button</span></td>
 		                        		</tr>
 		                        	</table>
@@ -273,7 +273,7 @@
 			</tr>
 			<tr>
 				<td>Color:</td>
-				<td><input type="text" maxlength="7" id="color" name="color" class="k-textbox" /></td>
+				<td># <input type="text" maxlength="6" id="color" name="color" class="k-textbox" /></td>
 			</tr>
 		</table>
 		
