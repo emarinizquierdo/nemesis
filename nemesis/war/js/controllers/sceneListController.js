@@ -99,6 +99,11 @@ var sceneList = new function(){
 				
 				if (_selected) {
 					//_scenes[_selected].tree.saveCurrentCanvas();
+					rightUpperSlidder.disableAll(); 
+					mainCanvas.canvas.deactivateAll();
+					mainCanvas.canvas.renderAll();
+					leftTree.unselectAllNodes();
+					actionController.updateActionList();
 					_selected.item.toggleClass('selected');
 				}
 				_selected = _this;
@@ -150,6 +155,7 @@ var sceneList = new function(){
 		if (s == _selected){
 			$("#scene-name-input").val('');
 			_selected = null;
+			$('#new-action-button').hide();
 		}
 		_scenes.splice( $.inArray(s, _scenes), 1);
 		

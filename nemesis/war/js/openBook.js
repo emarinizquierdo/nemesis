@@ -31,7 +31,7 @@ function openBook(b){
 			}
 			
 			p_scene.canvas.addLocalImage(settings.source,function(p_imageObj){
-				var leaf = p_scene.tree.treeView.append({text: settings.text}, parent);
+				var leaf = p_scene.tree.treeView.append(settings, parent);
 				var uid = leaf.attr('data-uid');
 				
 				p_imageObj.set('scaleX', actor.scaleX).setCoords();

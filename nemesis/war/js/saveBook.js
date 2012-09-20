@@ -44,7 +44,7 @@ function saveBook(){
 				
 			}
 			else {
-				actor.image = e.text;
+				actor.image = e.source.split('=')[1];
 			}
 			
 			actor.draggable = e.draggable;

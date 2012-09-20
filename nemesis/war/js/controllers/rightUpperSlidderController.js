@@ -241,6 +241,7 @@ var rightUpperSlidder = new function(){
     
     function _disableAll(){
     	rightUpperTab.rightUpper.find("input").attr("disabled",true);
+    	rightUpperTab.rightUpper.find("input").val('');
     	rightUpperSlidder.positionXSlidder.disable();
 		rightUpperSlidder.positionYSlidder.disable();
 		rightUpperSlidder.scaleXSlidder.disable();

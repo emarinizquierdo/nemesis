@@ -78,7 +78,6 @@ var actionController = new function(){
 				
 				//Eliminar la acción del árbol
 				var actionName = $(this).siblings('[_type="actionName"]').text();
-				console.log(actionName)
 				delete leaf.actions[actionName]
 				
 			}

@@ -317,9 +317,9 @@ $(document).ready(function(){
 			});
 			
 			j = 0;
-			while (!repeated && j < leafs.length){
+			while (!repeated && j < leafs.length-1){
 				
-				var repeated = $.inArray(leafs[j], leafs, j); 
+				var repeated = ($.inArray(leafs[j], leafs, j+1) != -1)
 				j++;
 			}
 			
