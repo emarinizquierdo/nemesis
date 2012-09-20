@@ -5,25 +5,15 @@ $(document).ready(function(){
 	$('#splitterWrapper').height(h);
 	
 	mainPanel.init();
-	
 	//leftTree.init();
-
 	rightUpperTab.init();
-	
 	rightLowerTab.init();
-	
 	//mainCanvas.init();
-	
 	imageSource.init();
-	
 	rightUpperSlidder.init();
-
 	sceneList.init();
-	
 	actionController.init();
-	
 	textController.init();
-	
 	
 	
 	//Header menu
@@ -94,7 +84,7 @@ $(document).ready(function(){
                 autoUpload: true
             },
             multiple: false,
-            showFileList: false,
+            showFileList: true,
             success: _onUploadImageSuccess,
             error: _onUploadImageError
         });
@@ -113,7 +103,17 @@ $(document).ready(function(){
 		function _onUploadImageComplete(e){
 			
 			var extension = e.files[0].extension;
-			if (extension == ".jpg" || extension == ".png" || extension == ".gif"){
+			var size = e.files[0].size;
+			
+			if (size > 500000){
+				
+				$('#upload-msg').text('El tamaño máximo de imagen es de 480KB.');
+			}
+			else if (extension != ".jpg" && extension != ".png" && extension != ".gif"){
+		
+				$('#upload-msg').text('La imagen seleccionada no es válida.');
+			}
+			else {
 				
 				var fileName = e.files[0].name;
 				var newImage = {
@@ -124,10 +124,6 @@ $(document).ready(function(){
 				imageSource.imageList.data('kendoListView').refresh();
 				$("#upload-window").data("kendoWindow").close();
 			}
-			else {
-				$('#upload-msg').text('La imagen seleccionada no es válida.');
-			}
-			
 		}
 		
 		$('#upload-msg').text('');
@@ -201,7 +197,7 @@ $(document).ready(function(){
 					})
 			}
 			else {
-				errorMsg.text('El fichero seleccionado no tiene extensión .plist');
+				errorMsg.text('La extensión del fichero seleccionado debe ser .plist');
 			}
 			
 		}
@@ -237,7 +233,7 @@ $(document).ready(function(){
 			
 			if ($.trim(fileName) == ""){
 				
-				exportMsg.removeClass('ok-msg').text('Debes escoger un nombre para tu libro.')
+				exportMsg.removeClass('ok-msg').text('Escoge un nombre para tu libro.')
 			}
 			else {
 				
@@ -269,21 +265,21 @@ $(document).ready(function(){
 	
 	//Init upload window
 	function _initUploadWindow(){
+		
 		var window = $("#upload-window");
 		window.kendoWindow({
 			  width: "600px"
-			, height: "170px"
+			, height: "185px"
 			, title: "Subir imagen"
 			, modal: true
 			, visible: false
 			, draggable: false
 			, resizable: false
 		});
-		//window.data("kendoWindow").center().open();
 		
-		
-
 	}//end _initExportWindow function
+	
+	
 	
 	/*
 	 *  Comprobar que no haya nombres de escena duplicados
@@ -301,7 +297,7 @@ $(document).ready(function(){
 
 		while (!repeated && i < scenesLength){
 			
-			//Comprobamos que no haya nombres de escena duplicados
+			//Comprobación de nombres de escena repetidos
 			j = 0;
 			while (!repeated && j < scenesLength){
 				
@@ -314,13 +310,25 @@ $(document).ready(function(){
 				
 			}
 			
+			//Comprobación de objetos por escena
+			var leafs = [];
+			$.each(sceneList.scenes[i].tree.treeView.element.find('span.k-in'), function(i, e){
+				leafs.push( $.trim($(e).html()));
+			});
+			
+			j = 0;
+			while (!repeated && j < leafs.length){
+				
+				var repeated = $.inArray(leafs[j], leafs, j); 
+				j++;
+			}
+			
 			i++;
 			
-			//TODO: comprobación de nombres de actores repetidos en la misma escena
 		}
 		
 		if (repeated){
-			alert('No puede haber escenas con el mismo nombre.');
+			alert('No puede haber nombres de escenas ni de objetos repetidos.');
 			return false;
 		}
 		else {
@@ -328,6 +336,5 @@ $(document).ready(function(){
 		}
 
 	}
-	
 	
 })

@@ -9,6 +9,8 @@ var imageSource = new function(){
 	function _init(){
 		
 		imageSource.dSource = new kendo.data.DataSource({
+			
+			data: [{url:"/s/getfile?fileName=new-holland-tractor4.jpg", title:"tractor"}],
 
 //            transport: {
 //

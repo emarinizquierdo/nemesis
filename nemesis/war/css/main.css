@@ -416,17 +416,33 @@ button.k-button{
 }
 
 /* -- text window -- */
+#text-window table{
+	margin: 0 auto;
+}
+#text-window table tr td.noColor{
+	padding-left:11px;
+}
+
+#text-window table span.k-numerictextbox{
+	width: 149px;
+}
+
+
 #text-window-buttons{
-	margin:25px 0 0 15px
+	margin:20px 0 0 15px
 }
 
 #text-msg{
-	margin:10px 0 0 0;
-	text-align:center;
+	margin:10px 0 0 5px;
 }
 
 
 /* -- open book window -- */
 #import-window p{
 	margin-top:0;
+}
+
+/* -- upload window -- */
+#upload-msg{
+	margin-bottom:0;
 }

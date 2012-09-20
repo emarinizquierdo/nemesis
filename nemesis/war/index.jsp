@@ -150,12 +150,12 @@
 				                        	<li><input id="sliderScaleY" class="scaleY" /></li>
 				                        	
 				                        	<li class="prop-title">
-				                        		<input id="checkboxDraggable" type="checkbox" value="false"/>
+				                        		<input id="checkboxDraggable" type="checkbox" checked />
 				                        		<span>Draggable</span>
 				                        	</li>
 				                        	
 				                        	<li>
-				                        		<input id="checkboxTouchable" type="checkbox" value="false"/>
+				                        		<input id="checkboxTouchable" type="checkbox" checked />
 				                        		<span>Touchable</span>
 				                        	</li>
 				                        				                        	
@@ -265,11 +265,11 @@
 		<table>
 			<tr>
 				<td>Texto:</td>
-				<td><input type="text" id="text" name="text" class="k-textbox" /></td>
+				<td class="noColor"><input type="text" id="text" name="text" class="k-textbox" /></td>
 			</tr>
 			<tr>
 				<td>Tamaño:</td>
-				<td><input type="number" id="size" value="50" min="0" step="1" name="size" /></td>
+				<td class="noColor"><input type="number" id="size" value="50" min="0" step="1" name="size" /></td>
 			</tr>
 			<tr>
 				<td>Color:</td>
