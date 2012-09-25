@@ -5,7 +5,7 @@ var mainCanvasConstructor = function(){
 	
 	function _init(n){
 	
-		var newCanvas = $('<canvas id="new-canvas-' + n + '" width="500" height="400" class="canvas"></canvas>');
+		var newCanvas = $('<canvas id="new-canvas-' + n + '" width="480" height="320" class="canvas"></canvas>');
 		$('#canvasWrapper').append(newCanvas);
 		_this.canvas = new fabric.Canvas( 'new-canvas-' + n );		
 		_observeCanvas();

@@ -15,7 +15,7 @@ var mainPanel = new function(){
 		
 		$("#middlePanel").kendoSplitter({
 		    panes: [
-		         {resizable: false, size: "450px" },
+		         {resizable: false, size: "380px" },
 		         {}
 		    ],
 		    orientation: "vertical"
