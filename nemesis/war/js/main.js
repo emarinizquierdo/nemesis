@@ -144,7 +144,7 @@ $(document).ready(function(){
 		window.kendoWindow({
 			  width: "600px"
 			, height: "150px"
-			, title: "Abrir libro"
+			, title: "Open book"
 			, modal: true
 			, visible: false
 			, draggable: false
@@ -211,7 +211,7 @@ $(document).ready(function(){
 		window.kendoWindow({
 			  width: "600px"
 			, height: "150px"
-			, title: "Guardar libro"
+			, title: "Save book"
 			, modal: true
 			, visible: false
 			, draggable: false
@@ -241,12 +241,21 @@ $(document).ready(function(){
 				if (book){
 					var plist = json2plist(book);
 					
+					var param = {
+						plist: plist
+					}
+					
+					$.post('/save?fileName=' + fileName, param, function(data) {
+						
+						location.href = '/download?fileName=' + fileName;
+					});
+					
 //					var uriContent = "data:application/octet-stream," + encodeURIComponent(plist);
 //					location.href = uriContent
 					
-					var bb = new BlobBuilder;
-					bb.append(plist);
-					saveAs(bb.getBlob("text/plain;charset=utf-8"), fileName + ".plist");
+//					var bb = new BlobBuilder;
+//					bb.append(plist);
+//					saveAs(bb.getBlob("text/plain;charset=utf-8"), fileName + ".plist");
 					
 					exportMsg
 						.addClass('ok-msg')
@@ -270,7 +279,7 @@ $(document).ready(function(){
 		window.kendoWindow({
 			  width: "600px"
 			, height: "185px"
-			, title: "Subir imagen"
+			, title: "Upload image"
 			, modal: true
 			, visible: false
 			, draggable: false

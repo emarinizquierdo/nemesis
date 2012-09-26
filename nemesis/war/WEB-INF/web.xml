@@ -24,6 +24,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>GetFileInfo</servlet-name>
 		<servlet-class>com.project.nemesis.GetFileInfo</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>SaveFile</servlet-name>
+		<servlet-class>com.project.nemesis.SaveFile</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>DownloadFile</servlet-name>
+		<servlet-class>com.project.nemesis.DownloadFile</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>LocalImages</servlet-name>
 		<url-pattern>/localImages</url-pattern>
@@ -39,6 +47,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>GetFileInfo</servlet-name>
 		<url-pattern>/s/getfileinfo</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DownloadFile</servlet-name>
+		<url-pattern>/download</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SaveFile</servlet-name>
+		<url-pattern>/save</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

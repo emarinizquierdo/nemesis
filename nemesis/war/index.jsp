@@ -48,13 +48,13 @@
 				<img src="/img/settings-wheel.png" width="24" height="24" />
 				<ul>
 <!-- 					<li id="newBookBtn">Nuevo libro</li> -->
-					<li id="openBookBtn">Abrir libro</li>
-					<li id="exportBtn">Guardar libro</li>
+					<li id="openBookBtn">Open book</li>
+					<li id="exportBtn">Save book</li>
 				</ul>
 			</li>
 		</ul>
 
-		<input type="text" value="Mi primer libro" id="book-name-input" class="title" />
+		<input type="text" value="My_first_book" id="book-name-input" class="title" />
 		
 	</header>
 	
@@ -68,7 +68,7 @@
 			    	    	
 			    	<div id="leftPanel">
 			    		<div id="leftPanelWrapper">
-			    			<span class="title">Explorador de objetos</span>			    			
+			    			<span class="title">Object browser</span>			    			
 			    			<div id="treeview-left"></div>			    			
 			    		</div>
 			    		<div id="imagesPanel">
@@ -199,7 +199,7 @@
 		                        <div class="bodyLowerTabStrip">
 		                        	<ul>
 		                        		<li>
-		                        			<p>Engine version: <span id="version-engine">0.1.3</span></p>
+		                        			<p>Engine version: <span id="version-engine">0.1.4</span></p>
 		                        		</li>
 		                        		
 		                        		<li>
@@ -241,13 +241,13 @@
 	
 	
 	<div id="import-window">
-		<p>Indica el nombre del fichero:</p>
+		<p>Choose a file name:</p>
 			<input id="import-book-button" name="import-book-button" type="file" />	
         	<div id="error-msg" class="window-msg"></div>
 	</div>
 	
 	<div id="export-window">
-		<span>Escoge un nombre para tu libro:</span>
+		<span>Choose a book name:</span>
 		<input type="text" id="export-file-name" size="30" />
 		<input type="button" id="accept-export-btn" value="Guardar libro" class="button" />
 		<div id="export-msg" class="window-msg"></div>
@@ -264,11 +264,11 @@
 	<div id="text-window">
 		<table>
 			<tr>
-				<td>Texto:</td>
+				<td>Text:</td>
 				<td class="noColor"><input type="text" id="text" name="text" class="k-textbox" /></td>
 			</tr>
 			<tr>
-				<td>Tamaño:</td>
+				<td>Size:</td>
 				<td class="noColor"><input type="number" id="size" value="50" min="0" step="1" name="size" /></td>
 			</tr>
 			<tr>
@@ -279,77 +279,77 @@
 		
 		<div id="text-window-buttons">
 			
-			<button id="cancel-text-btn" class="button" >Cancelar</button>
-			<button id="accept-text-btn" class="button">Aceptar</button>
+			<button id="cancel-text-btn" class="button" >Cancel</button>
+			<button id="accept-text-btn" class="button">Accept</button>
 			<div id="text-msg" class="window-msg"></div>
 		</div>
 	</div>
 
 	<div id="new-action-window">
 		<table>
-			<tr><td>Nombre:</td>
+			<tr><td>Name:</td>
 				<td><input type="text" id="action-name" size="40" class="k-textbox" /></td>
 			</tr>
-			<tr><td>Duración:</td>
+			<tr><td>Duration:</td>
 				<td><input id="action-duration" type="number" value="0" min="0" step="0.1" /></td>
 			</tr>
-			<tr><td>Tipo:</td>
+			<tr><td>Type:</td>
 				<td>
 					<select id="action-type" style="width:300px">
-						<option value="DDMoveTo">Mover hasta</option>
-						<option value="DDMoveBy">Mover desde</option>
-						<option value="DDRotateTo">Girar hasta</option>
-						<option value="DDRotateBy">Girar desde</option>
-						<option value="DDScaleTo">Escalar hasta</option>
-						<option value="DDScaleBy">Escalar desde</option>
-						<option value="DDFadeIn">Aumentar opacidad</option>
-						<option value="DDFadeOut">Disminuir opacidad</option>
-						<option value="DDDelay">Aplicar retraso</option>
-						<option value="DDRepeat">Repetir animación</option>
-						<option value="DDRepeatForever">Repetir animación ininterrumpidamente</option>
+						<option value="DDMoveTo">Move to</option>
+						<option value="DDMoveBy">Move from</option>
+						<option value="DDRotateTo">Rotate to</option>
+						<option value="DDRotateBy">Rotate from</option>
+						<option value="DDScaleTo">Scale to</option>
+						<option value="DDScaleBy">Scale from</option>
+						<option value="DDFadeIn">Fade in</option>
+						<option value="DDFadeOut">Fade out</option>
+						<option value="DDDelay">Delay</option>
+						<option value="DDRepeat">Repeat</option>
+						<option value="DDRepeatForever">Repeat forever</option>
 						<option value="DDSequence">Animación secuencial</option>
-						<option value="DDSequenceForever">Animación secuencial ininterrumpidamente</option>
+						<option value="DDSequenceForever">Sequence forever</option>
 					</select>
 				</td>
 			</tr>
 			<tr class="action-param" id="tr-move-x">
-				<td>Eje horizontal:</td>
+				<td>X-axis:</td>
 				<td><input id="move-x" type="number" value="0" min="0" step="1" /></td>
 			</tr>
 			<tr class="action-param" id="tr-move-y">
-				<td>Eje vertical</td>
+				<td>Y-axis:</td>
 				<td><input id="move-y" type="number" value="0" min="0" step="1" /></td>
 			</tr>
 			<tr class="action-param" id="tr-rotate">
-				<td>Ángulo:</td>
+				<td>Angle:</td>
 				<td><input id="angle" type="number" value="0" min="0" step="1" /></td>
 			</tr>
 			<tr class="action-param" id="tr-scale-x">
-				<td>Escala horizontal:</td>
+				<td>X-axis:</td>
 				<td><input id="scale-x" type="number" value="0" min="0" step="0.1" /></td>	
 			</tr>
 			<tr class="action-param" id="tr-rotate">
-				<td>Ángulo:</td>
+				<td>Angle:</td>
 				<td><input id="angle" type="number" value="0" min="0" step="1" /></td>
 			</tr>
 			<tr class="action-param" id="tr-scale-x">
-				<td>Escala horizontal:</td>
+				<td>X-axis:</td>
 				<td><input id="scale-x" type="number" value="0" min="0" step="0.1" /></td>	
 			</tr>
 			<tr class="action-param" id="tr-scale-y">
-				<td>Escala vertical:</td>
+				<td>Y-axis:</td>
 				<td><input id="scale-y" type="number" value="0" min="0" step="0.1" /></td>
 			</tr>
 			<tr  class="action-param" id="tr-related">
-				<td>Animación:</td>
+				<td>Action:</td>
 				<td><select id="related-action"></select></td>
 			</tr>
 		
 		</table>
 		<div id="action-window-buttons">
 			
-			<button id="cancel-action-btn" class="button" >Cancelar</button>
-			<button id="accept-action-btn" class="button">Aceptar</button>
+			<button id="cancel-action-btn" class="button" >Cancel</button>
+			<button id="accept-action-btn" class="button">Accept</button>
 			<div id="action-msg" class="window-msg"></div>
 		</div>
 	</div>

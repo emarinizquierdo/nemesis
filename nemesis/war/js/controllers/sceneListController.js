@@ -84,7 +84,7 @@ var sceneList = new function(){
 			
 			var newitem = $('<li>')
 				.attr('id', 'scene_' + n)
-				.attr('sceneName', 'escena '+n)
+				.attr('sceneName', 'scene '+n)
 				.addClass('scene-list-item')
 				.html(_SCENE_ITEM_TEMPLATE);
 			
