@@ -19,7 +19,7 @@ var leftTreeConstructor = function(){
 	}
 	
 	function _addElement(p_imageObj, p_settings){	
-		
+
 		//settings no acepta campo url
 		var settings = {
 				
@@ -33,6 +33,8 @@ var leftTreeConstructor = function(){
 			, top: ""
 			, width: ""
 			, zindex: ""
+			, draggable: true
+			, touchable: true
 		};
 		
 		$.extend(settings, p_settings);

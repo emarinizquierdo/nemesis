@@ -8,6 +8,7 @@ var imageSource = new function(){
 	
 	function _init(){
 		
+		
 		imageSource.dSource = new kendo.data.DataSource({
 
 //            transport: {
@@ -19,6 +20,15 @@ var imageSource = new function(){
 
             pageSize: 12
         });
+        
+		/*
+		var imgs = [{
+  		  url: "/img/claqueta.jpg"
+	    		, title: "claqueta.jpg"
+	    }];
+		
+		imageSource.dSource = new kendo.data.DataSource({data: imgs});
+		*/
 	
 	    $("#pager").kendoPager({
 	    	

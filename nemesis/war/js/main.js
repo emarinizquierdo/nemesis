@@ -207,8 +207,8 @@ $(document).ready(function(){
 	
 	//Init export window
 	function _initExportWindow(){
-		var window = $("#export-window");
-		window.kendoWindow({
+		var wind = $("#export-window");
+		wind.kendoWindow({
 			  width: "600px"
 			, height: "150px"
 			, title: "Save book"
@@ -247,8 +247,19 @@ $(document).ready(function(){
 					
 					$.post('/save?fileName=' + fileName, param, function(data) {
 						
-						location.href = '/download?fileName=' + fileName;
+						exportMsg
+							.addClass('ok-msg')
+							.text('Espera un momento mientras se guarda el libro...');
+
+						window.setTimeout(_download, 3000);
 					});
+					
+					function _download(){
+						location.href = '/download?fileName=' + fileName;
+						exportMsg
+							.addClass('ok-msg')
+							.text('¡Libro guardado con éxito!')
+					}
 					
 //					var uriContent = "data:application/octet-stream," + encodeURIComponent(plist);
 //					location.href = uriContent
@@ -257,9 +268,7 @@ $(document).ready(function(){
 //					bb.append(plist);
 //					saveAs(bb.getBlob("text/plain;charset=utf-8"), fileName + ".plist");
 					
-					exportMsg
-						.addClass('ok-msg')
-						.text('¡Libro guardado con éxito!');
+					
 		
 				}
 				else {

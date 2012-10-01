@@ -436,6 +436,10 @@ button.k-button{
 	margin:10px 0 0 5px;
 }
 
+span.actionName{
+	color:#000;
+}
+
 
 /* -- open book window -- */
 #import-window p{

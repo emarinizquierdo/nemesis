@@ -2,10 +2,12 @@ function book(bookName){
 	
 	this.bookName = bookName || "";
 	this.versionEngine = $('#version-engine').text() || "";
+	this.iOSDevice = "iPhone";
 	this.btnPrevImage = "";
 	this.btnNextImage = "";
 	this.mainBgMusic = "";
 	this.openingScene = "";
+	
 	//this.scenes = [];
 	//this.showBoundingBox = false;
 	
@@ -29,6 +31,7 @@ function book(bookName){
 		
 		this.showNextBtn = true;
 		this.showPrevBtn = true;
+		this.batchNodes = {}
 		//this.actors = [];
 		
 		/*
@@ -36,22 +39,47 @@ function book(bookName){
 		 */
 		function actor(){
 			
+			function action(){
+				
+				this.name = "";
+				//this.state = "";
+				this.duration = "";
+				this.type = "";
+				
+				return this;
+			}
+			
+			function _addAction(p_action){
+				
+				if (!this.actions){
+					this.actions = {}
+				}
+				if (!this.actions[p_action.event]){
+					this.actions[p_action.event] = {}
+				}
+				
+				var newAction = new action();
+				this.actions[p_action.event][p_action.name] = newAction;		
+				return this.actions[p_action.event][p_action.name];
+			}
+			
 			//this.uid = "";
 			//this.image = "";
-			this.angle = "";
+			this.rotation = "";
 			this.draggable = false;
 			this.touchable = false;
+			this.initState = "Default";
+			this.actorType = "";
 			this.zindex = "";
-			this.height = "";
-			this.width = "";
-			this.top = "";
-			this.left = "";
-			this.scaleX = "";
-			this.scaleY = "";
-			this.anchor = true;
+			//this.height = "";
+			//this.width = "";
+			this.position = "";
+			this.scale = "";
+			this.anchor = "0,0"
 			//this.actors = [];	
 			
 			this.addActor = _addActor;
+			this.addAction = _addAction;
 			return this;
 		}//end actor constructor
 		
@@ -61,10 +89,10 @@ function book(bookName){
 				var newActor = {};
 				newActor[actorName] = new actor();
 				//$.extend(this.actors, newActor);
-				if (!this.actors){
-					this.actors = [];
+				if (!this.bookObjects){
+					this.bookObjects = [];
 				}
-				this.actors.push(newActor);
+				this.bookObjects.push(newActor);
 				
 				return newActor[actorName];
 			}

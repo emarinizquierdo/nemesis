@@ -1,6 +1,7 @@
 var actionController = new function(){
 	
 	var   _$
+		, _$event
 		, _$name
 		, _$duration
 		, _$type
@@ -21,13 +22,18 @@ var actionController = new function(){
 		_$ = $('#new-action-window');
 		_$.kendoWindow({
 			  width: "600px"
-			, height: "300px"
+			, height: "350px"
 			, title: "Añade una acción al objeto"
 			, modal: true
 			, visible: false
 			, draggable: false
 			, resizable: false
 		});
+		
+		_$event = $('#action-event')
+			.kendoDropDownList({
+			})
+			.data("kendoDropDownList");
 		
 		_$name = $('#action-name');
 		_$duration = $("#action-duration").kendoNumericTextBox().data("kendoNumericTextBox");
@@ -173,9 +179,13 @@ var actionController = new function(){
 		return true
 	}
 	
-	function _createListItem(p_name){
+	function _createListItem(p_name, p_event){
 		
-		var action = $('<li><a><img width=16 height=16 src="/img/red_cross.png" /></a><span _type="actionName">' + p_name + '</span></li>' );
+		var action = $(
+			'<li><a><img width=16 height=16 src="/img/red_cross.png" /></a>' + 
+			'<span _type="actionEvent">' + p_event + ':</span>' + 
+			'<span _type="actionName" class="actionName">' + p_name + '</span></li>' 
+		);
 		_$actionList.append(action);
 	}
 	
@@ -184,15 +194,18 @@ var actionController = new function(){
 		var leaf = leftTree.selected();
 		if (leaf){
 			
-			var actionName = $.trim(_$name.val())
+			var actionName = $.trim(_$name.val());
+			
+			var actionEvent = _$event.value();
 		
 			//create a new action in the list
-			_createListItem(actionName);
+			_createListItem(actionName, actionEvent);
 			
 			//create a new action in the selected leaf 
 			var type = _$type.value();
 			var newAction = {
-				  name: actionName
+				  event: actionEvent
+				, name: actionName
 				, type: _$type.value()
 				, duration: _$duration.value()
 			}
@@ -221,6 +234,10 @@ var actionController = new function(){
 		}
 	}
 	
+	function _hideBtn(){
+		_$newBtn.hide();
+	}
+	
 	
 	function _updateActionList(){
 		
@@ -231,7 +248,7 @@ var actionController = new function(){
 			
 			$.each(leaf.actions, function(i,e){
 				
-				_createListItem(i);
+				_createListItem(i, e.event);
 			})
 		}
 		
@@ -247,4 +264,5 @@ var actionController = new function(){
 	this.init =  _init;
 	this.updateActionList = _updateActionList;
 	this.emptyActionList = _emptyActionList;
+	this.hideBtn = _hideBtn;
 }

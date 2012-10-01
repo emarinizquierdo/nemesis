@@ -33,7 +33,7 @@ function saveBook(){
 			var actorName = e.text;
 			var actor = scene.addActor(actorName);
 			
-			//set actor attributes
+			//set actor attre.textibutes
 			var fe = e.imageObj;
 			if (fe.getText){
 				actor.text = fe.getText();	
@@ -41,29 +41,28 @@ function saveBook(){
 				actor.fontFamily = fe.get('fontFamily');
 				actor.fontSize = fe.get('fontSize');
 				actor.textAlignment = fe.get('textAlign');
+				actor.actorType = "textType";
 				
 			}
 			else {
+				//En local no funciona porque no contiene el = de la llamada al servicio
 				actor.image = e.source.split('=')[1];
+				actor.actorType = "actorType";
 			}
 			
 			actor.draggable = e.draggable;
 			actor.touchable = e.touchable;
 			//actor.uid       = e.uid;
-			actor.angle  = fe.getAngle();
-			actor.height = fe.getHeight();
-			actor.width  = fe.getWidth();
-			actor.top    = fe.getTop();
-			actor.left   = fe.getLeft();
-			actor.scaleX = fe.getScaleX();
-			actor.scaleY = fe.getScaleY();
+			actor.rotation  = fe.getAngle();
+			//actor.height = fe.getHeight();
+			//actor.width  = fe.getWidth();
+			actor.position   = fe.getLeft() + "," + fe.getTop(); 
+			actor.scale = fe.getScaleX() + "," +  fe.getScaleY();
 			actor.zindex = fe.get('zindex');
+
+			_addActorActions(e, actor);
 			
-			
-			
-			
-			
-			//get element childrens
+			//add element childrens
 			if (e.hasChildren){
 				
 				var childrens = e.children.data();
@@ -71,6 +70,28 @@ function saveBook(){
 			}
 				
 		});//end each
+		
+	}
+	
+	function _addActorActions(e, actor){
+
+		if (e.actions){
+			$.each(e.actions, function(i,a){
+				
+				var action = actor.addAction(a);
+				
+				if (action){
+					
+					/*
+					action.name = a.name;
+					action.duration = a.duration;
+					action.type = a.type;
+					*/
+					
+					$.extend(action, a);
+				}
+			});	
+		}
 		
 	}
 	

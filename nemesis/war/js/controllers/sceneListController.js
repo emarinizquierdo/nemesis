@@ -156,6 +156,9 @@ var sceneList = new function(){
 			$("#scene-name-input").val('');
 			_selected = null;
 			$('#new-action-button').hide();
+			actionController.emptyActionList();
+			actionController.hideBtn();
+			rightUpperSlidder.disableAll();
 		}
 		_scenes.splice( $.inArray(s, _scenes), 1);
 		

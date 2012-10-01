@@ -82,14 +82,18 @@
 			    				</tr>
 			    			</table>			    			
 							
-			    			<div id="listView"></div>
-							<div id="pager" class="k-pager-wrap"></div>
+			    			<div id="listView">
+			    			</div>
+			    			
+							<div id="pager" class="k-pager-wrap">
+							</div>
 			    		
 				    		<script type="text/x-kendo-tmpl" id="template">
         						<div class="localImage">
             						<img src="\${url}" title="\${title}" />
         						</div>
     						</script>
+    						
 						</div>
 					</div>
 					<!-- end leftPanel -->    
@@ -287,6 +291,17 @@
 
 	<div id="new-action-window">
 		<table>
+			<tr><td>Event:</td>
+				<td>
+					<select id="action-event" style="width:300px">
+						<option value="touch">touch</option>
+						<option value="onEnter">onEnter</option>
+					</select>
+				</td>
+			</tr>
+			<tr><td>State:</td>
+				<td><input type="text" id="action-state" size="40" class="k-textbox" readOnly value="Default" /></td>
+			</tr>
 			<tr><td>Name:</td>
 				<td><input type="text" id="action-name" size="40" class="k-textbox" /></td>
 			</tr>
