@@ -89,6 +89,7 @@ function saveBook(){
 					*/
 					
 					$.extend(action, a);
+					delete action.event;
 				}
 			});	
 		}
