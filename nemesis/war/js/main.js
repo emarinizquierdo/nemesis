@@ -230,6 +230,7 @@ $(document).ready(function(){
 			var exportMsg = $('#export-msg');
 			var file = $('#export-file-name');
 			var fileName = file.val();
+			var times = 0;
 			
 			if ($.trim(fileName) == ""){
 				
@@ -251,14 +252,31 @@ $(document).ready(function(){
 							.addClass('ok-msg')
 							.text('Espera un momento mientras se guarda el libro...');
 
-						window.setTimeout(_download, 3000);
+						_download();
 					});
 					
+					//Comprobación de que el libro ya está disponible en el datastore
+					//Se lanzan 5 reintentos como máximo
 					function _download(){
-						location.href = '/download?fileName=' + fileName;
-						exportMsg
-							.addClass('ok-msg')
-							.text('¡Libro guardado con éxito!')
+
+						var url = '/download?fileName=' + fileName;
+						
+						$.get(url)
+							.success(function(){
+								location.href = url;
+								exportMsg.addClass('ok-msg').text('¡Libro guardado con éxito!')
+							})
+							.error(function(){
+								
+								times++
+								if (times < 5){
+									window.setTimeout(_download, 3000);	
+								}
+								else {
+									exportMsg.removeClass('ok-msg').text('Se ha producido un error en la operación.')
+								}
+								
+							})
 					}
 					
 //					var uriContent = "data:application/octet-stream," + encodeURIComponent(plist);
@@ -272,7 +290,7 @@ $(document).ready(function(){
 		
 				}
 				else {
-					exportMsg.removeClass('ok-msg').text('Se ha producido un error.')
+					exportMsg.removeClass('ok-msg').text('Se ha producido un error en la operación.')
 				}
 				
 				

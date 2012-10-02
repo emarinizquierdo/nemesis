@@ -69,7 +69,7 @@ function book(bookName){
 			this.draggable = false;
 			this.touchable = false;
 			this.initState = "Default";
-			this.actorType = "";
+			this.type = "";
 			this.zindex = "";
 			//this.height = "";
 			//this.width = "";

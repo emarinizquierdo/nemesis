@@ -33,23 +33,25 @@ function saveBook(){
 			var actorName = e.text;
 			var actor = scene.addActor(actorName);
 			
-			//set actor attre.textibutes
+			//set actor attributes
 			var fe = e.imageObj;
 			if (fe.getText){
 				actor.text = fe.getText();	
 				actor.color = fe.getFill();
-				actor.fontFamily = fe.get('fontFamily');
+				actor.fontName = fe.get('fontFamily');
 				actor.fontSize = fe.get('fontSize');
-				actor.textAlignment = fe.get('textAlign');
-				actor.actorType = "textType";
+				actor.fontAlignment = fe.get('textAlign');
+				actor.type = "textType";
+				actor.textSize = "200,200";
 				
 			}
 			else {
 				//En local no funciona porque no contiene el = de la llamada al servicio
 				actor.image = e.source.split('=')[1];
-				actor.actorType = "actorType";
+				actor.type = "actorType";
 			}
 			
+			actor.name = e.text;
 			actor.draggable = e.draggable;
 			actor.touchable = e.touchable;
 			//actor.uid       = e.uid;
@@ -82,14 +84,29 @@ function saveBook(){
 				
 				if (action){
 					
-					/*
 					action.name = a.name;
 					action.duration = a.duration;
 					action.type = a.type;
-					*/
+
+					//Se eliminan las propiedades básicas en busca de más propiedades
+					delete a.event;
+					delete a.name;
+					delete a.duration;
+					delete a.type;
+				
+					if (!$.isEmptyObject(a)){
+						
+						$.each(a, function(pos, elem){
+							
+							if (typeof action.config == "undefined"){
+								action.config = elem;
+							}
+							else {
+								action.config = action.config + "," + elem;
+							}
+						})
+					}
 					
-					$.extend(action, a);
-					delete action.event;
 				}
 			});	
 		}

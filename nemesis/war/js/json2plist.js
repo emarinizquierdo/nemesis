@@ -91,6 +91,23 @@ function json2plist(o){
 		return r;
 	}
 	
+	function parseConfig(value){
+	
+		var r = "";
+		
+		r += tab() + '<array>' + '\n';
+		
+		ntab++;
+		
+		r += tab() + '<string>' + value + '</string>' +'\n';
+		
+		ntab--;
+		
+		r += tab() + '</array>' + '\n';
+		
+		return r;
+	}
+	
 	function parseElement(key, value){
 		
 		var r = "";
@@ -101,49 +118,51 @@ function json2plist(o){
 			r += tab() + '<key>' + key + '</key>' + '\n';
 			r += parseActions(value);
 		}
+		//la configuración de las acciones va dentro de un array
+		else if(key == "config"){
+			
+			r += tab() + '<key>' + key + '</key>' + '\n';
+			r += parseConfig(value);
+		}
+		//tratamiento de arrays
+		else if ($.isArray(value)){
+				
+			r += tab() + '<key>' + key + '</key>' + '\n';
+			r += parseArray(value);
+		}
 		else {
 			
-			if ($.isArray(value)){
-				r += tab() + '<key>' + key + '</key>' + '\n';
-				r += parseArray(value);
-			}
-			else {
-				
-				switch (typeof value){
-				
-					case "string":
-						r += tab() + '<key>' + key + '</key>' + '\n';
-						r += tab() + '<string>' + value + '</string>' +'\n';
-						break;
-						
-					case "number":
-						r += tab() + '<key>' + key + '</key>' + '\n';
-						r += tab() + '<string>' + value + '</string>' +'\n';
-						break;
-						
-					case "boolean": 
-						r += tab() + '<key>' + key + '</key>' + '\n';
-						r += tab() + '<' + value + '/>' + '\n';
-						break;
-						
-					case "object":
-						r += tab() + '<key>' + key + '</key>' + '\n';
-						r += parseObj(value);
-						break;
-						
-					case "function":
-						break;
-						
-					default: 
-
-						console.log('Tipo no reconocido en parseObj');
-						break;
-				}	
-			}
+			switch (typeof value){
+			
+				case "string":
+					r += tab() + '<key>' + key + '</key>' + '\n';
+					r += tab() + '<string>' + value + '</string>' +'\n';
+					break;
+					
+				case "number":
+					r += tab() + '<key>' + key + '</key>' + '\n';
+					r += tab() + '<string>' + value + '</string>' +'\n';
+					break;
+					
+				case "boolean": 
+					r += tab() + '<key>' + key + '</key>' + '\n';
+					r += tab() + '<' + value + '/>' + '\n';
+					break;
+					
+				case "object":
+					r += tab() + '<key>' + key + '</key>' + '\n';
+					r += parseObj(value);
+					break;
+					
+				case "function":
+					break;
+					
+				default: 
+					console.log('Tipo no reconocido en parseObj');
+					break;
+			}	
 		}
-		
-		
-		
+
 		return r;
 	}
 	
