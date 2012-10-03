@@ -108,12 +108,35 @@ function json2plist(o){
 		return r;
 	}
 	
+	function parseText(value){
+		
+		var r = "";
+		
+		r += tab() + '<key>' + 'paragraphs' + '</key>' + '\n';
+		
+		r += tab() + '<array>' + '\n';
+		
+		ntab++;
+		
+		r += tab() + '<string>' + value + '</string>' +'\n';
+		
+		ntab--;
+		
+		r += tab() + '</array>' + '\n';
+		
+		return r;
+	}
+	
 	function parseElement(key, value){
 		
 		var r = "";
 		
+		//tratamiento especial de los textos
+		if (key == "text"){
+			r += parseText(value);
+		}
 		//las acciones van como un array en el plist
-		if (key == "actions"){
+		else if (key == "actions"){
 			
 			r += tab() + '<key>' + key + '</key>' + '\n';
 			r += parseActions(value);

@@ -12,7 +12,7 @@ function saveBook(){
 	$.each(sceneList.scenes, function(i,e){
 		
 		var sceneName = e.item.attr('scenename');
-		sceneName =  $.trim(sceneName)/*.replace(/\s/g,"_")*/;
+		sceneName =  $.trim(sceneName);
 		var scene = b.addScene(sceneName);
 		
 		scene.showNextBtn = e.nextBtn;
@@ -38,7 +38,10 @@ function saveBook(){
 			if (fe.getText){
 				actor.text = fe.getText();	
 				actor.color = fe.getFill();
-				actor.fontName = fe.get('fontFamily');
+				
+				//actor.fontName = fe.get('fontFamily');
+				actor.fontName = "Marker Felt";
+				
 				actor.fontSize = fe.get('fontSize');
 				actor.fontAlignment = fe.get('textAlign');
 				actor.type = "textType";
@@ -54,10 +57,7 @@ function saveBook(){
 			actor.name = e.text;
 			actor.draggable = e.draggable;
 			actor.touchable = e.touchable;
-			//actor.uid       = e.uid;
 			actor.rotation  = fe.getAngle();
-			//actor.height = fe.getHeight();
-			//actor.width  = fe.getWidth();
 			actor.position   = fe.getLeft() + "," + fe.getTop(); 
 			actor.scale = fe.getScaleX() + "," +  fe.getScaleY();
 			actor.zindex = fe.get('zindex');
@@ -84,19 +84,22 @@ function saveBook(){
 				
 				if (action){
 					
-					action.name = a.name;
-					action.duration = a.duration;
-					action.type = a.type;
+					var aux = {};
+					$.extend(aux, a);
+					
+					action.name = aux.name;
+					action.duration = aux.duration;
+					action.type = aux.type;
 
 					//Se eliminan las propiedades básicas en busca de más propiedades
-					delete a.event;
-					delete a.name;
-					delete a.duration;
-					delete a.type;
+					delete aux.event;
+					delete aux.name;
+					delete aux.duration;
+					delete aux.type;
 				
-					if (!$.isEmptyObject(a)){
+					if (!$.isEmptyObject(aux)){
 						
-						$.each(a, function(pos, elem){
+						$.each(aux, function(pos, elem){
 							
 							if (typeof action.config == "undefined"){
 								action.config = elem;

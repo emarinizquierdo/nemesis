@@ -7,8 +7,6 @@ function book(bookName){
 	this.btnNextImage = "";
 	this.mainBgMusic = "";
 	this.openingScene = "";
-	
-	//this.scenes = [];
 	//this.showBoundingBox = false;
 	
 	//scene icons
@@ -32,7 +30,6 @@ function book(bookName){
 		this.showNextBtn = true;
 		this.showPrevBtn = true;
 		this.batchNodes = {}
-		//this.actors = [];
 		
 		/*
 		 *  actor constructor
@@ -63,20 +60,15 @@ function book(bookName){
 				return this.actions[p_action.event][p_action.name];
 			}
 			
-			//this.uid = "";
-			//this.image = "";
 			this.rotation = "";
 			this.draggable = false;
 			this.touchable = false;
 			this.initState = "Default";
 			this.type = "";
 			this.zindex = "";
-			//this.height = "";
-			//this.width = "";
 			this.position = "";
 			this.scale = "";
 			this.anchor = "0,0"
-			//this.actors = [];	
 			
 			this.addActor = _addActor;
 			this.addAction = _addAction;
@@ -110,9 +102,9 @@ function book(bookName){
 	function _addScene(sceneName){
 		
 		if (sceneName){
+			
 			var newScene = {};
 			newScene[sceneName] = new scene();
-			//$.extend(this.scenes, newScene);
 			if(!this.scenes){
 				this.scenes = [];
 			}
