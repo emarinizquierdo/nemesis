@@ -1,184 +1,79 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:nemesis="antlib:com.bbva.cyp.tools.ant" name="nemesis" default="all" basedir=".">
+<project>
+  <property name="sdk.dir" location="/home/eduardomarin/apps/appengine-java-sdk-1.9.30" />
 
-	<description>NEMESIS</description>
+  <import file="${sdk.dir}/config/user/ant-macros.xml" />
 
-	<!-- PROPERTIES AND CLASSPATH -->
-	<!-- PROPERTIES -->
-	<property file="build.properties" />
-	<property file="app.properties" />
-	<property name="out.dir" value="out" />
+  <path id="project.classpath">
+    <pathelement path="war/WEB-INF/classes" />
+    <fileset dir="war/WEB-INF/lib">
+      <include name="**/*.jar" />
+    </fileset>
+    <fileset dir="${sdk.dir}/lib">
+      <include name="shared/**/*.jar" />
+    </fileset>
+  </path>
 
-	<input message="Please enter AppEngine SDK: " addproperty="appengine.sdk.dir" defaultvalue="${default.appengine.sdk.dir}" />
+  <target name="copyjars"
+      description="Copies the App Engine JARs to the WAR.">
+    <copy
+        todir="war/WEB-INF/lib"
+        flatten="true">
+      <fileset dir="${sdk.dir}/lib/user">
+        <include name="**/*.jar" />
+      </fileset>
+    </copy>
+  </target>
 
-	<!-- FORMAT -->
-	<tstamp>
-		<format property="build.date" pattern="dd/MM/yyyy HH:mm:ss" />
-	</tstamp>
+  <target name="compile" depends="copyjars"
+      description="Compiles Java source and copies other source files to the WAR.">
+    <mkdir dir="war/WEB-INF/classes" />
+    <copy todir="war/WEB-INF/classes">
+      <fileset dir="src">
+        <exclude name="**/*.java" />
+      </fileset>
+    </copy>
+    <javac
+        srcdir="src"
+        destdir="war/WEB-INF/classes"
+        classpathref="project.classpath"
+        debug="on" />
+  </target>
 
-	<!-- SDK TOOLS -->
-	<path id="tools.classpath">
-		<fileset dir="lib/tools" includes="*.jar" />
-		<file file="${appengine.sdk.dir}/lib/appengine-tools-api.jar" />
-	</path>
-	<import file="${appengine.sdk.dir}/config/user/ant-macros.xml" />
-	<typedef resource="com/googlecode/svntask/svntask.xml" classpathref="tools.classpath" />
-	<typedef uri="antlib:com.bbva.cyp.tools.ant" classpathref="tools.classpath" />
+  <target name="datanucleusenhance" depends="compile"
+      description="Performs JDO enhancement on compiled data classes.">
+    <enhance_war war="war" />
+  </target>
 
-	<!-- ANT CONTRIB -->
-	<taskdef resource="net/sf/antcontrib/antlib.xml" classpathref="tools.classpath" />
+  <target name="runserver" depends="datanucleusenhance"
+      description="Starts the development server.">
+    <dev_appserver war="war" />
+  </target>
 
-	<!-- COMPILATION LIBRARIES -->
-	<path id="compile.classpath">
-		<fileset dir="war/WEB-INF/lib" includes="*.jar" excludes="appengine-*.jar,datanucleus-*.jar,geronimo-*.jar,jdo2-api-*.jar,jsr107cache-*.jar" />
-		<fileset dir="${appengine.sdk.dir}">
-			<include name="lib/shared/**/*.jar" />
-			<include name="lib/user/**/*.jar" />
-			<include name="lib/appengine-remote-api.jar" />
-			<include name="lib/impl/appengine-api.jar" />
-		</fileset>
-	</path>
+  <target name="update" depends="datanucleusenhance"
+      description="Uploads the application to App Engine.">
+    <appcfg action="update" war="war" />
+  </target>
 
-	<!-- TARGETS -->
+  <target name="update_indexes" depends="datanucleusenhance"
+      description="Uploads just the datastore index configuration to App Engine.">
+    <appcfg action="update_indexes" war="war" />
+  </target>
 
-	<target name="all" depends="rebuild, dist, rollback, deploy" description="Performs all tasks necessary to deploy the project on Google." />
+  <target name="rollback" depends="datanucleusenhance"
+      description="Rolls back an interrupted application update.">
+    <appcfg action="rollback" war="war" />
+  </target>
 
-	<target name="rebuild" depends="clean, compile, update-descriptors" description="Recompiles the project." />
-
-	<target name="clean" description="Cleans the output.">
-		<delete dir="${out.dir}" />
-	</target>
-
-	<target name="compile" depends="split-app-name" description="Compiles the sources.">
-		<mkdir dir="${out.dir}/classes" />
-		<echo message="Compiling java sources" />
-		<echo message="${javac.deprecation}" />
-		<javac destdir="${out.dir}/classes" encoding="${javac.encoding}" debug="${javac.debug}" deprecation="${javac.deprecation}" 
-			optimize="${javac.optimize}" source="${javac.source}" target="${javac.target}" includeantruntime="${javac.includeantruntime}">
-			<src path="src" />
-			<classpath refid="compile.classpath" />
-		</javac>
-		
-		<echo message="Trying to copy the commons resources" />
-		<if>
-			<available file="config/common/res" type="dir" />
-			<then>
-				<echo message="Copying common resources" />
-				<copy todir="${out.dir}/classes">
-					<fileset dir="config/common/res" includes="**/*" />
-				</copy>
-			</then>
-		</if>
-		<echo message="Copying web resources" />
-		<copy todir="${out.dir}/war-exploded">
-			<fileset dir="war" excludes="WEB-INF/classes/**,_test/**" />
-		</copy>
-		<echo message="Copying AppEngine JARs" />
-		<copy todir="${out.dir}/war-exploded/WEB-INF/lib" flatten="true">
-			<fileset dir="${appengine.sdk.dir}/lib/user" includes="**/*.jar" />
-		</copy>
-		<echo message="Packaging classes into JAR" />
-		<jar file="${out.dir}/war-exploded/WEB-INF/lib/${app.name.splitted}.jar">
-			<fileset dir="${out.dir}/classes" />
-		</jar>		
-	</target>
-
-	<target name="update-descriptors" description="Updates the app descriptors.">
-		<echo message="Updating appengine web descriptor" />
-		<replaceregexp file="${out.dir}/war-exploded/WEB-INF/appengine-web.xml" match="&lt;application&gt;(.*)&lt;/application&gt;" replace="&lt;application&gt;${app.name}&lt;/application&gt;" />
-		<replaceregexp file="${out.dir}/war-exploded/WEB-INF/appengine-web.xml" match="&lt;version&gt;(.*)&lt;/version&gt;" replace="&lt;version&gt;${app.version}&lt;/version&gt;" />
-		<property name="build.user" value="${user.name}" />
-		<property name="build.number" value="x" />
-		<property name="build.vcs.number" value="x" />
-		<property name="build.vcs.date" value="x" />
-		<property name="build.head.version" value="x" />
-		<echo message="Trying to update the file versions" />
-		<if>
-			<available file="war/version.txt" type="file" />
-			<then>
-				<copy todir="${out.dir}/war-exploded" file="war/version.txt" filtering="true" overwrite="true">
-					<filterset>						
-						<filter token="build.user" value="${build.user}" />
-						<filter token="build.version" value="${build.version}" />
-						<filter token="build.number" value="${build.number}" />
-						<filter token="build.date" value="${build.date}" />
-						<filter token="build.vcs.number" value="${build.vcs.number}" />
-						<filter token="build.vcs.date" value="${build.vcs.date}" />
-						<filter token="build.head.version" value="${build.head.version}" />
-					</filterset>
-				</copy>
-			</then>
-		</if>
-	</target>
-
-	<target name="dist" depends="update-descriptors" description="Creates the dist files.">
-		<echo message="Creating web archive" />
-		<jar destfile="${out.dir}/${app.name.splitted}-${build.version}.${app.version}.war" basedir="${out.dir}/war-exploded" />
-		<echo message="Creating sources archive" />
-		<zip destfile="${out.dir}/${app.name.splitted}-${build.version}.${app.version}-sources.zip" basedir="src" />
-		<echo message="Creating all archive" />
-		<zip destfile="${out.dir}/${app.name.splitted}-${build.version}.${app.version}-all.zip" basedir="." excludes="${out.dir}/**" />
-	</target>
-
-	<target name="rollback" depends="check-appengine-user, update-descriptors" description="Rollbacks an in-progress update.">
-		<echo message="Rolling back update to application, email = ${appengine.email}" />
-		<java classname="com.google.appengine.tools.admin.AppCfg" classpathref="tools.classpath" fork="true" failonerror="true" 
-			inputstring="${appengine.password}">
-			<arg value="--email=${appengine.email}" />
-			<arg value="--passin" />
-			<arg value="rollback" />
-			<arg value="${out.dir}/war-exploded" />
-		</java>
-	</target>
-
-	<target name="deploy" depends="check-appengine-user, update-descriptors" description="Deploys the application into the App Engine.">
-		<echo message="Uploading application, email = ${appengine.email}" />
-		<java classname="com.google.appengine.tools.admin.AppCfg" classpathref="tools.classpath" fork="true" failonerror="true" 
-			inputstring="${appengine.password}">
-			<arg value="--email=${appengine.email}" />
-			<arg value="--passin" />
-			<arg value="update" />
-			<arg value="${out.dir}/war-exploded" />
-		</java>
-		<!-- Para actualizar la hoja excel. -->
-		<echo message="Updating deployment log" />
-		<trycatch>
-			<try>
-				<nemesis:post url="${deploy.logUrl}">
-					<parameter name="entry.1.single" value="${app.name}" />
-					<parameter name="entry.2.single" value="${app.version}" />
-					<parameter name="entry.3.single" value="${build.vcs.number}" />
-					<parameter name="entry.4.single" value="${appengine.email}" />
-					<parameter name="submit" value="" />
-				</nemesis:post>
-			</try>
-			<catch>
-				<echo>Failed to update the versions in the form of Google.</echo>
-			</catch>
-		</trycatch>
-	</target>
-
-	<!-- taskdef is required by 'for' tag -->
-
-	<target name="split-app-name" description="Chop the name of the application based on the ':' to avoid the strange names of GAE applications for bussines">
-		<for list="${app.name}" delimiter=":" param="val">
-			<sequential>
-				<var name="app.name.splitted" unset="true"/>
-				<property name="app.name.splitted" value="@{val}"/>
-			</sequential>
-		</for>
-		<echo>App Name splitted: ${app.name.splitted}</echo>
-	</target>	
-
-	<target name="check-appengine-user" description="Request the values required for execution of the application if the do not exists.">
-		<input message="Please enter User Email: " addproperty="appengine.email" defaultvalue="${default.appengine.email}" />
-		<input message="Please enter User Password: " addproperty="appengine.password" defaultvalue="${default.appengine.password}" />
-		<if>
-			<contains string="${appengine.email}" substring="$" />
-			<then>
-				<fail>Build aborted by user. Bad User Email</fail>
-			</then>
-		</if>
-	</target>	
+  <target name="request_logs"
+      description="Downloads log data from App Engine for the application.">
+    <appcfg action="request_logs" war="war">
+      <options>
+        <arg value="--num_days=5"/>
+      </options>
+      <args>
+        <arg value="logs.txt"/>
+      </args>
+    </appcfg>
+  </target>
 
 </project>
